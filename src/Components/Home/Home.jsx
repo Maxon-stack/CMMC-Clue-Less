@@ -67,23 +67,30 @@ const Home = () => {
   } = React.useContext(CluelessContext)
 
   return (
-    <div className='homeContainer'>
-      <div className="test">
-        {playerName}
-      </div>
-      <div className="joinGameForm">
-        <input placeholder="Player Name" type="text" value={playerName} onChange={handleNameChange} />
-        <button onClick={handleJoinGame} >
-          Join Game
-        </button>
-        <br />
-      </div>
+    <div className='container'>
+      <div className="card">
+        <h1 className="card-heading" >
+          Clueless
+        </h1>
+        <div className="card-form">
+          <div className="user-box">
+            <input placeholder="" type="text" value={playerName} onChange={handleNameChange} required />
+            <label>Player Name</label>
+          </div>
 
-      {/* <button>
-        Create New Lobby
-      </button> */}
+          <div className="btnHolder">
+            <button className="action-button" onClick={handleJoinGame} >
+              Join Game
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
 
 export default Home
+
+{/* <button>
+Create New Lobby
+</button> */}
