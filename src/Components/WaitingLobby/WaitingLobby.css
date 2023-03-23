@@ -1,6 +1,25 @@
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+.WaitingLobbyContainer{
+  padding: 25px;
+  display: grid;
+	place-items: center;
+  background-color: #f1f3fb;
+}
+.lobbyContainer{
+  padding: 25px;
+  display: grid;
+	place-items: center;
+  background-color: #f1f3fb;
+}
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 30px;
   align-items: stretch;
 }
@@ -20,10 +39,71 @@
   width: 80px;
   border: 2px solid white;
   border-radius: 50%;
-  background-color: #FF2400;
   text-align: center;
-  color: white;
+  background-color: black;
 }
 .grid .text {
   padding: 16px 20px 30px;
+}
+
+.startGame{
+  --border-radius: 24px;
+	--border-width: 8px;
+
+  margin-top: 50px;
+
+  cursor: pointer;
+
+	appearance: none;
+	position: relative;
+	padding: 1em 2em;
+	border: 0;
+	background-color: black;
+
+  border-radius: var(--border-radius);
+
+	font-family: "Montserrat", sans-serif;
+	font-size: 2em;
+	font-weight: 600;
+	color: #fff;
+}
+.startGame::after {
+	--m-i: linear-gradient(#000, #000);
+	--m-o: content-box, padding-box;
+
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	padding: var(--border-width);
+	border-radius: var(--border-radius);
+	background-image: conic-gradient(
+		#488cfb,
+		#29dbbc,
+		#ddf505,
+		#ff9f0e,
+		#e440bb,
+		#655adc,
+		#488cfb
+	);
+
+	mask-image: var(--m-i), var(--m-i);
+	mask-origin: var(--m-o);
+	mask-clip: var(--m-o);
+	mask-composite: exclude;
+	-webkit-mask-composite: destination-out;
+
+	filter: hue-rotate(0);
+	animation: hue linear 500ms infinite;
+	animation-play-state: paused;
+}
+.startGame:hover::after {
+	animation-play-state: running;
+}
+@keyframes hue {
+	to {
+		filter: hue-rotate(1turn);
+	}
 }

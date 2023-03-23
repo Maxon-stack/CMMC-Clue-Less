@@ -9,12 +9,30 @@ import { FaMapPin } from 'react-icons/fa';
 const WaitingLobby = () => {
 
   const characters = [
-    'Miss Scarlet',
-    'Col. Mustard',
-    'Mrs. White',
-    'Mr. Green',
-    'Mrs. Peacock',
-    'Prof. Plum',
+    {
+      name: 'Miss Scarlet',
+      class: 'scarlet'
+    },
+    {
+      name: 'Col. Mustard',
+      class: 'mustard'
+    },
+    {
+      name: 'Mrs. White',
+      class: 'white'
+    },
+    {
+      name: 'Mr. Green',
+      class: 'green'
+    },
+    {
+      name: 'Mrs. Peacock',
+      class: 'Peacock'
+    },
+    {
+      name: 'Prof. Plum',
+      class: 'Plum'
+    },
 
   ]
 
@@ -27,32 +45,33 @@ const WaitingLobby = () => {
       setPlayers(data);
     });
   }, [])
-
-
   return (
-    <div>
+    <div className='WaitingLobbyContainer'>
       <h1>
         Players in the Lobby:
       </h1>
       <div className="lobbyContainer">
         <div className="grid">
-          {Object.values(players).map((player) => (
-            <div className="article">
-              <img src={scarletJpg} alt="Sample photo"></img>
-              <FaMapPin className='playerIcon'/>
-              <div className="text">
-                <h3>
-                  {player.name} will Play as {characters[player.turn - 1]}
-                </h3>
-                <p>
-                  Player Description
-                </p>
-              </div>
-            </div>
-          ))}
+          {Object.values(players).map((player) => {
+            if (player.name) {
+              return (
+                <div className="article">
+                  <img src={scarletJpg} alt="Sample photo"></img>
+                  <FaMapPin className={`playerIcon ${characters[player.turn - 1].class} `} />
+                  <div className="text">
+                    <h3>
+                      {player.name} will Play as {characters[player.turn - 1].name}
+                    </h3>
+                    <p>
+                      Player Description
+                    </p>
+                  </div>
+                </div>
+              )
+            }
+          })}
         </div>
-
-        <button>
+        <button className='startGame'>
           Start Game
         </button>
       </div>
