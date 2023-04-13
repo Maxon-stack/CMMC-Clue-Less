@@ -10,6 +10,7 @@ import Main from './Components/Main/Main';
 
 function App() {
   const [playerName, setPlayerName] = useState('')
+  const [localPlayerObj, setLocalPlayerObj] = useState({})
   const [showHome, setShowHome] = useState(true)
   const [showLobby, setShowLobby] = useState(false)
   const [showGame, setShowGame] = useState(false)
@@ -18,6 +19,8 @@ function App() {
   const contextValue = {
     playerName,
     setPlayerName,
+    localPlayerObj, 
+    setLocalPlayerObj,
     showHome, 
     setShowHome,
     showLobby, 

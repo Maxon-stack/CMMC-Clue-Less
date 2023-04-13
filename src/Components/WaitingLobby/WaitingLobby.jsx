@@ -5,7 +5,7 @@ import './WaitingLobby.css'
 import scarletJpg from '../../Assets/Players/Scarlet.jpg'
 import { FaMapPin } from 'react-icons/fa';
 import CluelessContext from '../../CluelessContext'
-import { locationCards, characterCards, weaponCards } from '../../utils/constants'
+import { locationCards, characterCards, weaponCards, turnState } from '../../utils/constants'
 
 
 const WaitingLobby = () => {
@@ -17,14 +17,12 @@ const WaitingLobby = () => {
     showLobby,
     setShowLobby,
     showGame,
-    setShowGame
+    setShowGame,
+
   } = React.useContext(CluelessContext)
 
-
   const handleStartGame = () => {
-    let playerDecks = {
-
-    }
+    let playerDecks = {}
     var NewPlayers = Object.keys(players);
     for (var i = 0; i < NewPlayers.length; i++) {
       var propName = NewPlayers[i]
@@ -90,11 +88,6 @@ const WaitingLobby = () => {
       }
     }
 
-
-
-    console.log(winningCards)
-    console.log(playerDecks)
-
     let initalPlayerLocations = {
 
     }
@@ -102,28 +95,28 @@ const WaitingLobby = () => {
     for (var x = 0; x < NewPlayers.length; x++) {
       var propName = NewPlayers[x]
       switch (propName) {
-        case "scarlet":
-          initalPlayerLocations[propName] = "hall 2"
+        case "Scarlet":
+          initalPlayerLocations[propName] = 4
           break;
         case "Plum":
-          initalPlayerLocations[propName] = "hall 3"
+          initalPlayerLocations[propName] = 6
           break;
-        case "mustard":
-          initalPlayerLocations[propName] = "hall 5"
+        case "Mustard":
+          initalPlayerLocations[propName] = 8
           break;
         case "Peacock":
-          initalPlayerLocations[propName] = "hall 6"
+          initalPlayerLocations[propName] = 10
           break;
-        case "green":
-          initalPlayerLocations[propName] = "hall 8"
+        case "Green":
+          initalPlayerLocations[propName] = 14
           break;
-        case "white":
-          initalPlayerLocations[propName] = "hall 10"
+        case "White":
+          initalPlayerLocations[propName] = 16
           break;
       }
     }
-
     const BasicGameState = {
+      turnState: turnState,
       currentTurn: 1,
       playerCount: NewPlayers.length,
       playerDecks: playerDecks,
@@ -182,7 +175,6 @@ const WaitingLobby = () => {
     });
   }, [])
   return (
-
     <div className='WaitingLobbyContainer'>
       <h1>
         Players in the Lobby:

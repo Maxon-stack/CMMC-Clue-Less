@@ -1,0 +1,40 @@
+.locationsContainer{
+  height: 100%;
+  display: grid;
+
+}
+.locationsRow{
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+
+
+}
+
+.locationsRow div{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  height: 100%;
+  border: 5px solid;
+}
+
+.HallwayRow{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+.HallwayRow div{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  height: 100%;
+}
+.hallwayVert{
+
+}
+.locationBoxes{
+  flex-direction: column;
+  gap: 10px;
+}

@@ -6,6 +6,16 @@ import './Home.css';
 import CluelessContext from '../../CluelessContext';
 
 const Home = () => {
+  const {
+    playerName,
+    setPlayerName,
+    showHome,
+    setShowHome,
+    showLobby,
+    setShowLobby,
+    localPlayerObj, 
+    setLocalPlayerObj,
+  } = React.useContext(CluelessContext)
   const [todo, setTodo] = useState('')
 
   const [gameFull, setgameFull] = useState(false)
@@ -21,7 +31,13 @@ const Home = () => {
       if (snapshot.exists()) {
         for (let item of Object.keys(updatedPlayerList)) {
           if (updatedPlayerList[item].name == '') {
+            
             updatedPlayerList[item].name = playerName
+            setLocalPlayerObj({
+              name: playerName,
+              playingAs: item
+            })
+
             break
           }
         }
@@ -39,7 +55,6 @@ const Home = () => {
               console.log("Failed to update players object")
             });
         }
-        console.log(updatedPlayerList)
       } else {
         console.log("No data available");
       }
@@ -57,14 +72,6 @@ const Home = () => {
     });
 
   }
-  const {
-    playerName,
-    setPlayerName,
-    showHome,
-    setShowHome,
-    showLobby,
-    setShowLobby,
-  } = React.useContext(CluelessContext)
 
   return (
     <div className='container'>

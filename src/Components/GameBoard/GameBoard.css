@@ -1,6 +1,6 @@
 
 
-.GameContainer{
+.GameBoardContainer{
   height: 100vh;
   display: grid;
   grid-template-rows: 3fr 1fr;
@@ -10,12 +10,11 @@
   display: grid;
   grid-template-columns: 2fr 1fr;
 }
+.clipBoard{
+  height: 100%;
+}
 .containerLower{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 }
 
-.board{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-}
