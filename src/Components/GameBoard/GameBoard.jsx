@@ -41,7 +41,7 @@ const GameBoard = () => {
           <Locations />
         </div>
         <div className="clipBoard">
-          <h1>player clipBoard</h1>
+          <Clipboard />
         </div>
       </div>
       <div className="containerLower">
