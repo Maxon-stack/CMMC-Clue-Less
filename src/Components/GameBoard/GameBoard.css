@@ -5,16 +5,28 @@
   display: grid;
   grid-template-rows: 3fr 1fr;
   grid-template-columns: 1fr;
+  background-color: #FFFFFF;
+  padding: .5rem;
 }
 .boardAndClip{
   display: grid;
   grid-template-columns: 2fr 1fr;
+  padding-bottom: 1em;
 }
 .clipBoard{
   height: 100%;
+  padding-left: 1em;
 }
 .containerLower{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 }
 
+.clipboard-container {
+  height: 100%;
+}
+
+.clipboard-container .row {
+  padding-top: .25em;
+  padding-bottom: .25em;
+}

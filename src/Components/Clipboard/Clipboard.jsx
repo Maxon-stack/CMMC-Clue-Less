@@ -3,8 +3,8 @@ import './Clipboard.css'
 
 const ClipBoard = () => {
   return (
-    <div>
-      <h2>Inocence Clipboard</h2>
+    <div class="clipboard-container">
+      <h2>Innocence Clipboard</h2>
 
       <div class="row">
         <div class="col0">

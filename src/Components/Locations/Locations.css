@@ -1,14 +1,18 @@
+:root {
+  --hallway-color: #ff6961;
+  --nullspace-color: #fff;
+}
+
 .locationsContainer{
   height: 100%;
   display: grid;
-
+  background-color: bisque;
+  border: 3px solid var(--hallway-color);
 }
 .locationsRow{
   height: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-
-
 }
 
 .locationsRow div{
@@ -17,7 +21,7 @@
   text-align: center;
   align-items: center;
   height: 100%;
-  border: 5px solid;
+  border: 3px solid var(--hallway-color);
 }
 
 .HallwayRow{
@@ -34,7 +38,42 @@
 .hallwayVert{
 
 }
+
 .locationBoxes{
   flex-direction: column;
   gap: 10px;
 }
+
+/*
+Game board related CSS (a bit in locationsRow and locationsContainer as well)
+*/
+.HallwayRow div{
+  border-right: 3px solid var(--hallway-color);
+}
+
+.locationsContainer div:nth-child(odd) {
+  border-left: none;
+  border-right: none;
+}
+
+.locationsContainer:nth-child(1) {
+  border-top: none;
+}
+
+.locationsContainer:last-child{
+  border-bottom: none;
+}
+
+.HallwayRow div:nth-child(even) {
+  border-left: 3px solid var(--hallway-color);
+}
+
+.HallwayRow div:nth-child(even) {
+  background-color: var(--nullspace-color);
+}
+
+
+
+
+
+
