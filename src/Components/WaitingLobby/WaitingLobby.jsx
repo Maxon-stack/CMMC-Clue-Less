@@ -2,7 +2,12 @@ import { set, get, ref, onValue } from 'firebase/database'
 import React, { useEffect, useState } from 'react'
 import { db } from '../../firebase'
 import './WaitingLobby.css'
+import mustardJpg from '../../Assets/Players/Mustard.jpg'
+import plumJpg from '../../Assets/Players/Plum.jpg'
+import greenJpg from '../../Assets/Players/Green.jpg'
+import peacockJpg from '../../Assets/Players/Peacock.jpg'
 import scarletJpg from '../../Assets/Players/Scarlet.jpg'
+import whiteJpg from '../../Assets/Players/White.jpg'
 import { FaMapPin } from 'react-icons/fa';
 import CluelessContext from '../../CluelessContext'
 import { locationCards, characterCards, weaponCards, turnState } from '../../utils/constants'
@@ -139,16 +144,12 @@ const WaitingLobby = () => {
 
   const characters = [
     {
-      name: 'Miss Scarlet',
-      class: 'scarlet'
-    },
-    {
       name: 'Col. Mustard',
       class: 'mustard'
     },
     {
-      name: 'Mrs. White',
-      class: 'white'
+      name: 'Prof. Plum',
+      class: 'Plum'
     },
     {
       name: 'Mr. Green',
@@ -159,11 +160,15 @@ const WaitingLobby = () => {
       class: 'Peacock'
     },
     {
-      name: 'Prof. Plum',
-      class: 'Plum'
+      name: 'Miss Scarlet',
+      class: 'scarlet'
     },
-
+    {
+      name: 'Mrs. White',
+      class: 'white'
+    },
   ]
+  const images = [mustardJpg,plumJpg,greenJpg,peacockJpg,scarletJpg,whiteJpg]
 
   const [players, setPlayers] = useState({})
 
@@ -185,7 +190,7 @@ const WaitingLobby = () => {
             if (player.name) {
               return (
                 <div className="article">
-                  <img src={scarletJpg} alt="Sample photo"></img>
+                  <img src={images[player.turn - 1]} alt="Sample photo"></img>
                   <FaMapPin className={`playerIcon ${characters[player.turn - 1].class} `} />
                   <div className="text">
                     <h3>
