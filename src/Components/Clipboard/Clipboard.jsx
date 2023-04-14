@@ -15,8 +15,6 @@ const ClipBoard = () => {
     });
   }, [])
 
-  console.log(players.Green.name)
-
   return (
     <div>
       <h2>Inocence Clipboard</h2>

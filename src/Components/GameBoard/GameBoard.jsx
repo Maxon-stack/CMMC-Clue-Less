@@ -4,6 +4,7 @@ import CluelessContext from '../../CluelessContext'
 import './GameBoard.css'
 import Clipboard from '../../Components/Clipboard/Clipboard'
 import Locations from '../Locations/Locations'
+import PlayerDeck from '../PlayerDeck/PlayerDeck'
 import PlayerActions from '../PlayerActions/PlayerActions'
 import { db } from '../../firebase'
 
@@ -57,9 +58,7 @@ const GameBoard = () => {
         
         </div>
         <div className="deck">
-          <h1>
-            player deck
-          </h1>
+          <PlayerDeck />
         </div>
         <div className="reveal">
           <h1>
