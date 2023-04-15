@@ -24,6 +24,10 @@ label.col0 {
     text-align: left;
     width: 125px;
 }
+label.col1-6 {
+    width: 75px;
+    text-align: center;
+}
 input.col1-6 {
     width: 75px;
     text-align: center;
