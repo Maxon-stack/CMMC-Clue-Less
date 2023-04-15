@@ -5,27 +5,8 @@ import './Clipboard.css'
 
 const ClipBoard = () => {
 
-  /*
-      //div for second row with names of players (seem to have issues)
-      <div className='row'>
-        <div className="col0">
-          <label className="col0">Player Name</label>
-        </div>
-        <div className="col1-6">
-          <label className="col1-6">{players.Mustard.name}</label>
-          <label className="col1-6">{players.Plum.name}</label>
-          <label className="col1-6">{players.Green.name}</label>
-          <label className="col1-6">{players.Peacock.name}</label>
-          <label className="col1-6">{players.Scarlet.name}</label>
-          <label className="col1-6">{players.White.name}</label>
-        </div>
-      </div>
-  */
-
-        //use state for keeping track of player objects
   const [players, setPlayers] = useState({})
 
-  //use effect to pull players from firebase game
   useEffect(() => {
     const playersRef = ref(db, '/game/players');
     onValue(playersRef, (snapshot) => {
@@ -49,6 +30,19 @@ const ClipBoard = () => {
           <label className="col1-6">Mrs. Peacock</label>
           <label className="col1-6">Miss Scarlet</label>
           <label className="col1-6">Mrs. White</label>
+        </div>
+      </div>
+
+      <div className='row'>
+        <div className="col0">
+          <label className="col0">Player Name</label>   
+        </div>
+        <div className="col1-6">
+          {Object.values(players).map(
+            (player) => {
+              return(<label className="col1-6">{player.name}</label>)
+            }
+          )}
         </div>
       </div>
 
