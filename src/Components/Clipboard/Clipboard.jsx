@@ -15,6 +15,9 @@ const ClipBoard = () => {
     });
   }, [])
 
+  //the order from left to right is the order as it appears in Firebase because
+  //because the player names are pulled out in that order (maybe we should 
+  //standarize the order) 
   return (
     <div className='clipboardMain'>
       <h2>Inocence Clipboard</h2>
@@ -24,10 +27,10 @@ const ClipBoard = () => {
           <label className="col0">Character Name</label>
         </div>
         <div className="col1-6">
-          <label className="col1-6">Col. Mustard</label>
-          <label className="col1-6">Prof. Plum</label>
           <label className="col1-6">Rev. Green</label>
+          <label className="col1-6">Col. Mustard</label>
           <label className="col1-6">Mrs. Peacock</label>
+          <label className="col1-6">Prof. Plum</label>
           <label className="col1-6">Miss Scarlet</label>
           <label className="col1-6">Mrs. White</label>
         </div>

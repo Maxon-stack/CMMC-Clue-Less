@@ -1,0 +1,9 @@
+h2.playerDeck {
+    border: 3px solid black;
+    text-align: center;
+}
+
+h3.playerName {
+    border: 3px solid black;
+    text-align: center;
+}

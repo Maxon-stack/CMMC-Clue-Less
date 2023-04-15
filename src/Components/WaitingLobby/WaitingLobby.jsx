@@ -142,17 +142,27 @@ const WaitingLobby = () => {
 
   }
 
+  //the order of the characters and their corresponding images are in the order
+  //of their turns as it is defined in firebase (I believe currently these are
+  //static) but since the JSX return accesses the character and images using their
+  //turn number I had to put it in turn order. At some point this will need to be
+  //changed as the turn order values become dyanmic between games, but this is
+  //probably fine for the minimal increment
   const characters = [
     {
-      name: 'Col. Mustard',
+      name: 'Miss Scarlet',
+      class: 'scarlet'
+    },
+    {
+      name: 'Colonel Mustard',
       class: 'mustard'
     },
     {
-      name: 'Prof. Plum',
-      class: 'Plum'
+      name: 'Mrs. White',
+      class: 'white'
     },
     {
-      name: 'Mr. Green',
+      name: 'Reverend Green',
       class: 'green'
     },
     {
@@ -160,15 +170,11 @@ const WaitingLobby = () => {
       class: 'Peacock'
     },
     {
-      name: 'Miss Scarlet',
-      class: 'scarlet'
-    },
-    {
-      name: 'Mrs. White',
-      class: 'white'
+      name: 'Professor Plum',
+      class: 'Plum'
     },
   ]
-  const images = [mustardJpg,plumJpg,greenJpg,peacockJpg,scarletJpg,whiteJpg]
+  const images = [scarletJpg,mustardJpg,whiteJpg,greenJpg,peacockJpg,plumJpg,,]
 
   const [players, setPlayers] = useState({})
 
