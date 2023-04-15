@@ -1,14 +1,16 @@
 {
   "files": {
-    "main.css": "/CMMC-Clue-Less/static/css/main.293416be.css",
-    "main.js": "/CMMC-Clue-Less/static/js/main.0ce7aa2f.js",
+    "main.css": "/CMMC-Clue-Less/static/css/main.ff326613.css",
+    "main.js": "/CMMC-Clue-Less/static/js/main.b823920b.js",
+    "static/media/Mustard.jpg": "/CMMC-Clue-Less/static/media/Mustard.9753e7dc78edfe22e7ba.jpg",
+    "static/media/Green.jpg": "/CMMC-Clue-Less/static/media/Green.c394b075c7b4deb50687.jpg",
     "static/media/Scarlet.jpg": "/CMMC-Clue-Less/static/media/Scarlet.cf2b79eea0f56057a23c.jpg",
     "index.html": "/CMMC-Clue-Less/index.html",
-    "main.293416be.css.map": "/CMMC-Clue-Less/static/css/main.293416be.css.map",
-    "main.0ce7aa2f.js.map": "/CMMC-Clue-Less/static/js/main.0ce7aa2f.js.map"
+    "main.ff326613.css.map": "/CMMC-Clue-Less/static/css/main.ff326613.css.map",
+    "main.b823920b.js.map": "/CMMC-Clue-Less/static/js/main.b823920b.js.map"
   },
   "entrypoints": [
-    "static/css/main.293416be.css",
-    "static/js/main.0ce7aa2f.js"
+    "static/css/main.ff326613.css",
+    "static/js/main.b823920b.js"
   ]
 }
