@@ -19,11 +19,11 @@ const GameBoard = () => {
     showGame,
     setShowGame,
     localPlayerObj, 
+    gameState, 
+    setGameState
   } = React.useContext(CluelessContext)
-  const [gameState, setGameState] = useState({});
 
   useEffect(() => {
-    console.log("Player Object", localPlayerObj)
     const stateRef = ref(db, '/game/BasicGameState');
     onValue(stateRef, (snapshot) => {
       const data = snapshot.val();
@@ -35,7 +35,6 @@ const GameBoard = () => {
   
   return (
     <div className='GameBoardContainer'>
-
       <div className="boardAndClip">
         <div className="board">
           <Locations />
@@ -48,7 +47,7 @@ const GameBoard = () => {
         <div className="actions">
           {
             gameState?.turnState?.currentTurn?.name === localPlayerObj.playingAs ? (
-              <PlayerActions  turn={gameState.turnState} locations={gameState.playerLocations}/>
+              <PlayerActions />
             ):
             <p>
               It is not Your turn yet

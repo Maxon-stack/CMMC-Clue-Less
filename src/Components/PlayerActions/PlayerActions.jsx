@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import CluelessContext from '../../CluelessContext'
-import { manageRooms } from '../../utils/constants'
+import { set, get, ref, onValue, getDatabase, update } from 'firebase/database'
+import { manageRooms} from '../../utils/constants'
+import { db } from '../../firebase'
+import './PlayerActions.css'
 
-const PlayerActions = (game, locations) => {
-  
+const PlayerActions = () => {
+
   const {
     playerName,
     setPlayerName,
@@ -13,20 +16,91 @@ const PlayerActions = (game, locations) => {
     setShowLobby,
     showGame,
     setShowGame,
-    localPlayerObj, 
-  } = React.useContext(CluelessContext)
+    localPlayerObj,
+    gameState,
+    setGameState
 
-  const hallwayLocations = [2,4,6,7,8,10,12,14,15,16,18,20]
+  } = React.useContext(CluelessContext)
+  const characterCards = [
+    "Miss Scarlet",
+    "Col. Mustard",
+    "Mrs. White",
+    "Mr. Green",
+    "Mrs. Peacock",
+    "Prof. Plum",
+  ]
+  const weaponCards = [
+    "knife",
+    "Candle Stick",
+    "Revolver",
+    "Rope",
+    "Lead Pipe",
+    "Wrench",
+  ]
+
+  const hallwayLocations = [2, 4, 6, 7, 8, 10, 12, 14, 15, 16, 18, 20]
+  const roomLocations = [1, 3, 5, 9, 11, 13, 17, 19, 21]
+  const [isHallway, setIsHallway] = useState();
+  const [moveOptions, setMoveOptions] = useState()
+  const [suggestedWeapon, setSuggestedWeapon] = useState()
+  const [suggestedCharacter, setSuggestedCharacter] = useState()
+  const [isMoved, setIsMoved] = useState(false)
+  const [newLocation, setNewLocation] = useState()
+
+
+  const getMoveOptions = (playerLocation) => {
+    let finalOptions = []
+    let optionsObject = manageRooms[playerLocation - 1]
+    optionsObject.options.forEach((item) => {
+      let tempRoom = manageRooms[item - 1]
+      finalOptions.push([tempRoom.id, tempRoom.roomTitle])
+    });
+    return finalOptions
+  }
+
+  const handleMoveSelect = (value) => {
+    if (value !== 'placeholder') {
+      setIsMoved(true);
+      setNewLocation(value)
+    }
+    else {
+      setIsMoved(false);
+    }
+  }
 
   useEffect(() => {
-    
-    console.log(game)
-  
-
+    const currentPlayerLocation = gameState.playerLocations[localPlayerObj.playingAs]
+    if (hallwayLocations.includes(currentPlayerLocation)) {
+      setIsHallway(true)
+      //const PlayerOptions = manageRooms[];
+      setMoveOptions(getMoveOptions(currentPlayerLocation))
+    }
+    else {
+      setIsHallway(false)
+    }
   }, [])
-  
 
-  const handleMove = () => {
+
+
+  const handleHallwayScenario = () => {
+    const dbRef = ref(getDatabase());
+    const finalSuggestion = {
+      character: suggestedCharacter,
+      location: parseInt(newLocation),
+      weapon: suggestedWeapon
+    }
+    const characterValue = finalSuggestion.character.split(' ')
+    // Set is waiting to true on database
+    const updates = {};
+    updates[`game/BasicGameState/turnState/isWaiting`] = true;
+    updates[`/game/BasicGameState/turnState/currentSuggestion`] = finalSuggestion;
+    updates[`/game/BasicGameState/playerLocations/${localPlayerObj.playingAs}`] = finalSuggestion.location;
+    updates[`/game/BasicGameState/playerLocations/${characterValue[1]}`] = finalSuggestion.location;
+    update(dbRef, updates);
+    //get other character -if needed- and change the location
+    //update current player location
+    //calculate players that can disprove
+    //
 
   }
   const handleSuggest = () => {
@@ -37,24 +111,69 @@ const PlayerActions = (game, locations) => {
   }
 
   return (
-    <div>
+    <div className='actionsContainer'>
       <div>
-        Move Options
+        <p>
+          Move to:
+        </p>
+        <select name="locations" id="PlayerMoveToOption" onChange={e => handleMoveSelect(e.target.value)}>
+          <option value='placeholder'>--Please choose an option--</option>
+          {
+            moveOptions?.map((optionList, index) => (
+              <option value={optionList[0]}>
+                {optionList[1]}
+              </option>
+            ))
+          }
+        </select>
       </div>
-      <div>
-        <h3>
-          Sugguest
-        </h3>
-        sugguest
-      </div>
-      <div>
-        <button>
-          Accuse Player
-        </button>
-        <button>
-          Send move
-        </button>
-      </div>
+      {
+        isMoved ? (
+          <div className='suggestionContainer'>
+            <h2>
+              Suggestion
+            </h2>
+            <h3>
+              Who did it?
+            </h3>
+            <select name="" id="" onChange={e => setSuggestedCharacter(e.target.value)}>
+              <option value='placeholder'>--Please choose an option--</option>
+              {
+                characterCards.map((card, index) => (
+                  <option value={card}>
+                    {card}
+                  </option>
+                ))
+              }
+            </select>
+            <h3>
+              With what weapon?
+            </h3>
+            <select name="" id="" onChange={e => setSuggestedWeapon(e.target.value)} >
+              <option value='placeholder'>--Please choose an option--</option>
+              {
+                weaponCards.map((card, index) => (
+                  <option value={card}>
+                    {card}
+                  </option>
+                ))
+              }
+            </select>
+            <h3>
+              Location: {manageRooms[newLocation - 1].roomTitle}
+            </h3>
+            <div>
+              <button onClick={handleHallwayScenario}>
+                Send move
+              </button>
+            </div>
+          </div>
+        )
+          :
+          <p>
+            select Your next location first
+          </p>
+      }
     </div>
   )
 }

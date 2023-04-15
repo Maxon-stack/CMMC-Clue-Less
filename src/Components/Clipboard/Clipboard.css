@@ -1,4 +1,6 @@
-
+.clipboardMain{
+    padding: 25px;
+}
 div.row{
     display: flex;
     justify-content: space-between;

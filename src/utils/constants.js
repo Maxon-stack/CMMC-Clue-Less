@@ -25,6 +25,32 @@ export const weaponCards = [
   "Lead Pipe",
   "Wrench",
 ]
+export const weaponsObject = [
+  {
+    id: 1,
+    weaponTitle: "knife"
+  },
+  {
+    id: 2,
+    weaponTitle: "Candle Stick"
+  },
+  {
+    id: 3,
+    weaponTitle: "Reolver"
+  },
+  {
+    id: 4,
+    weaponTitle: "Rope"
+  },
+  {
+    id: 5,
+    weaponTitle: "Lead Pipe"
+  },
+  {
+    id: 6,
+    weaponTitle: "Wrench"
+  },
+]
 export const manageRooms = [
   {
     id: 1,
@@ -150,6 +176,11 @@ export const turnState = {
 		location: "",
 		weapon: ""
 	},
+  whoCanDisprove: {
+    weapon: '',
+    character: '',
+    location: ''
+  },
 	playerTurnQueue: {
 		Scarlet: {
 			turnNumber: 1,

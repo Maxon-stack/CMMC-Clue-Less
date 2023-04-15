@@ -3,7 +3,7 @@ import './Clipboard.css'
 
 const ClipBoard = () => {
   return (
-    <div>
+    <div className='clipboardMain'>
       <h2>Inocence Clipboard</h2>
 
       <div class="row">
