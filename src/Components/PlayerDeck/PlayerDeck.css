@@ -6,4 +6,23 @@ h2.playerDeck {
 h3.playerName {
     border: 3px solid black;
     text-align: center;
+    width: 100%;
+}
+
+img.card {
+    height:150px;
+    object-fit:contain;
+    border-radius: 10%;
+}
+
+div.row{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 0px;
+}
+
+label.card{
+    display: inline-block;
+    width: 100px;
+    text-align: center;
 }

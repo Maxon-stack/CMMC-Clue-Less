@@ -2,7 +2,7 @@ export const locationCards = [
   "Study",
   "Hall",
   "Lounge",
-  "Libary",
+  "Library",
   "Billiard Room",
   "Dining Room",
   "Conservatory",
@@ -11,16 +11,16 @@ export const locationCards = [
 ]
 export const characterCards = [
   "Miss Scarlet",
-  "Col. Mustard",
+  "Colonel Mustard",
   "Mrs. White",
-  "Mr. Green",
+  "Reverend Green",
   "Mrs. Peacock",
-  "Prof. Plum",
+  "Professor Plum",
 ]
 export const weaponCards = [
-  "knife",
+  "Knife",
   "Candle Stick",
-  "Reolver",
+  "Revolver",
   "Rope",
   "Lead Pipe",
   "Wrench",
@@ -28,7 +28,7 @@ export const weaponCards = [
 export const weaponsObject = [
   {
     id: 1,
-    weaponTitle: "knife"
+    weaponTitle: "Knife"
   },
   {
     id: 2,
@@ -36,7 +36,7 @@ export const weaponsObject = [
   },
   {
     id: 3,
-    weaponTitle: "Reolver"
+    weaponTitle: "Revolver"
   },
   {
     id: 4,
