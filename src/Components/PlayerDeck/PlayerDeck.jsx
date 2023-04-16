@@ -87,7 +87,7 @@ const PlayerDeck = () => {
   }, [])
 
   return (
-    <div>
+    <div className='playerDeckContainer'>
       <h2 className='playerDeck'>Player Deck</h2>
       <div className='row'>
         {localPlayerObj.playingAs && 
