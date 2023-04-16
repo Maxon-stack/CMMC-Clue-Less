@@ -4,6 +4,7 @@ import { set, get, ref, onValue, getDatabase, update } from 'firebase/database'
 import { manageRooms} from '../../utils/constants'
 import { characterAliasMap } from '../../utils/constants'
 import { db } from '../../firebase'
+import { calculateDisprover } from './CalculateDisprover'
 import './PlayerActions.css'
 
 const PlayerActions = () => {
@@ -82,8 +83,6 @@ const PlayerActions = () => {
     }
   }, [])
 
-
-
   const handleHallwayScenario = () => {
     const dbRef = ref(getDatabase());
     const finalSuggestion = {
@@ -91,15 +90,18 @@ const PlayerActions = () => {
       location: parseInt(newLocation),
       locationTitle: manageRooms[parseInt(newLocation)-1].roomTitle,
       weapon: suggestedWeapon,
-      disprover: "Reverend Green", //TODO: This needs logic to be set
+      //TODO: This needs logic to be set
+      disprover: calculateDisprover( 
+                                      localPlayerObj.playingAs,
+                                      suggestedCharacter,
+                                      suggestedWeapon,
+                                      manageRooms[parseInt(newLocation)-1].roomTitle,
+                                      gameState),
       suggestor: characterAliasMap[localPlayerObj.playingAs],
       disprovingCard: "",
       accepted: false,
       submitted: false,
     }
-    console.log("Suggested here")
-    console.log(characterAliasMap[suggestedCharacter])
-    console.log(finalSuggestion)
 
     const characterValue = finalSuggestion.character.split(' ')
     // Set is waiting to true on database

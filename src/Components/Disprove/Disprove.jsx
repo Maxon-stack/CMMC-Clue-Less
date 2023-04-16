@@ -43,14 +43,12 @@ const Disprove = () => {
 
   //use effect to get updated suggestion object
   useEffect(() => {
-    const playersRef = ref(db, "/game/BasicGameState/turnState/currentSuggestion");
-    onValue(playersRef, (snapshot) => {
+    const suggestionRef = ref(db, "/game/BasicGameState/turnState/currentSuggestion");
+    onValue(suggestionRef, (snapshot) => {
       const data = snapshot.val();
       if(data){setSuggestion(data);}else{setSuggestion([]);}
     });
   }, [])
-
-  console.log(suggestion)
 
   //use states to track my player's cards in their deck
   const [characterCards, setCharacterCards] = useState([])
