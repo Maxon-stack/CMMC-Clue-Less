@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import CluelessContext from '../../CluelessContext'
 import { set, get, ref, onValue, getDatabase, update } from 'firebase/database'
 import { manageRooms} from '../../utils/constants'
+import { characterAliasMap } from '../../utils/constants'
 import { db } from '../../firebase'
 import './PlayerActions.css'
 
@@ -21,16 +22,17 @@ const PlayerActions = () => {
     setGameState
 
   } = React.useContext(CluelessContext)
+
   const characterCards = [
     "Miss Scarlet",
-    "Col. Mustard",
+    "Colonel Mustard",
     "Mrs. White",
-    "Mr. Green",
+    "Reverend Green",
     "Mrs. Peacock",
-    "Prof. Plum",
+    "Professor Plum",
   ]
   const weaponCards = [
-    "knife",
+    "Knife",
     "Candle Stick",
     "Revolver",
     "Rope",
@@ -87,8 +89,18 @@ const PlayerActions = () => {
     const finalSuggestion = {
       character: suggestedCharacter,
       location: parseInt(newLocation),
-      weapon: suggestedWeapon
+      locationTitle: manageRooms[parseInt(newLocation)-1].roomTitle,
+      weapon: suggestedWeapon,
+      disprover: "Reverend Green", //TODO: This needs logic to be set
+      suggestor: characterAliasMap[localPlayerObj.playingAs],
+      disprovingCard: "",
+      accepted: false,
+      submitted: false,
     }
+    console.log("Suggested here")
+    console.log(characterAliasMap[suggestedCharacter])
+    console.log(finalSuggestion)
+
     const characterValue = finalSuggestion.character.split(' ')
     // Set is waiting to true on database
     const updates = {};

@@ -3,7 +3,7 @@ import { set, get, ref, onValue } from 'firebase/database'
 import { db } from '../../firebase'
 import CluelessContext from '../../CluelessContext'
 import { images } from '../../utils/cards'
-import { characterAliasMap } from '../../utils/constants'
+import { characterAliasMap, manageRooms } from '../../utils/constants'
 import './Disprove.css'
 
 /*
@@ -43,12 +43,14 @@ const Disprove = () => {
 
   //use effect to get updated suggestion object
   useEffect(() => {
-    const playersRef = ref(db, "/game/suggestion");
+    const playersRef = ref(db, "/game/BasicGameState/turnState/currentSuggestion");
     onValue(playersRef, (snapshot) => {
       const data = snapshot.val();
       if(data){setSuggestion(data);}else{setSuggestion([]);}
     });
   }, [])
+
+  console.log(suggestion)
 
   //use states to track my player's cards in their deck
   const [characterCards, setCharacterCards] = useState([])
@@ -106,8 +108,8 @@ const Disprove = () => {
         if(myDeck[i] == suggestion.weapon){
             setCardsToDisprove(prevCardsToDisprove => [...prevCardsToDisprove, suggestion.weapon]) 
         }
-        if(myDeck[i] == suggestion.location){
-            setCardsToDisprove(prevCardsToDisprove => [...prevCardsToDisprove, suggestion.location]) 
+        if(myDeck[i] == suggestion.locationTitle){
+            setCardsToDisprove(prevCardsToDisprove => [...prevCardsToDisprove, suggestion.locationTitle]) 
         }
     }
   }, [suggestion,myDeck])
@@ -115,8 +117,13 @@ const Disprove = () => {
   //use state to track my disproving card selection and function to send to firebase on click
   const [disprovingCard, setDisprovingCard] = useState("")
   const submitCard = () => {
-    set(ref(db, '/game/suggestion/disprovingCard'), disprovingCard)
+    set(ref(db, '/game/BasicGameState/turnState/currentSuggestion/disprovingCard'), disprovingCard)
+    set(ref(db, '/game/BasicGameState/turnState/currentSuggestion/submitted'), true)
   }
+  const acceptCard = () => {
+    set(ref(db, '/game/BasicGameState/turnState/currentSuggestion/accepted'), true)
+  }
+
 
   return (
     <div className='suggestion'>
@@ -143,12 +150,12 @@ const Disprove = () => {
                     <div className='cardTextRow'>
                         <label className='card'>{suggestion.character}</label>
                         <label className='card'>{suggestion.weapon}</label>
-                        <label className='card'>{suggestion.location}</label>
+                        <label className='card'>{suggestion.locationTitle}</label>
                     </div>
                     <div className='cardImageRow'>
                         <img className='card' src = {images[suggestion.character]} alt = "Card not found"></img>
                         <img className='card' src = {images[suggestion.weapon]} alt = "Card not found"></img>
-                        <img className='card' src = {images[suggestion.location]} alt = "Card not found"></img>
+                        <img className='card' src = {images[suggestion.locationTitle]} alt = "Card not found"></img>
                     </div>
                 </div>
             }
@@ -167,6 +174,7 @@ const Disprove = () => {
                     <div className='disproveImageText'>
                         <img className='card' src = {images[suggestion.disprovingCard]} alt = "Card not found"></img>
                     </div>
+                    <button type="button" onClick={acceptCard}>Accept</button>
                 </div>
             }
             {suggestion.suggestor != myCharacter && suggestion.disprover != myCharacter && suggestion.disprovingCard &&
