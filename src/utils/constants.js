@@ -209,6 +209,16 @@ export const turnState = {
 	}
 }
 
-
+//this is something I (Ryan) added so I can map the playingAs character key
+//string like plum or peacock to the full character name i.e. Professor Plum 
+//or Mrs. Peacock, just for display purposes
+export const characterAliasMap = {
+  "Green": "Reverend Green",
+  "Mustard": "Colonel Mustard",
+  "Peacock": "Mrs. Peacock",
+  "Plum": "Professor Plum",
+  "Scarlet": "Miss Scarlet",
+  "White": "Mrs. White"
+}
 
 // get a random card 
