@@ -1,16 +1,31 @@
 {
   "files": {
-    "main.css": "/CMMC-Clue-Less/static/css/main.ff326613.css",
-    "main.js": "/CMMC-Clue-Less/static/js/main.b823920b.js",
+    "main.css": "/CMMC-Clue-Less/static/css/main.9edd035c.css",
+    "main.js": "/CMMC-Clue-Less/static/js/main.eaf48f6e.js",
     "static/media/Mustard.jpg": "/CMMC-Clue-Less/static/media/Mustard.9753e7dc78edfe22e7ba.jpg",
     "static/media/Green.jpg": "/CMMC-Clue-Less/static/media/Green.c394b075c7b4deb50687.jpg",
+    "static/media/Conservatory.jpg": "/CMMC-Clue-Less/static/media/Conservatory.6bf944c70f122a26e2ac.jpg",
+    "static/media/Billiard Room.jpg": "/CMMC-Clue-Less/static/media/Billiard Room.77677714dfa590fc60db.jpg",
+    "static/media/Library.jpg": "/CMMC-Clue-Less/static/media/Library.8c6244057a5a535cb176.jpg",
+    "static/media/Dining Room.jpg": "/CMMC-Clue-Less/static/media/Dining Room.024e0ffdc18319f4f852.jpg",
+    "static/media/Study.jpg": "/CMMC-Clue-Less/static/media/Study.a10c53b08012e16df75f.jpg",
+    "static/media/Lounge.jpg": "/CMMC-Clue-Less/static/media/Lounge.8155ddfec560fefee82e.jpg",
+    "static/media/Hall.jpg": "/CMMC-Clue-Less/static/media/Hall.b6ef168b8b9d22511eb7.jpg",
+    "static/media/Kitchen.jpg": "/CMMC-Clue-Less/static/media/Kitchen.3e81e6742e0a8120349b.jpg",
+    "static/media/Ballroom.jpg": "/CMMC-Clue-Less/static/media/Ballroom.f2e21cf2da79c39b26c5.jpg",
+    "static/media/Wrench.jpg": "/CMMC-Clue-Less/static/media/Wrench.a411290671a1b2393460.jpg",
+    "static/media/Lead Pipe.jpg": "/CMMC-Clue-Less/static/media/Lead Pipe.d5081d13fe6a8e39b8c0.jpg",
+    "static/media/Rope.jpg": "/CMMC-Clue-Less/static/media/Rope.fa1466fe5cd93ea8bef6.jpg",
+    "static/media/Candle Stick.jpg": "/CMMC-Clue-Less/static/media/Candle Stick.ac0af5618d38d1cb0678.jpg",
+    "static/media/Revolver.jpg": "/CMMC-Clue-Less/static/media/Revolver.54cd29c6a9f31e0a88a1.jpg",
+    "static/media/Knife.jpg": "/CMMC-Clue-Less/static/media/Knife.f9d81f83dfd72e1c361c.jpg",
     "static/media/Scarlet.jpg": "/CMMC-Clue-Less/static/media/Scarlet.cf2b79eea0f56057a23c.jpg",
     "index.html": "/CMMC-Clue-Less/index.html",
-    "main.ff326613.css.map": "/CMMC-Clue-Less/static/css/main.ff326613.css.map",
-    "main.b823920b.js.map": "/CMMC-Clue-Less/static/js/main.b823920b.js.map"
+    "main.9edd035c.css.map": "/CMMC-Clue-Less/static/css/main.9edd035c.css.map",
+    "main.eaf48f6e.js.map": "/CMMC-Clue-Less/static/js/main.eaf48f6e.js.map"
   },
   "entrypoints": [
-    "static/css/main.ff326613.css",
-    "static/js/main.b823920b.js"
+    "static/css/main.9edd035c.css",
+    "static/js/main.eaf48f6e.js"
   ]
 }
