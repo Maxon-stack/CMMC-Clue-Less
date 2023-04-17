@@ -20,7 +20,7 @@ const ClipBoard = () => {
   //standarize the order) 
   return (
     <div className='clipboardMain'>
-      <h2>Inocence Clipboard</h2>
+      <h2 className='Title'>Inocence Clipboard</h2>
 
       <div className='row'>
         <div className="col0">

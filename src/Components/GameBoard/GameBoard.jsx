@@ -6,6 +6,7 @@ import Clipboard from '../../Components/Clipboard/Clipboard'
 import Locations from '../Locations/Locations'
 import PlayerDeck from '../PlayerDeck/PlayerDeck'
 import PlayerActions from '../PlayerActions/PlayerActions'
+import Disprove from '../Disprove/Disprove'
 import { db } from '../../firebase'
 
 
@@ -60,9 +61,7 @@ const GameBoard = () => {
           <PlayerDeck />
         </div>
         <div className="reveal">
-          <h1>
-            ShowCard
-          </h1>
+          <Disprove />
         </div>
       </div>
 
