@@ -2,7 +2,12 @@ import { set, get, ref, onValue } from 'firebase/database'
 import React, { useEffect, useState } from 'react'
 import { db } from '../../firebase'
 import './WaitingLobby.css'
+import mustardJpg from '../../Assets/Players/Mustard.jpg'
+import plumJpg from '../../Assets/Players/Plum.jpg'
+import greenJpg from '../../Assets/Players/Green.jpg'
+import peacockJpg from '../../Assets/Players/Peacock.jpg'
 import scarletJpg from '../../Assets/Players/Scarlet.jpg'
+import whiteJpg from '../../Assets/Players/White.jpg'
 import { FaMapPin } from 'react-icons/fa';
 import CluelessContext from '../../CluelessContext'
 import { locationCards, characterCards, weaponCards, turnState } from '../../utils/constants'
@@ -137,13 +142,19 @@ const WaitingLobby = () => {
 
   }
 
+  //the order of the characters and their corresponding images are in the order
+  //of their turns as it is defined in firebase (I believe currently these are
+  //static) but since the JSX return accesses the character and images using their
+  //turn number I had to put it in turn order. At some point this will need to be
+  //changed as the turn order values become dyanmic between games, but this is
+  //probably fine for the minimal increment
   const characters = [
     {
       name: 'Miss Scarlet',
       class: 'scarlet'
     },
     {
-      name: 'Col. Mustard',
+      name: 'Colonel Mustard',
       class: 'mustard'
     },
     {
@@ -151,7 +162,7 @@ const WaitingLobby = () => {
       class: 'white'
     },
     {
-      name: 'Mr. Green',
+      name: 'Reverend Green',
       class: 'green'
     },
     {
@@ -159,11 +170,11 @@ const WaitingLobby = () => {
       class: 'Peacock'
     },
     {
-      name: 'Prof. Plum',
+      name: 'Professor Plum',
       class: 'Plum'
     },
-
   ]
+  const images = [scarletJpg,mustardJpg,whiteJpg,greenJpg,peacockJpg,plumJpg,,]
 
   const [players, setPlayers] = useState({})
 
@@ -185,7 +196,7 @@ const WaitingLobby = () => {
             if (player.name) {
               return (
                 <div className="article">
-                  <img src={scarletJpg} alt="Sample photo"></img>
+                  <img src={images[player.turn - 1]} alt="Sample photo"></img>
                   <FaMapPin className={`playerIcon ${characters[player.turn - 1].class} `} />
                   <div className="text">
                     <h3>

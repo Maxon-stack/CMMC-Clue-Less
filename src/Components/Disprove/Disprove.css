@@ -1,0 +1,97 @@
+div.suggestion{
+    display: flex;
+    flex-flow: column;
+    border: 2px solid black;
+    width: 100%;
+    max-height: 100%;
+    height: 100%;
+}
+h2.suggestionTitle {
+    border: 3px solid black;
+    text-align: center;
+}
+
+div.suggestDisproveRow{
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row;
+    align-content: center;
+    width: 100%;
+}
+
+div.bottom{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+div.suggestionHalf{
+    border: 2px solid black;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    height: 100%;
+}
+
+div.disproveHalf{
+    border: 2px solid black;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    height: 100%;
+}
+
+div.cardTextRow{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+div.cardImageRow{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+div.disproveCardText{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+div.disproveImageText{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+label.suggestorName {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+}
+
+label.disproverName {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+}
+
+img.card {
+    height:100px;
+    object-fit:contain;
+    border-radius: 10%;
+}
+
+label.card{
+    width: auto;
+    display: inline-block;
+    text-align: center;
+}

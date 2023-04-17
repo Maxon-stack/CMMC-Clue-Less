@@ -1,0 +1,16 @@
+.actionsContainer{
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+.suggestionContainer{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.endTurnContainer{
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}

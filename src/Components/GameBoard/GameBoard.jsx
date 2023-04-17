@@ -4,7 +4,9 @@ import CluelessContext from '../../CluelessContext'
 import './GameBoard.css'
 import Clipboard from '../../Components/Clipboard/Clipboard'
 import Locations from '../Locations/Locations'
+import PlayerDeck from '../PlayerDeck/PlayerDeck'
 import PlayerActions from '../PlayerActions/PlayerActions'
+import Disprove from '../Disprove/Disprove'
 import { db } from '../../firebase'
 
 
@@ -19,11 +21,11 @@ const GameBoard = () => {
     showGame,
     setShowGame,
     localPlayerObj, 
+    gameState, 
+    setGameState
   } = React.useContext(CluelessContext)
-  const [gameState, setGameState] = useState({});
 
   useEffect(() => {
-    console.log("Player Object", localPlayerObj)
     const stateRef = ref(db, '/game/BasicGameState');
     onValue(stateRef, (snapshot) => {
       const data = snapshot.val();
@@ -35,7 +37,6 @@ const GameBoard = () => {
   
   return (
     <div className='GameBoardContainer'>
-
       <div className="boardAndClip">
         <div className="board">
           <Locations />
@@ -48,7 +49,7 @@ const GameBoard = () => {
         <div className="actions">
           {
             gameState?.turnState?.currentTurn?.name === localPlayerObj.playingAs ? (
-              <PlayerActions  turn={gameState.turnState} locations={gameState.playerLocations}/>
+              <PlayerActions />
             ):
             <p>
               It is not Your turn yet
@@ -57,14 +58,10 @@ const GameBoard = () => {
         
         </div>
         <div className="deck">
-          <h1>
-            player deck
-          </h1>
+          <PlayerDeck />
         </div>
         <div className="reveal">
-          <h1>
-            ShowCard
-          </h1>
+          <Disprove />
         </div>
       </div>
 
