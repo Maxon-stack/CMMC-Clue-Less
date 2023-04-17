@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { set, get, ref, onValue } from 'firebase/database'
+import { set, get, ref, onValue, getDatabase, update } from 'firebase/database'
 import { db } from '../../firebase'
 import CluelessContext from '../../CluelessContext'
 import { images } from '../../utils/cards'
@@ -118,10 +118,25 @@ const Disprove = () => {
     set(ref(db, '/game/BasicGameState/turnState/currentSuggestion/disprovingCard'), disprovingCard)
     set(ref(db, '/game/BasicGameState/turnState/currentSuggestion/submitted'), true)
   }
+
   const acceptCard = () => {
     set(ref(db, '/game/BasicGameState/turnState/currentSuggestion/accepted'), true)
+    const dbRef = ref(getDatabase());
+    const updates = {}
+    const noSuggeston = {
+        character: "",
+        location: "",
+        locationTitle: "",
+        weapon: "",
+        disprover: "",
+        suggestor: "",
+        disprovingCard: "",
+        accepted: true,
+        submitted: true,
+      }
+    updates[`/game/BasicGameState/turnState/currentSuggestion`] = noSuggeston;
+    update(dbRef, updates)
   }
-
 
   return (
     <div className='suggestion'>
@@ -194,7 +209,16 @@ const Disprove = () => {
                             ))
                         }
                     </select>
-                    <button type="button" onClick={submitCard}>Submit</button>
+                    {suggestion.submitted == false &&
+                        <div>
+                            <button type="button" onClick={submitCard}>Submit</button>
+                        </div>
+                    }
+                    {suggestion.submitted &&
+                        <div>
+                            <img className='card' src = {images[suggestion.disprovingCard]} alt = "Card not found"></img>
+                        </div>
+                    }
                 </div>
             }
             </div>
