@@ -9,3 +9,8 @@
   flex-direction: column;
   gap: 15px;
 }
+.endTurnContainer{
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}

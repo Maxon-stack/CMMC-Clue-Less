@@ -5,6 +5,7 @@ import { manageRooms } from '../../utils/constants'
 import { characterAliasMap } from '../../utils/constants'
 import { db } from '../../firebase'
 import { calculateDisprover } from './CalculateDisprover'
+import { calculateNextTurn } from './CalculateNextTurn'
 import './PlayerActions.css'
 
 const PlayerActions = () => {
@@ -19,8 +20,6 @@ const PlayerActions = () => {
     showGame,
     setShowGame,
     localPlayerObj,
-    gameState,
-    setGameState
 
   } = React.useContext(CluelessContext)
 
@@ -49,7 +48,8 @@ const PlayerActions = () => {
   const [suggestedCharacter, setSuggestedCharacter] = useState()
   const [isMoved, setIsMoved] = useState(false)
   const [newLocation, setNewLocation] = useState()
-
+  const [turnState, setTurnState] = useState()
+  const [localeGameState, setLocalGameState] = useState();
 
   const getMoveOptions = (playerLocation) => {
     let finalOptions = []
@@ -70,17 +70,26 @@ const PlayerActions = () => {
       setIsMoved(false);
     }
   }
+  useEffect(() => {
+
+  }, [])
 
   useEffect(() => {
-    const currentPlayerLocation = gameState.playerLocations[localPlayerObj.playingAs]
-    if (hallwayLocations.includes(currentPlayerLocation)) {
-      setIsHallway(true)
-      //const PlayerOptions = manageRooms[];
-      setMoveOptions(getMoveOptions(currentPlayerLocation))
-    }
-    else {
-      setIsHallway(false)
-    }
+    const stateRef = ref(db, '/game/BasicGameState');
+    onValue(stateRef, (snapshot) => {
+      const data = snapshot.val();
+      setLocalGameState(data);
+      const currentPlayerLocation = data.playerLocations[localPlayerObj.playingAs]
+      if (hallwayLocations.includes(currentPlayerLocation)) {
+        setIsHallway(true)
+        //const PlayerOptions = manageRooms[];
+        setMoveOptions(getMoveOptions(currentPlayerLocation))
+      }
+      else {
+        setIsHallway(false)
+      }
+    });
+
   }, [])
 
   const handleHallwayScenario = () => {
@@ -96,7 +105,7 @@ const PlayerActions = () => {
         suggestedCharacter,
         suggestedWeapon,
         manageRooms[parseInt(newLocation) - 1].roomTitle,
-        gameState),
+        localeGameState),
       suggestor: characterAliasMap[localPlayerObj.playingAs],
       disprovingCard: "",
       accepted: false,
@@ -104,17 +113,12 @@ const PlayerActions = () => {
     }
 
     const characterValue = finalSuggestion.character.split(' ')
-    // Set is waiting to true on database
     const updates = {};
     updates[`game/BasicGameState/turnState/isWaiting`] = true;
     updates[`/game/BasicGameState/turnState/currentSuggestion`] = finalSuggestion;
     updates[`/game/BasicGameState/playerLocations/${localPlayerObj.playingAs}`] = finalSuggestion.location;
     updates[`/game/BasicGameState/playerLocations/${characterValue[1]}`] = finalSuggestion.location;
     update(dbRef, updates);
-    //get other character -if needed- and change the location
-    //update current player location
-    //calculate players that can disprove
-    //
 
   }
   const handleSuggest = () => {
@@ -123,71 +127,122 @@ const PlayerActions = () => {
   const handleAccuse = () => {
 
   }
-
+  const handleEndTurn = () => {
+    const dbRef = ref(getDatabase());
+    const nextTurn = calculateNextTurn(localPlayerObj.playingAs, localeGameState);
+    const updates = {};
+    updates[`game/BasicGameState/turnState/isWaiting`] = false;
+    updates[`/game/BasicGameState/turnState/currentSuggestion/accepted`] = false;
+    updates[`/game/BasicGameState/turnState/currentSuggestion/submitted`] = false;
+    updates[`game/BasicGameState/turnState/currentTurn`] = nextTurn;
+    update(dbRef, updates);
+  }
   return (
     <div className='actionsContainer'>
       <div>
-        <p>
-          Move to:
-        </p>
-        <select name="locations" id="PlayerMoveToOption" onChange={e => handleMoveSelect(e.target.value)}>
-          <option value='placeholder'>--Please choose an option--</option>
-          {
-            moveOptions?.map((optionList, index) => (
-              <option value={optionList[0]}>
-                {optionList[1]}
-              </option>
-            ))
-          }
-        </select>
-      </div>
-      {
-        isMoved ? (
-          <div className='suggestionContainer'>
-            <h2>
-              Suggestion
-            </h2>
-            <h3>
-              Who did it?
-            </h3>
-            <select name="" id="" onChange={e => setSuggestedCharacter(e.target.value)}>
-              <option value='placeholder'>--Please choose an option--</option>
-              {
-                characterCards.map((card, index) => (
-                  <option value={card}>
-                    {card}
-                  </option>
-                ))
-              }
-            </select>
-            <h3>
-              With what weapon?
-            </h3>
-            <select name="" id="" onChange={e => setSuggestedWeapon(e.target.value)} >
-              <option value='placeholder'>--Please choose an option--</option>
-              {
-                weaponCards.map((card, index) => (
-                  <option value={card}>
-                    {card}
-                  </option>
-                ))
-              }
-            </select>
-            <h3>
-              Location: {manageRooms[newLocation - 1].roomTitle}
-            </h3>
-            <div>
-              <button onClick={handleHallwayScenario}>
-                Send move
+        {console.log(localeGameState?.turnState?.isWaiting)}
+        
+        {
+          localeGameState?.turnState?.currentSuggestion.accepted === true &&
+          localeGameState?.turnState?.currentSuggestion.submitted === true && 
+          localeGameState?.turnState?.isWaiting === true ? (
+            <div className="endTurnContainer">
+              <p>
+                Make a selection:
+              </p>
+              <button>
+                Make Accusation
+              </button>
+              <button onClick={handleEndTurn}>
+                End Turn
               </button>
             </div>
-          </div>
+
+          ):
+          localeGameState?.turnState?.currentSuggestion.submitted === true && 
+          localeGameState?.turnState?.isWaiting === true ? (
+            <div className="endTurnContainer">
+              <p>
+                Accept the disprove to continue
+              </p>
+            </div>
+
+          ):
+        localeGameState?.turnState?.isWaiting === true ? (
+          <p>
+            waiting on player to disprove!
+          </p>
         )
           :
-          <p>
-            select Your next location first
-          </p>
-      }
+          (
+            <div>
+              <p>
+                Move to:
+              </p>
+              <select name="locations" id="PlayerMoveToOption" onChange={e => handleMoveSelect(e.target.value)}>
+                <option value='placeholder'>--Please choose an option--</option>
+                {
+                  moveOptions?.map((optionList, index) => (
+                    <option value={optionList[0]}>
+                      {optionList[1]}
+                    </option>
+                  ))
+                }
+              </select>
+              {
+                isMoved ? (
+                  <div className='suggestionContainer'>
+                    <h2>
+                      Suggestion
+                    </h2>
+                    <h3>
+                      Who did it?
+                    </h3>
+                    <select name="" id="" onChange={e => setSuggestedCharacter(e.target.value)}>
+                      <option value='placeholder'>--Please choose an option--</option>
+                      {
+                        characterCards.map((card, index) => (
+                          <option value={card}>
+                            {card}
+                          </option>
+                        ))
+                      }
+                    </select>
+                    <h3>
+                      With what weapon?
+                    </h3>
+                    <select name="" id="" onChange={e => setSuggestedWeapon(e.target.value)} >
+                      <option value='placeholder'>--Please choose an option--</option>
+                      {
+                        weaponCards.map((card, index) => (
+                          <option value={card}>
+                            {card}
+                          </option>
+                        ))
+                      }
+                    </select>
+                    <h3>
+                      Location: {manageRooms[newLocation - 1].roomTitle}
+                    </h3>
+                    <div>
+                      <button onClick={handleHallwayScenario}>
+                        Send move
+                      </button>
+                    </div>
+                  </div>
+                )
+                  :
+                  (
+                    <p>
+                      select Your next location first
+                    </p>
+                  )
+
+              }
+            </div>
+          )
+        }
+      </div>
     </div>
   )
 }
