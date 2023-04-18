@@ -15,7 +15,9 @@ const Main = () => {
     showLobby,
     setShowLobby,
     showGame,
-    setShowGame
+    setShowGame,
+    gameOver,
+    setGameOver,
   } = React.useContext(CluelessContext)
   return (
     <div>
@@ -27,6 +29,9 @@ const Main = () => {
       )}
       {showGame && (
         <GameBoard />
+      )}
+      {gameOver && (
+        <h1>Game Over</h1>
       )}
 
     </div>
