@@ -2,7 +2,7 @@ import { characterAliasMap, manageRooms } from '../../utils/constants'
 
 export const calculateNextTurn = (myCharacter, gameState) => {  
 
-  const playersObject = gameState.turnState.playerTurnQueue
+  const playersObject = gameState?.turnState?.playerTurnQueue
   //list of character keys
   const characters = ["Green", "Mustard", "Peacock", "Plum", "Scarlet", "White",]
   //remove our character from the list
@@ -13,10 +13,10 @@ export const calculateNextTurn = (myCharacter, gameState) => {
   }
   //generate the order to look at the players
   const characterNamesInOrder = []
-  const myTurn = gameState.turnState.playerTurnQueue[myCharacter].turnNumber
+  const myTurn = gameState?.turnState?.playerTurnQueue[myCharacter]?.turnNumber
   for (let i = myTurn; i <= characters.length + myTurn; i++) {
     for (let j = 0; j < characters.length; j++) {
-      if (gameState.turnState.playerTurnQueue[characters[j]].turnNumber == i + 1 % 6) {
+      if (gameState?.turnState?.playerTurnQueue[characters[j]]?.turnNumber == i + 1 % 6) {
         characterNamesInOrder.push(characters[j])
       }
     }

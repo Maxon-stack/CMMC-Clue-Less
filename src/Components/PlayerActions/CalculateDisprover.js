@@ -12,16 +12,16 @@ export const calculateDisprover = (myCharacter,suspect,weapon,location,gameState
     }
     //generate the order to look at the players
     const characterNamesInOrder = []
-    const myTurn = gameState?.turnState?.playerTurnQueue[myCharacter].turnNumber
+    const myTurn = gameState?.turnState?.playerTurnQueue[myCharacter]?.turnNumber
     for(let i = myTurn; i<=characters.length+myTurn; i++){
         for(let j = 0; j<characters.length; j++){
-            if(gameState.turnState.playerTurnQueue[characters[j]].turnNumber == i+1 % 6){
+            if(gameState?.turnState?.playerTurnQueue[characters[j]]?.turnNumber == i+1 % 6){
                 characterNamesInOrder.push(characters[j])
             }
         }
     }
 
-    const playerDecks = gameState.playerDecks
+    const playerDecks = gameState?.playerDecks
 
     let disprover = ""
     for(let i = 0; i < characterNamesInOrder.length; i++){
