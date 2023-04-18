@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/CMMC-Clue-Less/static/css/main.9edd035c.css",
-    "main.js": "/CMMC-Clue-Less/static/js/main.6fed7d27.js",
+    "main.js": "/CMMC-Clue-Less/static/js/main.954f0f88.js",
     "static/media/Mustard.jpg": "/CMMC-Clue-Less/static/media/Mustard.9753e7dc78edfe22e7ba.jpg",
     "static/media/Green.jpg": "/CMMC-Clue-Less/static/media/Green.c394b075c7b4deb50687.jpg",
     "static/media/Conservatory.jpg": "/CMMC-Clue-Less/static/media/Conservatory.6bf944c70f122a26e2ac.jpg",
@@ -22,10 +22,10 @@
     "static/media/Scarlet.jpg": "/CMMC-Clue-Less/static/media/Scarlet.cf2b79eea0f56057a23c.jpg",
     "index.html": "/CMMC-Clue-Less/index.html",
     "main.9edd035c.css.map": "/CMMC-Clue-Less/static/css/main.9edd035c.css.map",
-    "main.6fed7d27.js.map": "/CMMC-Clue-Less/static/js/main.6fed7d27.js.map"
+    "main.954f0f88.js.map": "/CMMC-Clue-Less/static/js/main.954f0f88.js.map"
   },
   "entrypoints": [
     "static/css/main.9edd035c.css",
-    "static/js/main.6fed7d27.js"
+    "static/js/main.954f0f88.js"
   ]
 }
