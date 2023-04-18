@@ -1,10 +1,11 @@
 .clipboardMain{
     padding: 25px;
+    height: 100%;
 }
 div.row{
     display: flex;
     justify-content: space-between;
-    margin-right: 0px;
+    margin-bottom: 1rem;
 }
 div.col0{
     width: 20%;
@@ -40,6 +41,7 @@ h3.cardType {
     border: 3px solid black;
     text-align: center;
 }
-body {
-    border: 3px solid black;
+
+.cardType {
+    margin-bottom: .5rem;
 }

@@ -20,6 +20,7 @@
 .containerLower{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
 }
 
 .clipboard-container {
@@ -29,4 +30,15 @@
 .clipboard-container .row {
   padding-top: .25em;
   padding-bottom: .25em;
+}
+
+.actions {
+  display: flex;
+  border: 2px solid black;
+  justify-content:  center;
+  align-items: center;
+}
+
+.suggestionHalf {
+  padding: .5rem;
 }

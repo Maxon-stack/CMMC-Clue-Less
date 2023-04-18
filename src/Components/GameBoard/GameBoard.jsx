@@ -52,7 +52,7 @@ const GameBoard = () => {
               <PlayerActions />
             ):
             <p>
-              It is not Your turn yet
+              It is not your turn yet!
             </p>
           }
         
