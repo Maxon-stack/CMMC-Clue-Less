@@ -22,7 +22,8 @@ const GameBoard = () => {
     setShowGame,
     localPlayerObj, 
     gameState, 
-    setGameState
+    setGameState,
+    setGameOver,
   } = React.useContext(CluelessContext)
 
   useEffect(() => {
@@ -30,6 +31,10 @@ const GameBoard = () => {
     onValue(stateRef, (snapshot) => {
       const data = snapshot.val();
       setGameState(data);
+      if(data.gameOver){
+        setGameOver(true)
+        setShowGame(false)
+      }
     });
   }, [])
 

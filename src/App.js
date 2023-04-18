@@ -15,6 +15,7 @@ function App() {
   const [showLobby, setShowLobby] = useState(false)
   const [showGame, setShowGame] = useState(false)
   const [gameState, setGameState] = useState({});
+  const [gameOver, setGameOver] = useState(false)
 
 
   const contextValue = {
@@ -29,7 +30,9 @@ function App() {
     showGame,
     setShowGame,
     gameState, 
-    setGameState
+    setGameState,
+    gameOver,
+    setGameOver
   }
   return (
     <CluelessContext.Provider value={contextValue}>

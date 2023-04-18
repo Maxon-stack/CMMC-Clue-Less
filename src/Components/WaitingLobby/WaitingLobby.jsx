@@ -11,6 +11,7 @@ import whiteJpg from '../../Assets/Players/White.jpg'
 import { FaMapPin } from 'react-icons/fa';
 import CluelessContext from '../../CluelessContext'
 import { locationCards, characterCards, weaponCards, turnState } from '../../utils/constants'
+import { characterAliasMap } from '../../utils/constants'
 
 
 const WaitingLobby = () => {
@@ -121,6 +122,7 @@ const WaitingLobby = () => {
       }
     }
     const BasicGameState = {
+      gameOver: false,
       turnState: turnState,
       currentTurn: 1,
       playerCount: NewPlayers.length,
