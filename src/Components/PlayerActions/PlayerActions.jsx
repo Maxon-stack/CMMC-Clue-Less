@@ -108,7 +108,7 @@ const PlayerActions = () => {
       }
     });
 
-  }, [localGameState])
+  }, [])
 
   const handleHallwayScenario = () => {
     const dbRef = ref(getDatabase());
