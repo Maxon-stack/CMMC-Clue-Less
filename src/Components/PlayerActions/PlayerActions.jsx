@@ -21,7 +21,8 @@ const PlayerActions = () => {
     setShowGame,
     localPlayerObj,
     gameOver,
-    setGameOver
+    setGameOver,
+    gameCode,
   } = React.useContext(CluelessContext)
 
   const characterCards = [
@@ -93,7 +94,7 @@ const PlayerActions = () => {
   }, [])
 
   useEffect(() => {
-    const stateRef = ref(db, '/game/BasicGameState');
+    const stateRef = ref(db, `${gameCode}/BasicGameState`);
     onValue(stateRef, (snapshot) => {
       const data = snapshot.val();
       setLocalGameState(data);
@@ -133,10 +134,10 @@ const PlayerActions = () => {
 
     const characterValue = finalSuggestion.character.split(' ')
     const updates = {};
-    updates[`game/BasicGameState/turnState/isWaiting`] = true;
-    updates[`/game/BasicGameState/turnState/currentSuggestion`] = finalSuggestion;
-    updates[`/game/BasicGameState/playerLocations/${localPlayerObj.playingAs}`] = finalSuggestion.location;
-    updates[`/game/BasicGameState/playerLocations/${characterValue[1]}`] = finalSuggestion.location;
+    updates[`${gameCode}/BasicGameState/turnState/isWaiting`] = true;
+    updates[`${gameCode}/BasicGameState/turnState/currentSuggestion`] = finalSuggestion;
+    updates[`${gameCode}/BasicGameState/playerLocations/${localPlayerObj.playingAs}`] = finalSuggestion.location;
+    updates[`${gameCode}/BasicGameState/playerLocations/${characterValue[1]}`] = finalSuggestion.location;
     update(dbRef, updates);
 
   }
@@ -147,12 +148,12 @@ const PlayerActions = () => {
         localGameState.winningCards["weapon"] == accusedWeapon &&
         localGameState.winningCards["location"] == accusedLocation){
           const winUpdate = {}
-          winUpdate["game/BasicGameState/gameOver"] = true
+          winUpdate[`${gameCode}/BasicGameState/gameOver`] = true
           setGameOver(true)
           update(dbRef, winUpdate)
         }else{
           const loseUpdate = {}
-          loseUpdate[`/game/BasicGameState/turnState/playerTurnQueue/${localPlayerObj.playingAs}/isFailAccuse`] = true
+          loseUpdate[`${gameCode}/BasicGameState/turnState/playerTurnQueue/${localPlayerObj.playingAs}/isFailAccuse`] = true
           update(dbRef, loseUpdate);
         }
   }
@@ -160,10 +161,10 @@ const PlayerActions = () => {
     const dbRef = ref(getDatabase());
     const nextTurn = calculateNextTurn(localPlayerObj.playingAs, localGameState);
     const updates = {};
-    updates[`game/BasicGameState/turnState/isWaiting`] = false;
-    updates[`/game/BasicGameState/turnState/currentSuggestion/accepted`] = false;
-    updates[`/game/BasicGameState/turnState/currentSuggestion/submitted`] = false;
-    updates[`game/BasicGameState/turnState/currentTurn`] = nextTurn;
+    updates[`${gameCode}/BasicGameState/turnState/isWaiting`] = false;
+    updates[`${gameCode}/BasicGameState/turnState/currentSuggestion/accepted`] = false;
+    updates[`${gameCode}/BasicGameState/turnState/currentSuggestion/submitted`] = false;
+    updates[`${gameCode}/BasicGameState/turnState/currentTurn`] = nextTurn;
     update(dbRef, updates);
   }
   return (

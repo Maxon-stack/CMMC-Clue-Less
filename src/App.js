@@ -1,6 +1,7 @@
 import './App.css';
 import Home from './Components/Home/Home';
 import WaitingLobby from './Components/WaitingLobby/WaitingLobby';
+import { set, get, ref, update, getDatabase} from 'firebase/database'
 import { db } from './firebase'
 import { uid } from 'uid';
 import { Route, Routes } from 'react-router-dom';
@@ -16,6 +17,8 @@ function App() {
   const [showGame, setShowGame] = useState(false)
   const [gameState, setGameState] = useState({});
   const [gameOver, setGameOver] = useState(false)
+  const [gameCode, setGameCode] = useState("")
+  const dbRef = ref(getDatabase());
 
 
   const contextValue = {
@@ -32,7 +35,10 @@ function App() {
     gameState, 
     setGameState,
     gameOver,
-    setGameOver
+    setGameOver,
+    gameCode,
+    setGameCode,
+    dbRef
   }
   return (
     <CluelessContext.Provider value={contextValue}>

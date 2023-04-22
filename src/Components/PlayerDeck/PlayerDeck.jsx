@@ -11,6 +11,7 @@ const PlayerDeck = () => {
   const {
     localPlayerObj, 
     setLocalPlayerObj,
+    gameCode,
   } = React.useContext(CluelessContext)
 
   const [characterCards, setCharacterCards] = useState([])
@@ -18,7 +19,7 @@ const PlayerDeck = () => {
   const [locationCards, setLocationCards] = useState([])
 
   useEffect(() => {
-    const playersRef = ref(db, `/game/BasicGameState/playerDecks/${localPlayerObj.playingAs}/characterCards`);
+    const playersRef = ref(db, `${gameCode}/BasicGameState/playerDecks/${localPlayerObj.playingAs}/characterCards`);
     onValue(playersRef, (snapshot) => {
       const data = snapshot.val();
       if(data){setCharacterCards(data);}else{setCharacterCards([]);}
@@ -26,7 +27,7 @@ const PlayerDeck = () => {
   }, [])
 
   useEffect(() => {
-    const playersRef = ref(db, `/game/BasicGameState/playerDecks/${localPlayerObj.playingAs}/weaponCards`);
+    const playersRef = ref(db, `${gameCode}/BasicGameState/playerDecks/${localPlayerObj.playingAs}/weaponCards`);
     onValue(playersRef, (snapshot) => {
       const data = snapshot.val();
       if(data){setWeaponCards(data);}else{setWeaponCards([]);}
@@ -34,7 +35,7 @@ const PlayerDeck = () => {
   }, [])
 
   useEffect(() => {
-    const playersRef = ref(db, `/game/BasicGameState/playerDecks/${localPlayerObj.playingAs}/locationCards`);
+    const playersRef = ref(db, `${gameCode}/BasicGameState/playerDecks/${localPlayerObj.playingAs}/locationCards`);
     onValue(playersRef, (snapshot) => {
       const data = snapshot.val();
       if(data){setLocationCards(data);}else{setLocationCards([]);}

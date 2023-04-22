@@ -231,4 +231,13 @@ export const characterAliasMap = {
   "Prof. Plum": "Professor Plum",
 }
 
+export const characterToKey = {
+  "Reverend Green": "Green",
+  "Colonel Mustard": "Mustard",
+  "Mrs. Peacock" : "Peacock",
+  "Professor Plum": "Plum",
+  "Miss Scarlet": "Scarlet",
+  "Mrs. White": "White",
+}
+
 // get a random card 

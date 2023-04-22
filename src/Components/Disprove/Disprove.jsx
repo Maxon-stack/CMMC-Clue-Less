@@ -33,6 +33,7 @@ const Disprove = () => {
   const {
     localPlayerObj, 
     setLocalPlayerObj,
+    gameCode,
   } = React.useContext(CluelessContext)
 
   //my full character name from my playingAs alias, i.e. Plum -> Professor Plum
@@ -43,7 +44,7 @@ const Disprove = () => {
 
   //use effect to get updated suggestion object
   useEffect(() => {
-    const suggestionRef = ref(db, "/game/BasicGameState/turnState/currentSuggestion");
+    const suggestionRef = ref(db, `${gameCode}/BasicGameState/turnState/currentSuggestion`);
     onValue(suggestionRef, (snapshot) => {
       const data = snapshot.val();
       if(data){setSuggestion(data);}else{setSuggestion([]);}
@@ -57,7 +58,7 @@ const Disprove = () => {
 
   //use effects to update my player's cards in their deck
   useEffect(() => {
-    const playersRef = ref(db, `/game/BasicGameState/playerDecks/${localPlayerObj.playingAs}/characterCards`);
+    const playersRef = ref(db, `${gameCode}/BasicGameState/playerDecks/${localPlayerObj.playingAs}/characterCards`);
     onValue(playersRef, (snapshot) => {
       const data = snapshot.val();
       if(data){setCharacterCards(data);}else{setCharacterCards([]);}
@@ -65,7 +66,7 @@ const Disprove = () => {
   }, [])
 
   useEffect(() => {
-    const playersRef = ref(db, `/game/BasicGameState/playerDecks/${localPlayerObj.playingAs}/weaponCards`);
+    const playersRef = ref(db, `${gameCode}/BasicGameState/playerDecks/${localPlayerObj.playingAs}/weaponCards`);
     onValue(playersRef, (snapshot) => {
       const data = snapshot.val();
       if(data){setWeaponCards(data);}else{setWeaponCards([]);}
@@ -73,7 +74,7 @@ const Disprove = () => {
   }, [])
 
   useEffect(() => {
-    const playersRef = ref(db, `/game/BasicGameState/playerDecks/${localPlayerObj.playingAs}/locationCards`);
+    const playersRef = ref(db, `${gameCode}/BasicGameState/playerDecks/${localPlayerObj.playingAs}/locationCards`);
     onValue(playersRef, (snapshot) => {
       const data = snapshot.val();
       if(data){setLocationCards(data);}else{setLocationCards([]);}
@@ -115,12 +116,12 @@ const Disprove = () => {
   //use state to track my disproving card selection and function to send to firebase on click
   const [disprovingCard, setDisprovingCard] = useState("")
   const submitCard = () => {
-    set(ref(db, '/game/BasicGameState/turnState/currentSuggestion/disprovingCard'), disprovingCard)
-    set(ref(db, '/game/BasicGameState/turnState/currentSuggestion/submitted'), true)
+    set(ref(db, `${gameCode}/BasicGameState/turnState/currentSuggestion/disprovingCard`), disprovingCard)
+    set(ref(db, `${gameCode}/BasicGameState/turnState/currentSuggestion/submitted`), true)
   }
 
   const acceptCard = () => {
-    set(ref(db, '/game/BasicGameState/turnState/currentSuggestion/accepted'), true)
+    set(ref(db, `${gameCode}/BasicGameState/turnState/currentSuggestion/accepted`), true)
     const dbRef = ref(getDatabase());
     const updates = {}
     const noSuggeston = {
@@ -134,7 +135,7 @@ const Disprove = () => {
         accepted: true,
         submitted: true,
       }
-    updates[`/game/BasicGameState/turnState/currentSuggestion`] = noSuggeston;
+    updates[`${gameCode}/BasicGameState/turnState/currentSuggestion`] = noSuggeston;
     update(dbRef, updates)
   }
 

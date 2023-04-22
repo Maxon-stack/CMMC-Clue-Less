@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { set, get, ref, onValue } from 'firebase/database'
+import CluelessContext from '../../CluelessContext'
 import { db } from '../../firebase'
 import './Clipboard.css'
 
 const ClipBoard = () => {
 
+  const {gameCode} = React.useContext(CluelessContext)
+
   const [players, setPlayers] = useState({})
 
   useEffect(() => {
-    const playersRef = ref(db, '/game/players');
+    const playersRef = ref(db, `/${gameCode}/players`);
     onValue(playersRef, (snapshot) => {
       const data = snapshot.val();
       setPlayers(data);

@@ -1,14 +1,18 @@
 import { set, get, ref, onValue } from 'firebase/database'
 import React, { useState, useEffect } from 'react'
 import { db } from '../../firebase'
+import CluelessContext from '../../CluelessContext'
 import './Locations.css'
 import { manageRooms } from '../../utils/constants'
 
 
 const Locations = () => {
+
+  const {gameCode} = React.useContext(CluelessContext)
+
   const [playerLocations, setPlayerLocations] = useState({})
   useEffect(() => {
-    const locationsRef = ref(db, '/game/BasicGameState/playerLocations');
+    const locationsRef = ref(db, `${gameCode}/BasicGameState/playerLocations`);
     onValue(locationsRef, (snapshot) => {
       const data = snapshot.val();
       setPlayerLocations(data);

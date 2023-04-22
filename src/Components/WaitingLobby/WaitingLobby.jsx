@@ -11,7 +11,7 @@ import whiteJpg from '../../Assets/Players/White.jpg'
 import { FaMapPin } from 'react-icons/fa';
 import CluelessContext from '../../CluelessContext'
 import { locationCards, characterCards, weaponCards, turnState } from '../../utils/constants'
-import { characterAliasMap } from '../../utils/constants'
+import { characterAliasMap, characterToKey } from '../../utils/constants'
 
 
 const WaitingLobby = () => {
@@ -24,7 +24,7 @@ const WaitingLobby = () => {
     setShowLobby,
     showGame,
     setShowGame,
-
+    gameCode,
   } = React.useContext(CluelessContext)
 
   const handleStartGame = () => {
@@ -131,7 +131,7 @@ const WaitingLobby = () => {
       playerLocations: initalPlayerLocations
     }
 
-    set(ref(db, '/game/BasicGameState'), BasicGameState)
+    set(ref(db, `/${gameCode}/BasicGameState`), BasicGameState)
       .then(() => {
         console.log("Game is now starting")
         setShowGame(true)
@@ -152,20 +152,12 @@ const WaitingLobby = () => {
   //probably fine for the minimal increment
   const characters = [
     {
-      name: 'Miss Scarlet',
-      class: 'scarlet'
+      name: 'Reverend Green',
+      class: 'green'
     },
     {
       name: 'Colonel Mustard',
       class: 'mustard'
-    },
-    {
-      name: 'Mrs. White',
-      class: 'white'
-    },
-    {
-      name: 'Reverend Green',
-      class: 'green'
     },
     {
       name: 'Mrs. Peacock',
@@ -175,13 +167,28 @@ const WaitingLobby = () => {
       name: 'Professor Plum',
       class: 'Plum'
     },
+    {
+      name: 'Miss Scarlet',
+      class: 'scarlet'
+    },
+    {
+      name: 'Mrs. White',
+      class: 'white'
+    },
   ]
-  const images = [scarletJpg,mustardJpg,whiteJpg,greenJpg,peacockJpg,plumJpg,,]
+  const images = {
+    "Reverend Green": greenJpg,
+    "Colonel Mustard": mustardJpg,
+    "Mrs. Peacock": peacockJpg,
+    "Professor Plum": plumJpg,
+    "Miss Scarlet": scarletJpg,
+    "Mrs. White": whiteJpg,
+  }
 
   const [players, setPlayers] = useState({})
 
   useEffect(() => {
-    const playerRef = ref(db, '/game/players');
+    const playerRef = ref(db, `/${gameCode}/players`);
     onValue(playerRef, (snapshot) => {
       const data = snapshot.val();
       setPlayers(data);
@@ -192,17 +199,18 @@ const WaitingLobby = () => {
       <h1>
         Players in the Lobby:
       </h1>
+      <h2>Room Code: {gameCode}</h2>
       <div className="lobbyContainer">
         <div className="grid">
           {Object.values(players).map((player) => {
             if (player.name) {
               return (
                 <div className="article">
-                  <img src={images[player.turn - 1]} alt="Sample photo"></img>
-                  <FaMapPin className={`playerIcon ${characters[player.turn - 1].class} `} />
+                  <img src={images[player.characterName]} alt="Sample photo"></img>
+                  <FaMapPin className={`playerIcon ${characterToKey[player.characterName]} `} />
                   <div className="text">
                     <h3>
-                      {player.name} will Play as {characters[player.turn - 1].name}
+                      {player.name} will Play as {player.characterName}
                     </h3>
                     <p>
                       Player Description

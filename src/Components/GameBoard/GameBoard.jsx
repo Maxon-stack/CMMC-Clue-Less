@@ -24,10 +24,11 @@ const GameBoard = () => {
     gameState, 
     setGameState,
     setGameOver,
+    gameCode,
   } = React.useContext(CluelessContext)
 
   useEffect(() => {
-    const stateRef = ref(db, '/game/BasicGameState');
+    const stateRef = ref(db, `${gameCode}/BasicGameState`);
     onValue(stateRef, (snapshot) => {
       const data = snapshot.val();
       setGameState(data);
