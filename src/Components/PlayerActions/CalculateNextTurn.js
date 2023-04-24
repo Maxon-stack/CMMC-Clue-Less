@@ -1,4 +1,4 @@
-import { characterAliasMap, manageRooms } from '../../utils/constants'
+import { keyToCharacter, manageRooms } from '../../utils/constants'
 
 export const calculateNextTurn = (myCharacter, gameState) => {  
 

@@ -3,7 +3,7 @@ import { set, get, ref, onValue, getDatabase, update } from 'firebase/database'
 import { db } from '../../firebase'
 import CluelessContext from '../../CluelessContext'
 import { images } from '../../utils/cards'
-import { characterAliasMap, manageRooms } from '../../utils/constants'
+import { keyToCharacter, manageRooms } from '../../utils/constants'
 import './Disprove.css'
 
 /*
@@ -37,7 +37,7 @@ const Disprove = () => {
   } = React.useContext(CluelessContext)
 
   //my full character name from my playingAs alias, i.e. Plum -> Professor Plum
-  const myCharacter = characterAliasMap[localPlayerObj.playingAs]
+  const myCharacter = keyToCharacter[localPlayerObj.playingAs]
 
   //use state to track the suggestion
   const [suggestion, setSuggestion] = useState([])

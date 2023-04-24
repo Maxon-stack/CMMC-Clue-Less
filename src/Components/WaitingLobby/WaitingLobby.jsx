@@ -1,4 +1,4 @@
-import { set, get, ref, onValue } from 'firebase/database'
+import { set, get, ref, update, onValue } from 'firebase/database'
 import React, { useEffect, useState } from 'react'
 import { db } from '../../firebase'
 import './WaitingLobby.css'
@@ -11,7 +11,7 @@ import whiteJpg from '../../Assets/Players/White.jpg'
 import { FaMapPin } from 'react-icons/fa';
 import CluelessContext from '../../CluelessContext'
 import { locationCards, characterCards, weaponCards, turnState } from '../../utils/constants'
-import { characterAliasMap, characterToKey } from '../../utils/constants'
+import { keyToCharacter, characterToKey } from '../../utils/constants'
 
 
 const WaitingLobby = () => {
@@ -25,6 +25,7 @@ const WaitingLobby = () => {
     showGame,
     setShowGame,
     gameCode,
+    dbRef,
   } = React.useContext(CluelessContext)
 
   const handleStartGame = () => {
@@ -121,61 +122,22 @@ const WaitingLobby = () => {
           break;
       }
     }
-    const BasicGameState = {
-      gameOver: false,
-      turnState: turnState,
-      currentTurn: 1,
-      playerCount: NewPlayers.length,
-      playerDecks: playerDecks,
-      winningCards: winningCards,
-      playerLocations: initalPlayerLocations
+
+    const startGameUpdate = {}
+    startGameUpdate[`${gameCode}/gameStart`] = true
+    startGameUpdate[`${gameCode}/BasicGameState/gameOver`] = false
+    startGameUpdate[`${gameCode}/BasicGameState/turnState`] = turnState
+    startGameUpdate[`${gameCode}/BasicGameState/currentTurn`] = 1
+    startGameUpdate[`${gameCode}/BasicGameState/playerCount`] = playerCount
+    startGameUpdate[`${gameCode}/BasicGameState/playerDecks`] = playerDecks
+    startGameUpdate[`${gameCode}/BasicGameState/winningCards`] = winningCards
+    startGameUpdate[`${gameCode}/BasicGameState/playerLocations`] = initalPlayerLocations
+    update(dbRef, startGameUpdate);
+    setShowGame(true)
+    setShowLobby(false)
     }
 
-    set(ref(db, `/${gameCode}/BasicGameState`), BasicGameState)
-      .then(() => {
-        console.log("Game is now starting")
-        setShowGame(true)
-        setShowLobby(false)
-      })
-      .catch((error) => {
-        console.log("Failed to update players object")
-      });
 
-
-  }
-
-  //the order of the characters and their corresponding images are in the order
-  //of their turns as it is defined in firebase (I believe currently these are
-  //static) but since the JSX return accesses the character and images using their
-  //turn number I had to put it in turn order. At some point this will need to be
-  //changed as the turn order values become dyanmic between games, but this is
-  //probably fine for the minimal increment
-  const characters = [
-    {
-      name: 'Reverend Green',
-      class: 'green'
-    },
-    {
-      name: 'Colonel Mustard',
-      class: 'mustard'
-    },
-    {
-      name: 'Mrs. Peacock',
-      class: 'Peacock'
-    },
-    {
-      name: 'Professor Plum',
-      class: 'Plum'
-    },
-    {
-      name: 'Miss Scarlet',
-      class: 'scarlet'
-    },
-    {
-      name: 'Mrs. White',
-      class: 'white'
-    },
-  ]
   const images = {
     "Reverend Green": greenJpg,
     "Colonel Mustard": mustardJpg,
@@ -186,14 +148,34 @@ const WaitingLobby = () => {
   }
 
   const [players, setPlayers] = useState({})
-
+  const [playerCount, setPlayerCount] = useState(0)
   useEffect(() => {
     const playerRef = ref(db, `/${gameCode}/players`);
     onValue(playerRef, (snapshot) => {
-      const data = snapshot.val();
-      setPlayers(data);
+        const data = snapshot.val();
+        setPlayers(data);
+        let count = 0
+        if(data?.Green?.name != ""){count += 1}
+        if(data?.Mustard?.name != ""){count += 1}
+        if(data?.Peacock?.name != ""){count += 1}
+        if(data?.Plum?.name != ""){count += 1}
+        if(data?.Scarlet?.name != ""){count += 1}
+        if(data?.White?.name != ""){count += 1}
+        setPlayerCount(count)
     });
   }, [])
+
+
+  useEffect(() => {
+    const startRef = ref(db, `/${gameCode}/gameStarted`);
+    onValue(startRef, (snapshot) => {
+      if(snapshot.val() ==true){
+        setShowGame(true)
+        setShowLobby(false)
+      }
+    });
+  }, [])
+
   return (
     <div className='WaitingLobbyContainer'>
       <h1>
@@ -221,9 +203,11 @@ const WaitingLobby = () => {
             }
           })}
         </div>
-        <button className='startGame' onClick={handleStartGame}>
-          Start Game
-        </button>
+        {playerCount >= 2 &&
+            <button className='startGame' onClick={handleStartGame}>
+                Start Game
+            </button>
+        }
       </div>
     </div>
   )

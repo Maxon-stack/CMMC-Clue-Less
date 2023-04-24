@@ -1,4 +1,4 @@
-import { characterAliasMap, manageRooms } from '../../utils/constants'
+import { keyToCharacter, manageRooms } from '../../utils/constants'
 
 export const calculateDisprover = (myCharacter,suspect,weapon,location,gameState) => {
 
@@ -70,7 +70,7 @@ export const calculateDisprover = (myCharacter,suspect,weapon,location,gameState
     if(disprover == ""){
         return "Not Found"
     }else{
-        return characterAliasMap[disprover]
+        return keyToCharacter[disprover]
     }
 
 }

@@ -3,7 +3,7 @@ import { set, get, ref, onValue } from 'firebase/database'
 import { db } from '../../firebase'
 import CluelessContext from '../../CluelessContext'
 import { images } from '../../utils/cards'
-import { characterAliasMap } from '../../utils/constants'
+import { keyToCharacter } from '../../utils/constants'
 import './PlayerDeck.css'
 
 const PlayerDeck = () => {
@@ -48,7 +48,7 @@ const PlayerDeck = () => {
       <div className='row'>
         {localPlayerObj.playingAs && 
           <h3 className='playerName'>
-            {localPlayerObj.name}: You are playing as {characterAliasMap[localPlayerObj.playingAs]}
+            {localPlayerObj.name}: You are playing as {keyToCharacter[localPlayerObj.playingAs]}
           </h3>
         }
         {localPlayerObj.playingAs == undefined && 

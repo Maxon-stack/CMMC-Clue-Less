@@ -1,8 +1,8 @@
-import { set, get, ref, update, getDatabase} from 'firebase/database'
+import { set, get, ref, update, onValue, getDatabase} from 'firebase/database'
 import React, { useEffect, useState } from 'react'
 import { uid } from 'uid'
 import { db } from '../../firebase'
-import { characterCards, characterToKey} from '../../utils/constants'
+import { keyToCharacter, characterCards, characterToKey} from '../../utils/constants'
 import './Home.css';
 import CluelessContext from '../../CluelessContext';
 import basicGameObject from'./basicGameObject.json'
@@ -21,10 +21,6 @@ const Home = () => {
     setGameCode,
     dbRef,
   } = React.useContext(CluelessContext)
-
-
-  const [todo, setTodo] = useState('')
-  const [gameFull, setgameFull] = useState(false)
   
   //use states and functions for updating player selections
   const [createGame, setCreateGame] = useState(false)
@@ -32,7 +28,8 @@ const Home = () => {
   const [characterSelection, setCharacterSelction] = useState(false)
   const [invalidGameCode, setInvalidGameCode] = useState(false)
   const [fullGameCode, setFullGameCode] = useState(false)
-  const [availableCharacters, setAvailableCharacters] = useState([])
+  const [startedGameCode, setStartedGameCode] = useState(false)
+  const [availableCharacters, setAvailableCharacters] = useState(characterCards)
   const [playerCharacter, setPlayerCharacter] = useState("")
 
 
@@ -45,59 +42,94 @@ const Home = () => {
       result += characters.charAt(Math.floor(Math.random() * characters.length));
     }
     setGameCode(result)
+    set(ref(db,result),basicGameObject)
+    setAvailableCharacters(characterCards)
   }
   const handleNameChange = (e) => {setPlayerName(e.target.value)}
   const handleInputGameCode = (e) => {setGameCode(e.target.value.toUpperCase())}
 
   const handleCreateGame = () => {
-    set(ref(db,gameCode),basicGameObject)
-    setCreateGame(false)
-    setCharacterSelction(true)
-    setAvailableCharacters(characterCards)
+    if(playerName != ""){
+      setCreateGame(false)
+      setCharacterSelction(true)
+    }
   }
   const handleJoinGame = () => {
-    if(availableCharacters.length > 0){
+    if(playerName && gameCode && !invalidGameCode && !fullGameCode && !startedGameCode){
       setInvalidGameCode(false)
       setJoinGame(false)
       setCharacterSelction(true)
     }
   }
 
-  useEffect(() => {
-    get(ref(db, `/${gameCode}/players`)).then(
+  const handleCharacterSelection = () => {
+      if(playerCharacter && availableCharacters.includes(keyToCharacter[playerCharacter])){
+        setLocalPlayerObj({
+          name: playerName,
+          playingAs: playerCharacter
+        })
+        const characterUpdate = {}
+        characterUpdate[`${gameCode}/players/${playerCharacter}/name`] = playerName
+        characterUpdate[`${gameCode}/players/${playerCharacter}/turn`] = 7 - availableCharacters.length
+        update(dbRef, characterUpdate);
+        setShowHome(false)
+        setShowLobby(true)
+      }
+  }
+
+  const [gameObj, setGameObj] = useState({})
+  useEffect(() => { //use effect for updating game object on changes
+    if(gameCode != ""){
+      const gameRef =ref(db,`${gameCode}/`)
+      onValue(gameRef, (snapshot) => {
+        setGameObj(snapshot.val())
+      });
+    }
+  }, [characterSelection])
+
+  useEffect(() => { //use effect for setting game code error
+    get(ref(db, `${gameCode}/`)).then(
       (snapshot) => {
-        const playersObj = snapshot.val()
-        if(playersObj != null){
-          setInvalidGameCode(false)
-          let possibleCharacters = []
-          if(playersObj.Green.name == ""){possibleCharacters.push("Reverend Green")}
-          if(playersObj.Mustard.name == ""){possibleCharacters.push("Colonel Mustard")}
-          if(playersObj.Peacock.name == ""){possibleCharacters.push("Mrs. Peacock")}
-          if(playersObj.Plum.name == ""){possibleCharacters.push("Professor Plum")}
-          if(playersObj.Scarlet.name == ""){possibleCharacters.push("Miss Scarlet")}
-          if(playersObj.White.name == ""){possibleCharacters.push("Mrs. White")}
-          if(possibleCharacters.length == 0){setFullGameCode(true)}else{setFullGameCode(false)}
-          setAvailableCharacters(possibleCharacters)
-        }else{
+        const obj = snapshot.val()
+        setGameObj(obj)
+        if(gameCode == ""){
+          setInvalidGameCode(false) 
+          setFullGameCode(false)
+          setStartedGameCode(false)
+        }else if(obj == null){
           setInvalidGameCode(true) 
           setFullGameCode(false)
+          setStartedGameCode(false)
+        }else if(obj.gameStarted){
+          setInvalidGameCode(false) 
+          setFullGameCode(false)
+          setStartedGameCode(true)
+        }else{
+          setInvalidGameCode(false) 
+          setFullGameCode(false)
+          setStartedGameCode(false)
         }
       }
-    ).catch((error) => {console.log("error with useEffect calculating available characters: "+error)})
+    ).catch((error) => {console.log("error with useEffect calculating available gamecode: "+error)})
   }, [gameCode])
 
-  const handleCharacterSelection = () => {
-    setLocalPlayerObj({
-      name: playerName,
-      playingAs: playerCharacter
-    })
-    const characterUpdate = {}
-    characterUpdate[`${gameCode}/players/${playerCharacter}/name`] = playerName
-    characterUpdate[`${gameCode}/players/${playerCharacter}/turn`] = 7 - availableCharacters.length
-    update(dbRef, characterUpdate);
-    setShowHome(false)
-    setShowLobby(true)
-  }
+  useEffect(() => { //use effect for updating available players during game code entering & character selection
+        if(gameObj && gameCode){
+          let possibleCharacters = []
+          if(gameObj?.players?.Green?.name == ""){possibleCharacters.push("Reverend Green")}
+          if(gameObj?.players?.Mustard?.name == ""){possibleCharacters.push("Colonel Mustard")}
+          if(gameObj?.players?.Peacock?.name == ""){possibleCharacters.push("Mrs. Peacock")}
+          if(gameObj?.players?.Plum?.name == ""){possibleCharacters.push("Professor Plum")}
+          if(gameObj?.players?.Scarlet?.name == ""){possibleCharacters.push("Miss Scarlet")}
+          if(gameObj?.players?.White?.name == ""){possibleCharacters.push("Mrs. White")}
+          setAvailableCharacters(possibleCharacters)
+          if(possibleCharacters.length == 0){
+            setFullGameCode(true)
+          }else{
+            setFullGameCode(false)
+          }
+        }
+    }, [gameObj])
 
   return (
     <div className='container'>
@@ -132,7 +164,7 @@ const Home = () => {
               <label>Player Name</label>
             </div>
             <div className="user-box">
-              <input placeholder="" type="text" maxlength="4" onChange={handleInputGameCode} required />
+              <input placeholder="" type="text" maxLength="4" onChange={handleInputGameCode} required />
               <label>Game Room Code</label>
             </div>
             <div className="btnHolder">
@@ -150,6 +182,11 @@ const Home = () => {
                 <label>The game you are attempting to join is full.</label>
               </div>
             }
+            {startedGameCode &&
+              <div>
+                <label>The game you are attempting to join has already started.</label>
+              </div>
+            }
           </div>
         }
         {characterSelection &&
@@ -157,7 +194,7 @@ const Home = () => {
             <select name="" id="" onChange={e => setPlayerCharacter(characterToKey[e.target.value])} >
                         <option value=''>--Select a character--</option>
                         {
-                            availableCharacters.map((card, index) => (
+                            availableCharacters.map((card) => (
                             <option value={card}>
                                 {card}
                             </option>
@@ -177,7 +214,3 @@ const Home = () => {
 }
 
 export default Home
-
-{/* <button>
-Create New Lobby
-</button> */}

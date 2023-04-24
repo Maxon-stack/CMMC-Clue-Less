@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import CluelessContext from '../../CluelessContext'
 import { set, get, ref, onValue, getDatabase, update } from 'firebase/database'
 import { manageRooms } from '../../utils/constants'
-import { characterAliasMap } from '../../utils/constants'
+import { keyToCharacter } from '../../utils/constants'
 import { db } from '../../firebase'
 import { calculateDisprover } from './CalculateDisprover'
 import { calculateNextTurn } from './CalculateNextTurn'
@@ -126,7 +126,7 @@ const PlayerActions = () => {
         manageRooms[parseInt(newLocation) - 1].roomTitle,
         localGameState,
         ),
-      suggestor: characterAliasMap[localPlayerObj.playingAs],
+      suggestor: keyToCharacter[localPlayerObj.playingAs],
       disprovingCard: "",
       accepted: false,
       submitted: false,

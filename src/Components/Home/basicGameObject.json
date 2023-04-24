@@ -1,5 +1,5 @@
 {
-    "isStart": false,
+    "gameStarted": false,
     "BasicGameState": {
         "currentTurn": 1,
         "gameOver": false,
@@ -105,9 +105,7 @@
             "weapon": ""
         }
     },
-    "id": "test",
     "isEnd": false,
-    "name": "test",
     "players": {
         "Green": {
             "name": "",

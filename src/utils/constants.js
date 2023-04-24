@@ -218,7 +218,7 @@ export const turnState = {
 //this is something I (Ryan) added so I can map the playingAs character key
 //string like plum or peacock to the full character name i.e. Professor Plum 
 //or Mrs. Peacock, just for display purposes
-export const characterAliasMap = {
+export const keyToCharacter = {
   "Green": "Reverend Green",
   "Mustard": "Colonel Mustard",
   "Peacock": "Mrs. Peacock",
