@@ -1,8 +1,9 @@
-{
+let dateCreated = new Date()
+export const basicGameObject = {
     "gameStarted": false,
+    "gameEnded": false,
+    "dateCreated": "today",
     "BasicGameState": {
-        "currentTurn": 1,
-        "gameOver": false,
         "playerCount": 0,
         "playerDecks": {
             "Green": {
@@ -92,11 +93,6 @@
                     "isFailAccuse": false,
                     "turnNumber": 0
                 }
-            },
-            "whoCanDisprover": {
-                "character": "",
-                "location": "",
-                "weapon": ""
             }
         },
         "winningCards": {
@@ -105,35 +101,40 @@
             "weapon": ""
         }
     },
-    "isEnd": false,
     "players": {
         "Green": {
             "name": "",
+            "uid": "",
             "turn": 0,
             "characterName": "Reverend Green"
         },
         "Mustard": {
             "name": "",
+            "uid": "",
             "turn": 0,
             "characterName": "Colonel Mustard"
         },
         "Peacock": {
             "name": "",
+            "uid": "",
             "turn": 0,
             "characterName": "Mrs. Peacock"
         },
         "Plum": {
             "name": "",
+            "uid": "",
             "turn": 0,
             "characterName": "Professor Plum"
         },
         "Scarlet": {
             "name": "",
+            "uid": "",
             "turn": 0,
             "characterName": "Miss Scarlet"
         },
         "White": {
             "name": "",
+            "uid": "",
             "turn": 0,
             "characterName": "Mrs. White"
         }

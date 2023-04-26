@@ -10,7 +10,7 @@ import scarletJpg from '../../Assets/Players/Scarlet.jpg'
 import whiteJpg from '../../Assets/Players/White.jpg'
 import { FaMapPin } from 'react-icons/fa';
 import CluelessContext from '../../CluelessContext'
-import { locationCards, characterCards, weaponCards, turnState } from '../../utils/constants'
+import { locationCards, characterCards, weaponCards } from '../../utils/constants'
 import { keyToCharacter, characterToKey } from '../../utils/constants'
 
 
@@ -95,38 +95,19 @@ const WaitingLobby = () => {
       }
     }
 
-    let initalPlayerLocations = {
-
-    }
-
-    for (var x = 0; x < NewPlayers.length; x++) {
-      var propName = NewPlayers[x]
-      switch (propName) {
-        case "Scarlet":
-          initalPlayerLocations[propName] = 4
-          break;
-        case "Plum":
-          initalPlayerLocations[propName] = 6
-          break;
-        case "Mustard":
-          initalPlayerLocations[propName] = 8
-          break;
-        case "Peacock":
-          initalPlayerLocations[propName] = 10
-          break;
-        case "Green":
-          initalPlayerLocations[propName] = 14
-          break;
-        case "White":
-          initalPlayerLocations[propName] = 16
-          break;
-      }
-    }
+    let initalPlayerLocations = {}
+    let gamePlayers = players
+    if(players?.Green?.name != ""){initalPlayerLocations["Green"] = 14}else{delete gamePlayers["Green"]}
+    if(players?.Mustard?.name != ""){initalPlayerLocations["Mustard"] = 8}else{delete gamePlayers["Mustard"]}
+    if(players?.Peacock?.name != ""){initalPlayerLocations["Peacock"] = 10}else{delete gamePlayers["Peacock"]}
+    if(players?.Plum?.name != ""){initalPlayerLocations["Plum"] = 6}else{delete gamePlayers["Plum"]}
+    if(players?.Scarlet?.name != ""){initalPlayerLocations["Scarlet"] = 4}else{delete gamePlayers["Scarlet"]}
+    if(players?.White?.name != ""){initalPlayerLocations["White"] = 16}else{delete gamePlayers["White"]}
 
     const startGameUpdate = {}
-    startGameUpdate[`${gameCode}/gameStart`] = true
+    startGameUpdate[`${gameCode}/gameStarted`] = true
+    startGameUpdate[`${gameCode}/players`] = gamePlayers
     startGameUpdate[`${gameCode}/BasicGameState/gameOver`] = false
-    startGameUpdate[`${gameCode}/BasicGameState/turnState`] = turnState
     startGameUpdate[`${gameCode}/BasicGameState/currentTurn`] = 1
     startGameUpdate[`${gameCode}/BasicGameState/playerCount`] = playerCount
     startGameUpdate[`${gameCode}/BasicGameState/playerDecks`] = playerDecks
@@ -162,6 +143,16 @@ const WaitingLobby = () => {
         if(data?.Scarlet?.name != ""){count += 1}
         if(data?.White?.name != ""){count += 1}
         setPlayerCount(count)
+    });
+  }, [])
+
+  useEffect(() => {
+    const startRef = ref(db, `/${gameCode}/gameStart`);
+    onValue(startRef, (snapshot) => {
+        if(snapshot.val()){
+          setShowGame(true)
+          setShowLobby(false)
+        }
     });
   }, [])
 

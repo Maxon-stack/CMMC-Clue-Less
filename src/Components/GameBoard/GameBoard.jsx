@@ -29,10 +29,13 @@ const GameBoard = () => {
 
   useEffect(() => {
     const stateRef = ref(db, `${gameCode}/BasicGameState`);
-    onValue(stateRef, (snapshot) => {
-      const data = snapshot.val();
-      setGameState(data);
-      if(data.gameOver){
+    onValue(stateRef, (snapshot) => {setGameState(snapshot.val())});
+  }, [])
+
+  useEffect(() => {
+    const gameRef = ref(db, `${gameCode}/gameEnded`);
+    onValue(gameRef, (snapshot) => {
+      if(snapshot.val()){
         setGameOver(true)
         setShowGame(false)
       }

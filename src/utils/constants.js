@@ -25,32 +25,7 @@ export const weaponCards = [
   "Lead Pipe",
   "Wrench",
 ]
-export const weaponsObject = [
-  {
-    id: 1,
-    weaponTitle: "Knife"
-  },
-  {
-    id: 2,
-    weaponTitle: "Candle Stick"
-  },
-  {
-    id: 3,
-    weaponTitle: "Revolver"
-  },
-  {
-    id: 4,
-    weaponTitle: "Rope"
-  },
-  {
-    id: 5,
-    weaponTitle: "Lead Pipe"
-  },
-  {
-    id: 6,
-    weaponTitle: "Wrench"
-  },
-]
+
 export const manageRooms = [
   {
     id: 1,
@@ -164,56 +139,6 @@ export const manageRooms = [
   },
 
 ]
-
-export const turnState = {
-	currentTurn: {
-    count: 1,
-    name: "Scarlet",
-  },
-	isWaiting: false,
-	currentSuggestion: {
-		character: "",
-		location: "",
-    locationTitle: "",
-		weapon: "",
-    suggestor: "",
-    disprover: "",
-    disprovingCard: "",
-    accepted: false,
-    submitted: false,
-  },
-  whoCanDisprove: {
-    weapon: "",
-    character: "",
-    location: ""
-  },
-	playerTurnQueue: {
-		Scarlet: {
-			turnNumber: 1,
-			isFailAccuse: false
-		},
-		Mustard: {
-			turnNumber: 2,
-			isFailAccuse: false
-		},
-		White: {
-			turnNumber: 3,
-			isFailAccuse: false
-		},
-		Green: {
-			turnNumber: 4,
-			isFailAccuse: false
-		},
-		Peacock: {
-			turnNumber: 5,
-			isFailAccuse: false
-		},
-		Plum: {
-			turnNumber: 6,
-			isFailAccuse: false
-		}
-	}
-}
 
 //this is something I (Ryan) added so I can map the playingAs character key
 //string like plum or peacock to the full character name i.e. Professor Plum 
