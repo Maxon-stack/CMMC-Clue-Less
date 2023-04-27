@@ -23,10 +23,36 @@ const WaitingLobby = () => {
     showLobby,
     setShowLobby,
     showGame,
+    localPlayerObj,
     setShowGame,
     gameCode,
     dbRef,
   } = React.useContext(CluelessContext)
+
+  
+  function handleRemove(characterToRemove){
+    characterToRemove = characterToKey[characterToRemove]
+    get(ref(db, `${gameCode}/players`)).then((snapshot) => {
+      let obj = snapshot.val()
+      let turnRemoved = obj[characterToRemove]["turn"]
+      Object.keys(obj).map( (currentPlayer) => {
+        console.log('comparing '+characterToRemove+' turn: '+turnRemoved+' with')
+        console.log(currentPlayer+' turn '+obj[currentPlayer]["turn"])
+        if(obj[currentPlayer]["turn"] > turnRemoved){
+          let newTurn = obj[currentPlayer]["turn"] - 1
+          console.log('decreasing '+currentPlayer+' turn to '+newTurn)
+          let turnUpdate = {}
+          turnUpdate[`${gameCode}/players/${currentPlayer}/turn`] = newTurn
+          update(dbRef, turnUpdate);
+        }
+      })
+    }).catch((error) => {console.log("error rejoining game "+gameCode+": "+error)})
+    const removeUpdate = {}
+    removeUpdate[`${gameCode}/players/${characterToRemove}/name`] = ""
+    removeUpdate[`${gameCode}/players/${characterToRemove}/uid`] = ""
+    removeUpdate[`${gameCode}/players/${characterToRemove}/turn`] = 0
+    update(dbRef, removeUpdate);
+  }
 
   const handleStartGame = () => {
     let playerDecks = {}
@@ -143,6 +169,9 @@ const WaitingLobby = () => {
         if(data?.Scarlet?.name != ""){count += 1}
         if(data?.White?.name != ""){count += 1}
         setPlayerCount(count)
+        if(data[localPlayerObj.playingAs]["name"] == ""){
+          window.location.reload(true)
+        }
     });
   }, [])
 
@@ -167,6 +196,13 @@ const WaitingLobby = () => {
     });
   }, [])
 
+  const [adminPriv, setAdminPriv] = useState(false)
+  useEffect( () => {
+    get(ref(db, `${gameCode}/players/${localPlayerObj.playingAs}/turn`)).then((snapshot) => {
+        if(snapshot.val() == 1){setAdminPriv(true)}
+      }).catch((error) => {console.log("error setting admin privledges: "+error)})
+  }, [])
+
   return (
     <div className='WaitingLobbyContainer'>
       <h1>
@@ -188,6 +224,12 @@ const WaitingLobby = () => {
                     <p>
                       Player Description
                     </p>
+                    {characterToKey[player.characterName] == localPlayerObj.playingAs && <p>this is you</p>}
+                    {adminPriv && characterToKey[player.characterName] != localPlayerObj.playingAs &&
+                      <button type='submit' className='actionButton' onClick={() => handleRemove(player.characterName)}>
+                          Remove from Game
+                      </button>
+                    }
                   </div>
                 </div>
               )

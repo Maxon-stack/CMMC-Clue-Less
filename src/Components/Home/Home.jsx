@@ -76,13 +76,6 @@ const Home = () => {
       setJoinGame(false)
       setRejoinGame(false)
       setShowHome(false)
-      get(ref(db, `${gameCode}/gameStarted`)).then( (snapshot) => {
-        if(snapshot.val()){
-          setShowGame(true)
-        }else{
-          setShowLobby(true)
-        }
-      }).catch((error) => {console.log("error rejoining game "+gameCode+": "+error)})
       get(ref(db, `${gameCode}/players`)).then(
         (snapshot) => {
           let existingPlayers = snapshot.val()
@@ -94,6 +87,13 @@ const Home = () => {
               })
             }
           })
+        }).catch((error) => {console.log("error rejoining game "+gameCode+": "+error)})
+        get(ref(db, `${gameCode}/gameStarted`)).then( (snapshot) => {
+          if(snapshot.val()){
+            setShowGame(true)
+          }else{
+            setShowLobby(true)
+          }
         }).catch((error) => {console.log("error rejoining game "+gameCode+": "+error)})
       }
     }
@@ -198,14 +198,13 @@ const Home = () => {
         const today = new Date()
         Object.keys(dataBase).map( (oldGameCode) => {
           let prevDate = new Date(dataBase[oldGameCode]["dateCreated"])
-          if(today - prevDate > (1000*60*60*1)){ //change last number to alter hours for game expiration
+          if(today - prevDate > (1000*60*60*1) || dataBase[oldGameCode]["gameEnded"]){ //change last number to alter hours for game expiration
             remove(ref(db,`${oldGameCode}/`))
-          }else{ //otherwise checks if game is active and you were in the old game
+          }else{ //otherwise checks if you were in the old game
             let oldPlayers = dataBase[oldGameCode]["players"]
-            let gameOver = dataBase[oldGameCode]["gameEnded"]
-            if(!gameOver && uid != ""){
+            if(uid != ""){
               Object.keys(oldPlayers).map( (oldPlayer) => {
-                if(uid != null && oldPlayers[oldPlayer]["uid"] == uid && !gameOver){
+                if(uid != null && oldPlayers[oldPlayer]["uid"] == uid){
                   setJoinedGameCodes( (prevJoinedGameCodes) => {
                     let output = prevJoinedGameCodes
                     if(output.includes(oldGameCode)){
