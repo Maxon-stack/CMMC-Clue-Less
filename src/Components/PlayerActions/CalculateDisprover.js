@@ -1,76 +1,43 @@
-import { keyToCharacter, manageRooms } from '../../utils/constants'
+import { keyToCharacter, characterToKey,manageRooms } from '../../utils/constants'
 
-export const calculateDisprover = (myCharacter,suspect,weapon,location,gameState) => {
+export const calculateDisprover = (localPlayer,suspect,weapon,location,players) => {
 
     //list of character keys
-    const characters = ["Green","Mustard","Peacock","Plum","Scarlet","White",]
+    const characterKeys = Object.keys(players)
+    const numPlayers = characterKeys.length
     //remove our character from the list
-    for(let i = 0; i<6; i++){
-        if(characters[i] == myCharacter){
-            characters.splice(i,1)
+    for(let i = 0; i<characterKeys.length; i++){
+        if(characterKeys[i] == characterToKey[localPlayer.characterName]){
+            characterKeys.splice(i,1)
         }
     }
     //generate the order to look at the players
-    const characterNamesInOrder = []
-    const myTurn = gameState?.turnState?.playerTurnQueue[myCharacter]?.turnNumber
-    for(let i = myTurn; i<=characters.length+myTurn; i++){
-        for(let j = 0; j<characters.length; j++){
-            if(gameState?.turnState?.playerTurnQueue[characters[j]]?.turnNumber == i+1 % 6){
-                characterNamesInOrder.push(characters[j])
+    const characterKeysInOrder = []
+    const myTurn = localPlayer.turn
+    for(let i = myTurn; i < numPlayers - 1 + myTurn; i++){ //checks 
+        const turnToCheck = i % numPlayers + 1
+        for(let j = 0; j < numPlayers - 1; j++){
+            if(players[characterKeys[j]].turn == turnToCheck){
+                characterKeysInOrder.push(characterKeys[j])
             }
         }
     }
 
-    const playerDecks = gameState?.playerDecks
-
     let disprover = ""
-    for(let i = 0; i < characterNamesInOrder.length; i++){
-
-        let notFound = true
-        let currentCharacter = characterNamesInOrder[i]
-        let characterDeck = playerDecks[currentCharacter].characterCards
-        let weaponDeck = playerDecks[currentCharacter].weaponCards
-        let locationDeck = playerDecks[currentCharacter].locationCards
-
-        console.log("looking at "+currentCharacter)
-
-        if(characterDeck && notFound){
-            console.log("Looking at their character cards")
-            for(let j = 0; j<characterDeck.length; j++){
-                if(characterDeck[j] == suspect){
-                    console.log("found "+suspect)
-                    disprover = characterNamesInOrder[i]
-                    notFound = false //leave loop
-                }
-            }
+    for(let i = 0; i < characterKeysInOrder.length; i++){
+        let found = false
+        let currentPlayerDeck = players[characterKeysInOrder[i]]["deck"]
+        let currentPlayerName = players[characterKeysInOrder[i]]["playerName"]
+        if(!found){
+            if(currentPlayerDeck.includes(suspect)){disprover=currentPlayerName;found=true;}
+            if(currentPlayerDeck.includes(weapon)){disprover=currentPlayerName;found=true;}
+            if(currentPlayerDeck.includes(location)){disprover=currentPlayerName;found=true;}
         }
-        if(weaponDeck && notFound){
-            console.log("Looking at their weapon cards")
-            for(let j = 0; j<weaponDeck.length; j++){
-                if(weaponDeck[j] == weapon){
-                    console.log("found "+weapon)
-                    disprover = characterNamesInOrder[i]
-                    notFound = false //leave loop
-                }
-            }
-        }
-        if(locationDeck && notFound){
-            console.log("Looking at their location cards")
-            for(let j = 0; j<locationDeck.length; j++){
-                if(locationDeck[j] == location){
-                    console.log("found "+location)
-                    disprover = characterNamesInOrder[i]
-                    notFound = false //leave loop
-                }
-            }
-        }
-
-        if(!notFound){i = 6}
     }
     if(disprover == ""){
         return "Not Found"
     }else{
-        return keyToCharacter[disprover]
+        return disprover
     }
 
 }

@@ -1,142 +1,78 @@
-let dateCreated = new Date()
 export const basicGameObject = {
     "gameStarted": false,
     "gameEnded": false,
-    "dateCreated": "today",
-    "BasicGameState": {
-        "playerCount": 0,
-        "playerDecks": {
-            "Green": {
-                "characterCards": [],
-                "locationCards": [],
-                "playerName": "",
-                "weaponCards": []
-            },
-            "Mustard": {
-                "characterCards": [],
-                "locationCards": [],
-                "playerName": "",
-                "weaponCards": []
-            },
-            "Peacock": {
-                "characterCards": [],
-                "locationCards": [],
-                "playerName": "",
-                "weaponCards": []
-            },
-            "Plum": {
-                "characterCards": [],
-                "locationCards": [],
-                "playerName": "",
-                "weaponCards": []
-            },
-            "Scarlet": {
-                "characterCards": [],
-                "locationCards": [],
-                "playerName": "",
-                "weaponCards": []
-            },
-            "White": {
-                "characterCards": [],
-                "locationCards": [],
-                "playerName": "",
-                "weaponCards": []
-            }
-        },
-        "playerLocations": {
-            "Green": 14,
-            "Mustard": 8,
-            "Peacock": 10,
-            "Plum": 6,
-            "Scarlet": 4,
-            "White": 16
-        },
-        "turnState": {
-            "currentSuggestion": {
-                "accepted": false,
-                "character": "",
-                "disprover": "",
-                "disprovingCard": "",
-                "location": "",
-                "locationTitle": "",
-                "submitted": false,
-                "suggestor": "",
-                "weapon": ""
-            },
-            "currentTurn": {
-                "count": 0,
-                "name": ""
-            },
-            "isWaiting": false,
-            "playerTurnQueue": {
-                "Green": {
-                    "isFailAccuse": false,
-                    "turnNumber": 0
-                },
-                "Mustard": {
-                    "isFailAccuse": false,
-                    "turnNumber": 0
-                },
-                "Peacock": {
-                    "isFailAccuse": false,
-                    "turnNumber": 0
-                },
-                "Plum": {
-                    "isFailAccuse": false,
-                    "turnNumber": 0
-                },
-                "Scarlet": {
-                    "isFailAccuse": false,
-                    "turnNumber": 0
-                },
-                "White": {
-                    "isFailAccuse": false,
-                    "turnNumber": 0
-                }
-            }
-        },
-        "winningCards": {
-            "character": "",
-            "location": "",
-            "weapon": ""
-        }
+    "dateCreated": "",
+    "currentTurn": 0,
+    "suggestion": {
+        "accepted": false,
+        "character": "",
+        "disprover": "",
+        "disprovingCard": "",
+        "location": "",
+        "submitted": false,
+        "suggestor": "",
+        "weapon": ""
+    },
+    "winningCards": {
+        "character": "",
+        "location": "",
+        "weapon": "",
+        "player": ""
     },
     "players": {
         "Green": {
-            "name": "",
+            "playerName": "",
             "uid": "",
             "turn": 0,
-            "characterName": "Reverend Green"
+            "location": 14,
+            "characterName": "Reverend Green",
+            "isFailAccuse": false,
+            "lastSuggestedLocation": 0,
         },
         "Mustard": {
-            "name": "",
+            "playerName": "",
             "uid": "",
             "turn": 0,
-            "characterName": "Colonel Mustard"
+            "location": 8,
+            "characterName": "Colonel Mustard",
+            "isFailAccuse": false,
+            "lastSuggestedLocation": 0,
         },
         "Peacock": {
-            "name": "",
+            "playerName": "",
             "uid": "",
             "turn": 0,
-            "characterName": "Mrs. Peacock"
+            "location": 10,
+            "characterName": "Mrs. Peacock",
+            "isFailAccuse": false,
+            "lastSuggestedLocation": 0,
         },
         "Plum": {
-            "name": "",
+            "playerName": "",
             "uid": "",
             "turn": 0,
-            "characterName": "Professor Plum"
+            "location": 6,
+            "characterName": "Professor Plum",
+            "isFailAccuse": false,
+            "lastSuggestedLocation": 0,
         },
         "Scarlet": {
-            "name": "",
+            "playerName": "",
             "uid": "",
             "turn": 0,
-            "characterName": "Miss Scarlet"
+            "location": 4,
+            "characterName": "Miss Scarlet",
+            "isFailAccuse": false,
+            "lastSuggestedLocation": 0,
         },
         "White": {
-            "name": "",
+            "playerName": "",
             "uid": "",
             "turn": 0,
-            "characterName": "Mrs. White"
+            "location": 16,
+            "characterName": "Mrs. White",
+            "isFailAccuse": false,
+            "lastSuggestedLocation": 0,
         }
     }
 }

@@ -1,3 +1,19 @@
+import mustardJpg from '../Assets/Players/Mustard.jpg'
+import plumJpg from '../Assets/Players/Plum.jpg'
+import greenJpg from '../Assets/Players/Green.jpg'
+import peacockJpg from '../Assets/Players/Peacock.jpg'
+import scarletJpg from '../Assets/Players/Scarlet.jpg'
+import whiteJpg from '../Assets/Players/White.jpg'
+
+export const characterImages = {
+  "Reverend Green": greenJpg,
+  "Colonel Mustard": mustardJpg,
+  "Mrs. Peacock": peacockJpg,
+  "Professor Plum": plumJpg,
+  "Miss Scarlet": scarletJpg,
+  "Mrs. White": whiteJpg,
+}
+
 export const locationCards = [
   "Study",
   "Hall",
@@ -119,7 +135,7 @@ export const manageRooms = [
   },
   {
     id: 19,
-    roomTitle: "Ball",
+    roomTitle: "Ballroom",
     options: [18, 15, 20]
   },
   {
@@ -139,6 +155,34 @@ export const manageRooms = [
   },
 
 ]
+
+export const roomNameToNum = {
+  "Study": 1,
+  "hall_1": 2,
+  "Hall": 3,
+  "hall_2": 4,
+  "Lounge": 5,
+  "hall_3": 6,
+  "hall_4": 7,
+  "hall_5": 8,
+  "Library": 9,
+  "hall_6": 10,
+  "Billiard Room": 11,
+  "hall_7": 12,
+  "Dining Room": 13,
+  "hall_8": 14,
+  "hall_9": 15,
+  "hall_10": 16,
+  "Conservatory": 17,
+  "hall_11": 18,
+  "Ballroom": 19,
+  "hall_12": 20,
+  "Kitchen": 21
+}
+
+export const hallwayLocations = [2, 4, 6, 7, 8, 10, 12, 14, 15, 16, 18, 20]
+
+export const roomLocations = [1, 3, 5, 9, 11, 13, 17, 19, 21]
 
 //this is something I (Ryan) added so I can map the playingAs character key
 //string like plum or peacock to the full character name i.e. Professor Plum 

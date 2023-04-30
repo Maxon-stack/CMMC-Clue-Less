@@ -1,22 +1,29 @@
-import React, { useEffect, useState } from 'react'
-import { set, get, ref, onValue } from 'firebase/database'
-import CluelessContext from '../../CluelessContext'
-import { db } from '../../firebase'
 import './Clipboard.css'
+import CluelessContext from '../../CluelessContext'
+import React, { useEffect, useState } from 'react'
 
 const ClipBoard = () => {
 
-  const {gameCode} = React.useContext(CluelessContext)
+  const {
+    //useStates to track firebase real-time database (FBRTDB)
+    players, localPlayer
+  } = React.useContext(CluelessContext)
 
-  const [players, setPlayers] = useState({})
-
-  useEffect(() => {
-    const playersRef = ref(db, `/${gameCode}/players`);
-    onValue(playersRef, (snapshot) => {
-      const data = snapshot.val();
-      setPlayers(data);
-    });
-  }, [])
+  const [playerRow, setPlayerRow] = useState({
+    "Green": "",
+    "Mustard": "",
+    "Peacock": "",
+    "Plum": "",
+    "Scarlet": "",
+    "White": "",
+  })
+  useEffect( () => {
+    let newPlayerRow = playerRow
+    Object.keys(players).map( (player) =>{
+      newPlayerRow[player] = players[player]["playerName"]
+    })
+    setPlayerRow(newPlayerRow)
+  }, [players])
 
   //the order from left to right is the order as it appears in Firebase because
   //because the player names are pulled out in that order (maybe we should 
@@ -44,9 +51,8 @@ const ClipBoard = () => {
           <label className="col0">Player Name</label>   
         </div>
         <div className="col1-6">
-          {Object.values(players).map(
-            (player) => {
-              return(<label className="col1-6">{player.name}</label>)
+          {Object.keys(playerRow).map( (player) => {
+              return(<label className="col1-6" key={player}>{playerRow[player]}</label>)
             }
           )}
         </div>

@@ -22,13 +22,14 @@ h3.playerName {
 }
 
 img.card {
-    height:150px;
+    
     object-fit:contain;
     border-radius: 10%;
 }
 
 div.row{
     display: flex;
+    height: 50px;
     justify-content: space-between;
     margin-right: 0px;
 }
@@ -44,6 +45,6 @@ div.bottomRow{
 
 label.card{
     display: inline-block;
-    width: 100px;
+    
     text-align: center;
 }

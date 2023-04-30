@@ -3,110 +3,56 @@ import { set, get, ref, onValue } from 'firebase/database'
 import { db } from '../../firebase'
 import CluelessContext from '../../CluelessContext'
 import { images } from '../../utils/cards'
-import { keyToCharacter } from '../../utils/constants'
+import { characterToKey } from '../../utils/constants'
 import './PlayerDeck.css'
 
 const PlayerDeck = () => {
 
   const {
-    localPlayerObj, 
-    setLocalPlayerObj,
-    gameCode,
+    //useStates to track firebase real-time database (FBRTDB)
+    players,
+    //useState to track my specific player
+    localPlayer
   } = React.useContext(CluelessContext)
 
-  const [characterCards, setCharacterCards] = useState([])
-  const [weaponCards, setWeaponCards] = useState([])
-  const [locationCards, setLocationCards] = useState([])
-
+  const [deck, setDeck] = useState([])
   useEffect(() => {
-    const playersRef = ref(db, `${gameCode}/BasicGameState/playerDecks/${localPlayerObj.playingAs}/characterCards`);
-    onValue(playersRef, (snapshot) => {
-      const data = snapshot.val();
-      if(data){setCharacterCards(data);}else{setCharacterCards([]);}
-    });
-  }, [])
-
-  useEffect(() => {
-    const playersRef = ref(db, `${gameCode}/BasicGameState/playerDecks/${localPlayerObj.playingAs}/weaponCards`);
-    onValue(playersRef, (snapshot) => {
-      const data = snapshot.val();
-      if(data){setWeaponCards(data);}else{setWeaponCards([]);}
-    });
-  }, [])
-
-  useEffect(() => {
-    const playersRef = ref(db, `${gameCode}/BasicGameState/playerDecks/${localPlayerObj.playingAs}/locationCards`);
-    onValue(playersRef, (snapshot) => {
-      const data = snapshot.val();
-      if(data){setLocationCards(data);}else{setLocationCards([]);}
-    });
-  }, [])
+    setDeck(players[characterToKey[localPlayer.characterName]]['deck'])
+  },[localPlayer])
 
   return (
     <div className='playerDeckMain playerDeckContainer'>
       <h2 className='playerDeck'>Player Deck</h2>
       <div className='row'>
-        {localPlayerObj.playingAs && 
+        {localPlayer.playerName && 
           <h3 className='playerName'>
-            {localPlayerObj.name}: You are playing as {keyToCharacter[localPlayerObj.playingAs]}
+            {localPlayer.playerName}: You are playing as {localPlayer.characterName}
           </h3>
         }
-        {localPlayerObj.playingAs == undefined && 
+        {localPlayer.playerName == undefined && 
           <h3 className='playerName'>
             You are a spectator
           </h3>
         }
       </div>
       <div className='row'>
-        {characterCards.map(
-            (card) => {
-              if(characterCards){
-                return <label className='card'>{card}</label>
-              }
-            }
-          )
-        }
-        {weaponCards.map(
-            (card) => {
-              if(weaponCards){
-                return <label className='card'>{card}</label>
-              }
-            }
-          )
-        }
-        {locationCards.map(
-            (card) => {
-              if(locationCards){
-                return <label className='card'>{card}</label>
-              }
-            }
-          )
+        {deck != [] > 0 &&
+        <div>
+          {Object.keys(deck).map( (card) => {
+              return <label className='card' key={card+"label"}>{deck[card]}</label>
+            })
+          }
+          </div>
         }
       </div>
       <div className='bottomRow'>
-        {characterCards.map(
-            (card) => {
-              if(characterCards){
-                return <img className='card' src = {images[card]} alt = "Card not found"></img>
-              }
+        {deck != [] > 0 &&
+          <div>
+            {Object.keys(deck).map( (card) => {
+                return <img className='card' src = {images[deck[card]]} alt = "Card not found" key={card+"img"}></img>
+              })
             }
-          )
-        }
-        {weaponCards.map(
-            (card) => {
-              if(weaponCards){
-                return <img className='card' src = {images[card]} alt = "Card not found"></img>
-              }
-            }
-          )
-        }
-        {locationCards.map(
-            (card) => {
-              if(locationCards){
-                return <img className='card' src = {images[card]} alt = "Card not found"></img>
-              }
-            }
-          )
+          </div>
         }
       </div>
     </div>

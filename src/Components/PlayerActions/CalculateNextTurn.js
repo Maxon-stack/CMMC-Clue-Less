@@ -1,40 +1,25 @@
-import { keyToCharacter, manageRooms } from '../../utils/constants'
+export const calculateNextTurn = (localPlayer, players) => {  
 
-export const calculateNextTurn = (myCharacter, gameState) => {  
-
-  const playersObject = gameState?.turnState?.playerTurnQueue
   //list of character keys
-  const characters = ["Green", "Mustard", "Peacock", "Plum", "Scarlet", "White",]
-  //remove our character from the list
-  for (let i = 0; i < 6; i++) {
-    if (characters[i] == myCharacter) {
-      characters.splice(i, 1)
-    }
-  }
-  //generate the order to look at the players
-  const characterNamesInOrder = []
-  const myTurn = gameState?.turnState?.playerTurnQueue[myCharacter]?.turnNumber
-  for (let i = myTurn; i <= characters.length + myTurn; i++) {
-    for (let j = 0; j < characters.length; j++) {
-      if (gameState?.turnState?.playerTurnQueue[characters[j]]?.turnNumber == i + 1 % 6) {
-        characterNamesInOrder.push(characters[j])
+  const characterKeys = Object.keys(players)
+  const numPlayers = characterKeys.length
+
+  let validPlayer = false //assumes there is no valid players
+  let newTurn = localPlayer.turn % numPlayers + 1 //assumes new turn will be the next turn
+  //repeats until a valid player is found or we get back to my turn
+  while(validPlayer == false && newTurn != localPlayer.turn){ 
+    for(let i = 0; i < numPlayers; i++){ //itterates through all players
+      //triggers once the player with the matching turn is found AND they are still in the game
+      if(players[characterKeys[i]]["turn"] == newTurn && players[characterKeys[i]]["isFailAccuse"] == false){
+        validPlayer = true //signals a valid player was found
       }
     }
+    //if a valid player was not found increment turn
+    if(validPlayer == false){newTurn = newTurn % numPlayers + 1}
   }
 
-  //get next player with eligible turn
-  //todo: decide what happens if everyone has failed to accuse
-  let newCurrentTurn  
-  for(let i = 0; i<= characterNamesInOrder.length; i++){
-    if(playersObject[characterNamesInOrder[i]].isFailAccuse === false){
-      newCurrentTurn = {
-        name: characterNamesInOrder[i],
-        count: playersObject[characterNamesInOrder[i]].turnNumber
-      }
-      break
-    }
-  }
+  if(validPlayer == false){newTurn = 0} //if no valid player found 0 is returned 
 
-  return newCurrentTurn;
+  return newTurn;
 
 }

@@ -1,23 +1,27 @@
-import { set, get, ref, onValue } from 'firebase/database'
-import React, { useState, useEffect } from 'react'
-import { db } from '../../firebase'
-import CluelessContext from '../../CluelessContext'
 import './Locations.css'
+import CluelessContext from '../../CluelessContext'
+import React, { useState, useEffect } from 'react'
+import { ref, onValue } from 'firebase/database'
+import { db } from '../../firebase'
 import { manageRooms } from '../../utils/constants'
 
 
 const Locations = () => {
 
-  const {gameCode} = React.useContext(CluelessContext)
+  const {
+    //useStates to track firebase real-time database (FBRTDB)
+    players
+  } = React.useContext(CluelessContext)
 
   const [playerLocations, setPlayerLocations] = useState({})
   useEffect(() => {
-    const locationsRef = ref(db, `${gameCode}/BasicGameState/playerLocations`);
-    onValue(locationsRef, (snapshot) => {
-      const data = snapshot.val();
-      setPlayerLocations(data);
-    });
-  }, [])
+    let newPlayerLocations = {}
+    Object.keys(players).map( (player) => {
+      newPlayerLocations[player] = players[player]['location']
+    })
+    setPlayerLocations(newPlayerLocations)
+  }, [players])
+
   const checkIfPlayerBelongs = (base) => {
     const allLocations = Object.entries(playerLocations);
     var returnVal = allLocations.map((location) => {
@@ -37,15 +41,15 @@ const Locations = () => {
     <div className='locationsContainer'>
       <div className="locationsRow">
         {
-          firstRow.map((room) => (
-            <div className='locationBoxes'>
-              <h3>
+          firstRow.map((room, id) => (
+            <div className='locationBoxes' key={room+id+"div"+"firstRow"}>
+              <h3 key={room+"h3"}>
                 {manageRooms[room - 1].roomTitle}
               </h3>
-              <p>
+              <p key={room+"p1"}>
                 {checkIfPlayerBelongs(room)}
               </p>
-              <p>
+              <p key={room+"p2"}>
                 {room}
               </p>
             </div>
@@ -55,20 +59,20 @@ const Locations = () => {
 
       <div className="HallwayRow">
         {
-          secondRow.map((room) => (
-            <div className='locationBoxes'>
-              <h3>
+          secondRow.map((room,id) => (
+            <div className='locationBoxes' key={room+id+"div"+"secondRow"}>
+              <h3 key={room+"h3"+"secondRow"}>
                 {manageRooms[room - 1].roomTitle}
               </h3>
-              <p>
+              <p key={room+"p1"+"secondRow"}>
                 {checkIfPlayerBelongs(room)}
               </p>
               {
                 room - 1 != 21 ?
-                  <p>
+                  <p key={room+"p2"+"secondRow"}>
                     {room}
                   </p> :
-                  <p></p>
+                  <p key={room+"p3"+"secondRow"}></p>
               }
 
             </div>
@@ -78,15 +82,15 @@ const Locations = () => {
 
       <div className="locationsRow">
         {
-          thirdRow.map((room) => (
-            <div className='locationBoxes'>
-              <h3>
+          thirdRow.map((room,id) => (
+            <div className='locationBoxes' key={room+id+"div"+"thirdRow"}>
+              <h3 key={room+"h3"+"thirdRow"}>
                 {manageRooms[room - 1].roomTitle}
               </h3>
-              <p>
+              <p key={room+"p1"+"thirdRow"}>
                 {checkIfPlayerBelongs(room)}
               </p>
-              <p>
+              <p key={room+"p2"+"thirdRow"}>
                 {room}
               </p>
             </div>
@@ -96,20 +100,20 @@ const Locations = () => {
 
       <div className="HallwayRow">
         {
-          forthRow.map((room) => (
-            <div className='locationBoxes'>
-              <h3>
+          forthRow.map((room,id) => (
+            <div className='locationBoxes' key={room+id+"div"+"fourthRow"}>
+              <h3 key={room+"h3"+"fourthRow"}>
                 {manageRooms[room - 1].roomTitle}
               </h3>
-              <p>
+              <p key={room+"p1"+"fourthRow"}>
                 {checkIfPlayerBelongs(room)}
               </p>
               {
                 room - 1 != 21 ?
-                  <p>
+                  <p key={room+"p2"+"fourthRow"}>
                     {room}
                   </p> :
-                  <p></p>
+                  <p key={room+"p3"+"fourthRow"}></p>
               }
 
             </div>
@@ -118,22 +122,21 @@ const Locations = () => {
       </div>
       <div className="locationsRow">
         {
-          fithRow.map((room) => (
-            <div className='locationBoxes'>
-              <h3>
+          fithRow.map((room,id) => (
+            <div className='locationBoxes' key={room+id+"div"+"fifthRow"}>
+              <h3 key={room+"h3"+"fifthRow"}>
                 {manageRooms[room - 1].roomTitle}
               </h3>
-              <p>
+              <p key={room+"p1"+"fifthRow"}>
                 {checkIfPlayerBelongs(room)}
               </p>
-              <p>
+              <p key={room+"p2"+"fifthRow"}>
                 {room}
               </p>
             </div>
           ))
         }
       </div>
-
     </div>
   )
 }

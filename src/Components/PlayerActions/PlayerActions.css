@@ -1,10 +1,10 @@
-.actionsContainer{
+.actionContainer{
   padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 25px;
 }
-.suggestionContainer{
+.suggestContainer{
   display: flex;
   flex-direction: column;
   gap: 15px;
