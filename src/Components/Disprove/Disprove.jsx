@@ -66,32 +66,32 @@ const Disprove = () => {
 
   return (
     <div className='suggestion'>
-        <h2 className='suggestionTitle'>Suggestion</h2>
+        <h2 class = "bg-indigo-600 text-white border-solid border-4 border-black text-center text-xl" >Suggestion</h2>
         <div className='suggestDisproveRow'>
             <div className='suggestionHalf'>
                 {suggestion.suggestor && suggestion.suggestor != localPlayer.playerName &&
                     <label className='suggestorName'>{suggestion.suggestor} suggested:</label>
                 }
                 {suggestion.suggestor && suggestion.suggestor == localPlayer.playerName &&
-                    <label className='suggestorName'>You suggested:</label>
+                    <label class="bg-yellow-500 text-white border-solid border-2 border-black text-center text-lg flex" className='suggestorName'>You suggested:</label>
                 }
                 {suggestion.suggestor == "" && 
                     <label className='suggestorName'>Suggestor: </label>
                 }
             </div>
             <div className='disproveHalf'>
-                <label className = 'disproverName'>Disprover: {suggestion.disprover}</label>
+                <label class="bg-yellow-500 text-white border-solid border-2 border-black text-center text-lg flex" className = 'disproverName'>Disprover: {suggestion.disprover}</label>
             </div>
         </div>
         <div className='bottom'>
             {suggestion.suggestor &&
                 <div className='suggestionHalf'>
                     <div className='cardTextRow'>
-                        <label className='card'>{suggestion.character}</label>
-                        <label className='card'>{suggestion.weapon}</label>
-                        <label className='card'>{suggestion.location}</label>
+                        <label class="bg-green-600 border-gray border-solid border-2 text-white font-bold text-center pl-2 pr-2 rounded-full" className='card'>{suggestion.character}</label>
+                        <label class="bg-green-600 border-gray border-solid border-2 text-white font-bold text-center pl-2 pr-2 rounded-full" className='card'>{suggestion.weapon}</label>
+                        <label class="bg-green-600 border-gray border-solid border-2 text-white font-bold text-center pl-2 pr-2 rounded-full" className='card'>{suggestion.location}</label>
                     </div>
-                    <div className='cardImageRow'>
+                    <div class="flex flex-row flex-wrap flex gap-3" >
                         <img className='card' src = {images[suggestion.character]} alt = "Card not found"></img>
                         <img className='card' src = {images[suggestion.weapon]} alt = "Card not found"></img>
                         <img className='card' src = {images[suggestion.location]} alt = "Card not found"></img>
@@ -113,7 +113,7 @@ const Disprove = () => {
                     <div className='disproveImageText'>
                         <img className='card' src = {images[suggestion.disprovingCard]} alt = "Card not found"></img>
                     </div>
-                    <button type="button" onClick={acceptCard}>Accept</button>
+                    <button class="bg-blue-500 hover:bg-yellow-500 text-white font-bold py-2 px-4  rounded-full" type="button" onClick={acceptCard}>Accept</button>
                 </div>
             }
             {suggestion.suggestor != localPlayer.playerName && suggestion.disprover != localPlayer.playerName && suggestion.disprovingCard &&
@@ -137,7 +137,7 @@ const Disprove = () => {
                     </select>
                     {suggestion.submitted == false &&
                         <div>
-                            <button type="button" onClick={submitCard}>Submit</button>
+                            <button class="bg-blue-500 hover:bg-yellow-500 text-white font-bold py-2 px-4  rounded-full" type="button" onClick={submitCard}>Submit</button>
                         </div>
                     }
                     {suggestion.submitted &&
@@ -149,7 +149,7 @@ const Disprove = () => {
             }
             {suggestion.disprover == "Not Found" && suggestion.suggestor == localPlayer.playerName &&
                 <div>
-                    <button type="button" onClick={acceptCard}>Accept</button>
+                    <button class="bg-blue-500 hover:bg-yellow-500 text-white font-bold py-2 px-4  rounded-full" type="button" onClick={acceptCard}>Accept</button>
                 </div>
             }
             </div>

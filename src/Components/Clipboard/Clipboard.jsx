@@ -30,7 +30,7 @@ const ClipBoard = () => {
   //standarize the order) 
   return (
     <div className='clipboardMain'>
-      <h2 className='Title'>Inocence Clipboard</h2>
+      <h2 class = "bg-indigo-500 text-white border-solid border-4 border-black text-center text-xl" className='Title'>Inocence Clipboard</h2>
 
       <div className='row'>
         <div className="col0">
@@ -58,7 +58,7 @@ const ClipBoard = () => {
         </div>
       </div>
 
-      <h3 className="cardType">Suspect</h3>
+      <h3 class = "bg-indigo-500 text-white border-solid border-4 border-black text-center text-xl" className="cardType">Suspect</h3>
 
       <div className="row">
         <div className="col0">
@@ -144,7 +144,7 @@ const ClipBoard = () => {
         </div>
       </div>
 
-      <h3 className="cardType">Weapons</h3>
+      <h3 class = "bg-indigo-500 text-white border-solid border-4 border-black text-center text-xl" className="cardType">Weapons</h3>
 
       <div className="row">
         <div className="col0">
@@ -230,7 +230,7 @@ const ClipBoard = () => {
         </div>
       </div>
 
-      <h3 className="cardType">Rooms</h3>
+      <h3 class = "bg-indigo-500 text-white border-solid border-4 border-black text-center text-xl" className="cardType">Rooms</h3>
 
       <div className="row">
         <div className="col0">
