@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/CMMC-Clue-Less/static/css/main.9edd035c.css",
-    "main.js": "/CMMC-Clue-Less/static/js/main.786e7785.js",
+    "main.css": "/CMMC-Clue-Less/static/css/main.605dc056.css",
+    "main.js": "/CMMC-Clue-Less/static/js/main.75926b5f.js",
     "static/media/Mustard.jpg": "/CMMC-Clue-Less/static/media/Mustard.9753e7dc78edfe22e7ba.jpg",
     "static/media/Green.jpg": "/CMMC-Clue-Less/static/media/Green.c394b075c7b4deb50687.jpg",
     "static/media/Conservatory.jpg": "/CMMC-Clue-Less/static/media/Conservatory.6bf944c70f122a26e2ac.jpg",
@@ -21,11 +21,11 @@
     "static/media/Knife.jpg": "/CMMC-Clue-Less/static/media/Knife.f9d81f83dfd72e1c361c.jpg",
     "static/media/Scarlet.jpg": "/CMMC-Clue-Less/static/media/Scarlet.cf2b79eea0f56057a23c.jpg",
     "index.html": "/CMMC-Clue-Less/index.html",
-    "main.9edd035c.css.map": "/CMMC-Clue-Less/static/css/main.9edd035c.css.map",
-    "main.786e7785.js.map": "/CMMC-Clue-Less/static/js/main.786e7785.js.map"
+    "main.605dc056.css.map": "/CMMC-Clue-Less/static/css/main.605dc056.css.map",
+    "main.75926b5f.js.map": "/CMMC-Clue-Less/static/js/main.75926b5f.js.map"
   },
   "entrypoints": [
-    "static/css/main.9edd035c.css",
-    "static/js/main.786e7785.js"
+    "static/css/main.605dc056.css",
+    "static/js/main.75926b5f.js"
   ]
 }
