@@ -70,26 +70,26 @@ const Disprove = () => {
         <div className='suggestDisproveRow'>
             <div className='suggestionHalf'>
                 {suggestion.suggestor && suggestion.suggestor != localPlayer.playerName &&
-                    <label className='suggestorName'>{suggestion.suggestor} suggested:</label>
+                    <label class="bg-yellow-500 text-white border-solid border-2 border-black text-center text-lg flex">{suggestion.suggestor} suggested:</label>
                 }
                 {suggestion.suggestor && suggestion.suggestor == localPlayer.playerName &&
-                    <label class="bg-yellow-500 text-white border-solid border-2 border-black text-center text-lg flex" className='suggestorName'>You suggested:</label>
+                    <label class="bg-yellow-500 text-white border-solid border-2 border-black text-center text-lg flex" >You suggested:</label>
                 }
                 {suggestion.suggestor == "" && 
-                    <label className='suggestorName'>Suggestor: </label>
+                    <label class="bg-yellow-500 text-white border-solid border-2 border-black text-left text-lg flex">Suggestor: </label>
                 }
             </div>
             <div className='disproveHalf'>
-                <label class="bg-yellow-500 text-white border-solid border-2 border-black text-center text-lg flex" className = 'disproverName'>Disprover: {suggestion.disprover}</label>
+                <label class="bg-yellow-500 text-white border-solid border-2 border-black text-center text-lg flex">Disprover: {suggestion.disprover}</label>
             </div>
         </div>
         <div className='bottom'>
             {suggestion.suggestor &&
                 <div className='suggestionHalf'>
                     <div className='cardTextRow'>
-                        <label class="bg-green-600 border-gray border-solid border-2 text-white font-bold text-center pl-2 pr-2 rounded-full" className='card'>{suggestion.character}</label>
-                        <label class="bg-green-600 border-gray border-solid border-2 text-white font-bold text-center pl-2 pr-2 rounded-full" className='card'>{suggestion.weapon}</label>
-                        <label class="bg-green-600 border-gray border-solid border-2 text-white font-bold text-center pl-2 pr-2 rounded-full" className='card'>{suggestion.location}</label>
+                        <label class="bg-green-600 border-gray border-solid border-2 text-white font-bold text-center pl-2 pr-2 rounded-full" >{suggestion.character}</label>
+                        <label class="bg-green-600 border-gray border-solid border-2 text-white font-bold text-center pl-2 pr-2 rounded-full">{suggestion.weapon}</label>
+                        <label class="bg-green-600 border-gray border-solid border-2 text-white font-bold text-center pl-2 pr-2 rounded-full">{suggestion.location}</label>
                     </div>
                     <div class="flex flex-row flex-wrap flex gap-3" >
                         <img className='card' src = {images[suggestion.character]} alt = "Card not found"></img>
