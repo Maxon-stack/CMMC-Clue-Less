@@ -131,10 +131,23 @@ const PlayerActions = () => {
       winUpdate[`${gameCode}/winningCards/player`] = localPlayer.playerName 
       update(dbRef, winUpdate)
     }else{
-      const loseUpdate = {}
-      loseUpdate[`${gameCode}/players/${characterToKey[localPlayer.characterName]}/isFailAccuse`] = true
-      update(dbRef, loseUpdate);
-      handleEndTurn()
+      let gameOver = true
+      Object.keys(players).map( (player) => {
+        if(players[player]['isFailAccuse'] == false  && players[player]['playerName'] != localPlayer.playerName){
+          gameOver = false
+        }
+      })
+      if(gameOver){
+        const loseUpdate = {}
+        loseUpdate[`${gameCode}/gameEnded`] = true //this will close the game board for everyone
+        loseUpdate[`${gameCode}/winningCards/player`] = "No One" 
+        update(dbRef, loseUpdate)
+      }else{
+        const loseUpdate = {}
+        loseUpdate[`${gameCode}/players/${characterToKey[localPlayer.characterName]}/isFailAccuse`] = true
+        update(dbRef, loseUpdate);
+        handleEndTurn()
+      }
     }
   }
 
@@ -142,17 +155,19 @@ const PlayerActions = () => {
   //updates the current turn and resets remaining suggestion variables
   //also prepares use states for next turn
   const handleEndTurn = () => {
-    const endTurnupdates = {};
-    endTurnupdates[`${gameCode}/suggestion/accepted`] = false;
-    endTurnupdates[`${gameCode}/suggestion/submitted`] = false;
-    endTurnupdates[`${gameCode}/currentTurn`] = calculateNextTurn(localPlayer, players);;
-    update(dbRef, endTurnupdates);
     setChooseScreen(true)
     setMoveScreen(false)
     setSuggestScreen(false)
     setAwaitingSuggestionScreen(false)
     setAccuseScreen(false)
     setSuggested(false)
+    setMoved(false)
+    const endTurnupdates = {};
+    let nextTurn = calculateNextTurn(localPlayer, players);
+    endTurnupdates[`${gameCode}/suggestion/accepted`] = false;
+    endTurnupdates[`${gameCode}/suggestion/submitted`] = false;
+    endTurnupdates[`${gameCode}/currentTurn`] = nextTurn;
+    update(dbRef, endTurnupdates);
   }
   
 
