@@ -5,7 +5,6 @@ import { set, get, ref, update, remove } from 'firebase/database'
 import { keyToCharacter, characterToKey} from '../../utils/constants'
 import { basicGameObject } from '../../utils/basicGameObject'
 
-
 const Home = () => {
   const {
     //the database which is used when we call get(ref(db,pathToVariable)) to get a specific variable
@@ -271,11 +270,10 @@ const Home = () => {
       }
     }).catch( (error) => {console.log("Failed to clear old games and find my old game codes: "+error)});
   }, [localPlayer])  
-
   return (
     <div className='container'>
       <div className="card">
-        <h1 className="card-heading" >
+        <h1 class="mb-6 text-4xl" >
           Clueless
         </h1>
         {localPlayer.uid == "" &&
@@ -283,8 +281,8 @@ const Home = () => {
         }
         {joinOrCreateGame && localPlayer.uid != "" &&
           <div className="card-form">
-            <button className="action-button" onClick={handleSetJoin}>Join Game</button>
-            <p>or</p>
+            <button className="action-button"  onClick={handleSetJoin}>Join Game</button>
+            <p class="text-white text-center">or</p>
             <button className="action-button" onClick={handleSetCreate}>Create Game</button>
           </div>
         }
@@ -317,7 +315,7 @@ const Home = () => {
               <button className="action-button" onClick={handleRejoinGame} >
                 Rejoin Game
               </button>
-              <p>or</p>
+              <p class="text-white text-center">or</p>
               <button className="action-button" onClick={handleNotRejoinGame} >
                 Join New Game
               </button>
@@ -341,22 +339,22 @@ const Home = () => {
             </div>
             {invalidGameCode &&
               <div>
-                <label>Invalid Game Code. Try again.</label>
+                <label class="text-red-700 text-xs font-bold italic">Invalid Game Code. Try again.</label>
               </div>
             }
             {fullGameCode &&
               <div>
-                <label>The game you are attempting to join is full.</label>
+                <label class="text-red-700 text-xs font-bold italic">The game you are attempting to join is full.</label>
               </div>
             }
             {startedGameCode &&
               <div>
-                <label>The game you are attempting to join has already started.</label>
+                <label class="text-red-700 text-xs font-bold italic">The game you are attempting to join has already started.</label>
               </div>
             }
             {alreadyJoinedGameCode && 
               <div>
-                <label>The game you are attempting to join you have already joined. Refresh the page and rejoin.</label>
+                <label class="text-red-700 text-xs font-bold italic">The game you are attempting to join you have already joined. Refresh the page and rejoin.</label>
               </div>
             }
           </div>

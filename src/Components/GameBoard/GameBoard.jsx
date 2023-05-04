@@ -72,10 +72,10 @@ const GameBoard = () => {
             </div>
           </div>
           <div className="containerLower">
-            <div className="actions">
+            <div className="actions" class="space-y-4 space-x-4" >
               {currentTurn === localPlayer.turn ? (
                   <PlayerActions />
-                ):<p>It is not Your turn yet</p>
+                ):<p class="bg-yellow-500 text-white border-solid border-2 border-black text-center text-lg flex" >It is not Your turn yet</p>
               }
             </div>
             <div className="deck">

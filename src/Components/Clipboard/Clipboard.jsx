@@ -30,14 +30,14 @@ const ClipBoard = () => {
   //standarize the order) 
   return (
     <div className='clipboardMain'>
-      <h2 className='Title'>Inocence Clipboard</h2>
+      <h2 class = "bg-indigo-500 text-white border-solid border-4 border-black text-center text-xl">Innocence Clipboard</h2>
 
-      <div className='row'>
+      <div className='row' class="bg-yellow-500 text-white border-solid border-2 border-black text-center text-lg flex">
         <div className="col0">
           <label className="col0">Character Name</label>
         </div>
         <div className="col1-6">
-          <label className="col1-6">Rev. Green</label>
+          <label   className="col1-6">Rev. Green</label>
           <label className="col1-6">Col. Mustard</label>
           <label className="col1-6">Mrs. Peacock</label>
           <label className="col1-6">Prof. Plum</label>
@@ -46,7 +46,7 @@ const ClipBoard = () => {
         </div>
       </div>
 
-      <div className='row'>
+      <div className='row' class="bg-yellow-500 text-white border-solid border-2 border-black text-center text-lg flex">
         <div className="col0">
           <label className="col0">Player Name</label>   
         </div>
@@ -58,7 +58,7 @@ const ClipBoard = () => {
         </div>
       </div>
 
-      <h3 className="cardType">Suspect</h3>
+      <h3 class ="bg-indigo-500 text-white border-solid border-4 border-black text-center text-lg">Suspect</h3>
 
       <div className="row">
         <div className="col0">
@@ -144,7 +144,7 @@ const ClipBoard = () => {
         </div>
       </div>
 
-      <h3 className="cardType">Weapons</h3>
+      <h3 class = "bg-indigo-500 text-white border-solid border-4 border-black text-center text-lg">Weapons</h3>
 
       <div className="row">
         <div className="col0">
@@ -230,7 +230,7 @@ const ClipBoard = () => {
         </div>
       </div>
 
-      <h3 className="cardType">Rooms</h3>
+      <h3 class = "bg-indigo-500 text-white border-solid border-4 border-black text-center text-lg">Rooms</h3>
 
       <div className="row">
         <div className="col0">

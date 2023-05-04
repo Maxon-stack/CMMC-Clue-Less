@@ -46,7 +46,7 @@ const Locations = () => {
               <h3 key={room+"h3"}>
                 {manageRooms[room - 1].roomTitle}
               </h3>
-              <p key={room+"p1"}>
+              <p class="text-white" key={room+"p1"}>
                 {checkIfPlayerBelongs(room)}
               </p>
               <p key={room+"p2"}>
@@ -64,7 +64,7 @@ const Locations = () => {
               <h3 key={room+"h3"+"secondRow"}>
                 {manageRooms[room - 1].roomTitle}
               </h3>
-              <p key={room+"p1"+"secondRow"}>
+              <p class="text-white" key={room+"p1"+"secondRow"}>
                 {checkIfPlayerBelongs(room)}
               </p>
               {
@@ -87,7 +87,7 @@ const Locations = () => {
               <h3 key={room+"h3"+"thirdRow"}>
                 {manageRooms[room - 1].roomTitle}
               </h3>
-              <p key={room+"p1"+"thirdRow"}>
+              <p class="text-white" key={room+"p1"+"thirdRow"}>
                 {checkIfPlayerBelongs(room)}
               </p>
               <p key={room+"p2"+"thirdRow"}>
@@ -105,7 +105,7 @@ const Locations = () => {
               <h3 key={room+"h3"+"fourthRow"}>
                 {manageRooms[room - 1].roomTitle}
               </h3>
-              <p key={room+"p1"+"fourthRow"}>
+              <p class="text-white" key={room+"p1"+"fourthRow"}>
                 {checkIfPlayerBelongs(room)}
               </p>
               {
@@ -127,7 +127,7 @@ const Locations = () => {
               <h3 key={room+"h3"+"fifthRow"}>
                 {manageRooms[room - 1].roomTitle}
               </h3>
-              <p key={room+"p1"+"fifthRow"}>
+              <p class="text-white" key={room+"p1"+"fifthRow"}>
                 {checkIfPlayerBelongs(room)}
               </p>
               <p key={room+"p2"+"fifthRow"}>

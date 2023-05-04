@@ -223,22 +223,23 @@ const PlayerActions = () => {
   return (
     <div className='actionContainer'>
       {chooseScreen && 
-        <div className="choose">
-          <h2>Select an action</h2>
+        <div className="choose" class="space-y-4 space-x-4" >
+          <h2 class = "bg-indigo-500 text-white border-solid border-2 border-black text-center text-xl">Select an action</h2>
           {!moved && moveOptions.length > 0 && !suggested &&
-            <button onClick={handleSetMove}>Move</button>
+            <button class="bg-blue-500 hover:bg-yellow-500 text-white font-bold py-2 px-4  rounded-full" onClick={handleSetMove}>Move</button>
           }
           {canSuggest && !inHallway && !suggested &&
-            <button onClick={handleSetSuggest}>Suggest</button>
+            <button class="bg-blue-500 hover:bg-yellow-500 text-white font-bold py-2 px-4  rounded-full" onClick={handleSetSuggest}>Suggest</button>
           }
-          <button onClick={handleSetAccuse}>Accuse</button>
-          <button onClick={handleEndTurn}>End Turn</button>
+          <button class="bg-blue-500 hover:bg-yellow-500 text-white font-bold py-2 px-4  rounded-full" onClick={handleSetAccuse}>Accuse</button>
+          <button class="bg-blue-500 hover:bg-yellow-500 text-white font-bold py-2 px-4  rounded-full" onClick={handleEndTurn}>End Turn</button>
         </div>
       }
       {moveScreen && 
         <div className="moveContainer">
-          <h2>Please Select Where to Move</h2>
-          <select name="" id="" onChange={e => {setMoveSelection(roomNameToNum[e.target.value])}}>
+          <h2 class = "bg-indigo-500 text-white border-solid border-2 border-black text-center text-lg ">Please Select Where to Move</h2>
+          <div class="py-2 px-2">
+          <select class="" name="" id="" onChange={e => {setMoveSelection(roomNameToNum[e.target.value])}}>
             <option value='placeholder'>--Please choose an option--</option>
             {moveOptions.map((roomNum, index) => (
                 <option value={manageRooms[roomNum - 1]["roomTitle"]} key={roomNum+index}>
@@ -247,21 +248,22 @@ const PlayerActions = () => {
               ))
             }
           </select>
-          <div>
-            <button onClick={handleMove}>Submit Move</button>
-            <button onClick={handleSetChoose}>Back</button>
+          </div>
+          <div class="space-y-2 space-x-4">
+            <button class="bg-blue-500 hover:bg-yellow-500 text-white font-bold py-2 px-4  rounded-full" onClick={handleMove}>Submit Move</button>
+            <button class="bg-blue-500 hover:bg-yellow-500 text-white font-bold py-2 px-4  rounded-full" onClick={handleSetChoose}>Back</button>
           </div>
         </div>
       }
       {suggestScreen &&
         <div className='suggestionContainer'>
-          <h2>
+          <h2 class = "bg-indigo-500 text-white border-solid border-2 border-black text-center text-lg ">
             Suggestion
           </h2>
           <h3>
             Who did it?
           </h3>
-          <select name="" id="" onChange={e => setSuggestedCharacter(e.target.value)}>
+          <select  name="" id="" onChange={e => setSuggestedCharacter(e.target.value)}>
             <option value='placeholder'>--Please choose an option--</option>
             {characterCards.map((card, index) => (
                 <option value={card} key={card+index}>
@@ -286,21 +288,21 @@ const PlayerActions = () => {
           <h3>
             Location: {suggestedLocation}
           </h3>
-          <div>
-            <button onClick={handleSuggest}>Submit Suggestion</button>
-            <button onClick={handleSetChoose}>Back</button>
+          <div class="space-y-2 space-x-4">
+            <button class="bg-blue-500 hover:bg-yellow-500 text-white font-bold py-2 px-4  rounded-full" onClick={handleSuggest}>Submit Suggestion</button>
+            <button class="bg-blue-500 hover:bg-yellow-500 text-white font-bold py-2 px-4  rounded-full" onClick={handleSetChoose}>Back</button>
           </div>
         </div>
       }
       {awaitingSuggestionScreen &&
         <div className="sugggestionContainer">
-          <h2>Awaiting Disproval</h2>
+          <h2 class="bg-yellow-500 text-white border-solid border-2 border-black text-center text-lg flex">Awaiting Disproval</h2>
         </div>
       }
       {accuseScreen &&
         <div className="accuseContainer">
-          <h2>Accusation</h2>
-          <div>
+          <h2 class = "bg-indigo-500 text-white border-solid border-2 border-black text-center text-lg ">Accusation</h2>
+          <div class="py-2 px-2">
             <select name="" id="" onChange={e => setAccusedCharacter(e.target.value)}>
               <option value='placeholder'>--Please choose a character--</option>
               {characterCards.map((card, index) => (
@@ -328,9 +330,11 @@ const PlayerActions = () => {
                 ))
               }
             </select>
+          </div >
+          <div class="space-y-2 space-x-4">
+          <button class="bg-blue-500 hover:bg-yellow-500 text-white font-bold py-2 px-4  rounded-full" onClick={handleAccuse}>Make Accusation</button>
+          <button class="bg-blue-500 hover:bg-yellow-500 text-white font-bold py-2 px-4  rounded-full" onClick={handleSetChoose}>Back</button>
           </div>
-          <button onClick={handleAccuse}>Make Accusation</button>
-          <button onClick={handleSetChoose}>Back</button>
         </div>
       }
     </div>
