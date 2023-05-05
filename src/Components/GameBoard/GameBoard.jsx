@@ -7,6 +7,7 @@ import Locations from '../Locations/Locations'
 import PlayerDeck from '../PlayerDeck/PlayerDeck'
 import { characterToKey } from '../../utils/constants'
 import PlayerActions from '../PlayerActions/PlayerActions'
+import NotYourTurn from '../NotYourTurn/NotYourTurn'
 import Disprove from '../Disprove/Disprove'
 import { db } from '../../firebase'
 
@@ -73,12 +74,7 @@ const GameBoard = () => {
           </div>
           <div className="containerLower">
             <div className="actions" class="space-y-4 space-x-4" >
-              {currentTurn === localPlayer.turn ? (
-                  <PlayerActions />
-                ):<p class="bg-yellow-500 text-white border-solid border-2 border-black text-center text-lg flex" >
-                  It is not Your turn yet
-                  </p>
-              }
+              {currentTurn === localPlayer.turn ? (<PlayerActions />):<NotYourTurn />}
             </div>
             <div className="deck">
               <PlayerDeck />
