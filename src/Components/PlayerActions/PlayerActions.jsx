@@ -4,10 +4,9 @@ import React, { useEffect, useState } from 'react'
 import { update } from 'firebase/database'
 import { characterCards, locationCards, weaponCards } from '../../utils/constants'
 import { manageRooms, hallwayLocations, roomLocations, roomNameToNum } from '../../utils/constants'
-import { keyToCharacter, characterToKey} from '../../utils/constants'
+import { characterToKey} from '../../utils/constants'
 import { calculateDisprover } from './CalculateDisprover'
 import { calculateNextTurn } from './CalculateNextTurn'
-
 
 const PlayerActions = () => {
 
@@ -33,7 +32,7 @@ const PlayerActions = () => {
   //use states to track suggest and accuse selections
   const [suggestedCharacter, setSuggestedCharacter] = useState("")
   const [suggestedWeapon, setSuggestedWeapon] = useState("")
-  const [suggestedLocation, setSuggestedLocation] = useState("")
+  const [lastMoveLocation, setLastMoveLocation] = useState("")
   const [accusedCharacter, setAccusedCharacter] = useState("")
   const [accusedWeapon, setAccusedWeapon] = useState("")
   const [accusedLocation, setAccusedLocation] = useState("")
@@ -94,15 +93,15 @@ const PlayerActions = () => {
   //moves to the await suggest screen
   //updates suggestion data in firebase accordingly
   const handleSuggest = () => {
-    if(suggestedCharacter && suggestedWeapon && suggestedLocation){
+    if(suggestedCharacter && suggestedWeapon && lastMoveLocation){
       setAwaitingSuggestionScreen(true)
       setSuggestScreen(false)
 
       const newSuggestion = {
         character: suggestedCharacter,
-        location: suggestedLocation,
+        location: lastMoveLocation,
         weapon: suggestedWeapon,
-        disprover: calculateDisprover(localPlayer,suggestedCharacter,suggestedWeapon,suggestedLocation,players),
+        disprover: calculateDisprover(localPlayer,suggestedCharacter,suggestedWeapon,lastMoveLocation,players),
         suggestor: localPlayer.playerName,
         disprovingCard: "",
         accepted: false,
@@ -111,9 +110,9 @@ const PlayerActions = () => {
 
       const suggestionUpdate = {}
       suggestionUpdate[`${gameCode}/suggestion`] = newSuggestion;
-      suggestionUpdate[`${gameCode}/players/${characterToKey[localPlayer.characterName]}/lastSuggestedLocation`] = roomNameToNum[suggestedLocation];
+      suggestionUpdate[`${gameCode}/players/${characterToKey[localPlayer.characterName]}/lastSuggestedLocation`] = roomNameToNum[lastMoveLocation];
       if(Object.keys(players).includes(characterToKey[suggestedCharacter])){
-        suggestionUpdate[`${gameCode}/players/${characterToKey[suggestedCharacter]}/location`] = roomNameToNum[suggestedLocation];
+        suggestionUpdate[`${gameCode}/players/${characterToKey[suggestedCharacter]}/location`] = roomNameToNum[lastMoveLocation];
       }
       update(dbRef, suggestionUpdate);
 
@@ -170,7 +169,7 @@ const PlayerActions = () => {
     update(dbRef, endTurnupdates);
   }
   
-
+  
   //triggered whenever the players object updates
   //firstly gets my new location and sets the suggested location as that
   //if it is not a hallway because I can only ever suggest where I am
@@ -182,22 +181,29 @@ const PlayerActions = () => {
   //then that option is removed and in the end the remaining options are set as the options
   useEffect( () => {
     
+    //creates object with players and their locations
     let playerLocations = {}
     Object.keys(players).map( (player) => {
       playerLocations[player] = players[player]["location"]
     })
 
+    //
     let myLocation = playerLocations[characterToKey[localPlayer.characterName]]
     if(hallwayLocations.includes(myLocation)){
-      setSuggestedLocation("")
+      setLastMoveLocation("")
     }else{
-      setSuggestedLocation(manageRooms[myLocation - 1]["roomTitle"])
+      setLastMoveLocation(manageRooms[myLocation - 1]["roomTitle"])
+    }
+
+    let potentialOptionsPtr = manageRooms[myLocation-1]["options"]
+    let potentialOptions = []
+    for(let i = 0; i < potentialOptionsPtr.length; i++){
+      potentialOptions.push(potentialOptionsPtr[i])
     }
 
     if(hallwayLocations.includes(myLocation)){
-      setMoveOptions(manageRooms[myLocation-1]["options"])
+      setMoveOptions(potentialOptions)
     }else{ //in a room
-      let potentialOptions = manageRooms[myLocation-1]["options"]
       Object.keys(playerLocations).map( (player) => {
         //the current player is in potential move location and it is a hallway
         if(potentialOptions.includes(playerLocations[player]) && hallwayLocations.includes(playerLocations[player])){
@@ -301,11 +307,11 @@ const PlayerActions = () => {
             }
           </select>
           <h3>
-            Location: {suggestedLocation}
+            Location: {lastMoveLocation}
           </h3>
           <div class="space-y-2 space-x-4">
             <button class="bg-blue-500 hover:bg-yellow-500 text-white font-bold py-2 px-4  rounded-full" onClick={handleSuggest}>Submit Suggestion</button>
-            <button class="bg-blue-500 hover:bg-yellow-500 text-white font-bold py-2 px-4  rounded-full" onClick={handleSetChoose}>Back</button>
+            {/*<button class="bg-blue-500 hover:bg-yellow-500 text-white font-bold py-2 px-4  rounded-full" onClick={handleSetChoose}>Cancel Suggestion</button> uncomment if we want the options to not HAVE to suggest when moving into a room*/}
           </div>
         </div>
       }

@@ -6,7 +6,7 @@ import { db, dbRef, auth} from './firebase'
 import { signInAnonymously, onAuthStateChanged} from 'firebase/auth'
 import { ref, onValue } from 'firebase/database'
 import { basicLocalPlayer } from './utils/basicLocalPlayer'
-import { characterToKey } from './utils/constants'
+
 
 function App() {
   //useStates to track firebase real-time database (FBRTDB)

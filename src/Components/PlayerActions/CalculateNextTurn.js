@@ -1,10 +1,5 @@
 export const calculateNextTurn = (localPlayer, players) => {  
 
-  console.log('localPlayer')
-  console.log(localPlayer)
-  console.log('players')
-  console.log(players)
-
   //list of character keys
   const characterKeys = Object.keys(players)
   const numPlayers = characterKeys.length
