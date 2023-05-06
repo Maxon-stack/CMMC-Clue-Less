@@ -9,7 +9,6 @@
 }
 .boardAndClip{
   display: grid;
-  height:auto;
   grid-template-columns: 2fr 1fr;
 }
 .clipBoard{

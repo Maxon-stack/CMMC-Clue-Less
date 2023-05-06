@@ -31,17 +31,17 @@ const ClipBoard = () => {
   return (
     <div className='clipboardMain'>
       <table
-          className="min-w-full border text-center text-sm font-light dark:border-neutral-500">
+          className="min-w-full border text-center text-2xl font-light dark:border-neutral-500">
           <thead className="border-b font-medium dark:border-neutral-500">
            <tr>
               <th
                 colspan="7"
                 scope="col"
-                class = "bg-indigo-500 text-white border-solid border-4 border-black text-center dark:border-neutral-50 text-sm  ">
+                class = "bg-indigo-500 text-white border-solid border-4 border-black py-2 px-4  text-center dark:border-neutral-50 text-2xl  ">
                 Innocence Clipboard
               </th>
             </tr>
-            <tr className="bg-yellow-500 text-white border-solid border-2 border-black text-center text-xs">
+            <tr className="bg-yellow-500 text-white border-solid border-2 border-black py-2 px-4  text-center text-base">
               <th
                 scope="col"
                 className="border-r dark:border-black">
@@ -78,7 +78,7 @@ const ClipBoard = () => {
                 Mrs. White
               </th>
             </tr>
-            <tr className="bg-yellow-500 text-white border-solid border-2 border-black text-center text-xs" >
+            <tr className="bg-yellow-500 text-white border-solid border-2 py-2 px-4  border-black text-center text-base" >
               <th
                 scope="col" className="border-r dark:border-black">
                 Player Name
@@ -94,11 +94,11 @@ const ClipBoard = () => {
           <tbody>
           <tr className="border-b dark:border-neutral-500">
               <td
-                colspan="7" class = "bg-indigo-500 text-white border-solid border-4 border-black text-center text-xs font-medium dark:border-neutral-50 text-sm">
+                colspan="7" class = "bg-indigo-500 text-white border-solid border-4 border-black text-center font-medium dark:border-neutral-50 text-lg">
                 Suspects
               </td>
               </tr>
-          <tr className="border-2 dark:border-black text-xs">
+          <tr className="border-2 dark:border-black text-sm">
               <td className="border-r font-medium dark:border-black">
                 Colonel Mustard
               </td>
@@ -121,7 +121,7 @@ const ClipBoard = () => {
                 <input type="checkbox" className="col1-6"></input>
               </td>
             </tr>
-            <tr className="border-2 dark:border-black text-xs">
+            <tr className="border-2 dark:border-black text-sm">
               <td
                 className="border-r font-medium dark:border-black">
                 Professor Plum
@@ -145,7 +145,7 @@ const ClipBoard = () => {
                 <input type="checkbox" className="col1-6"></input>
               </td>
             </tr>
-            <tr className="border-2 dark:border-black text-xs">
+            <tr className="border-2 dark:border-black text-sm">
               <td className="border-r font-medium dark:border-black">
               Reverend Green
               </td>
@@ -168,7 +168,7 @@ const ClipBoard = () => {
                 <input type="checkbox" className="col1-6"></input>
               </td>
             </tr>
-            <tr className="border-2 dark:border-black text-xs">
+            <tr className="border-2 dark:border-black text-sm">
               <td
                 className="border-r font-medium dark:border-black">
                 Mr. Peacock
@@ -192,7 +192,7 @@ const ClipBoard = () => {
                 <input type="checkbox" className="col1-6"></input>
               </td>
             </tr>
-            <tr className="border-2 dark:border-black text-xs">
+            <tr className="border-2 dark:border-black text-sm">
               <td
                 className="border-r font-medium dark:border-black">
                 Miss Scarlet
@@ -216,7 +216,7 @@ const ClipBoard = () => {
                 <input type="checkbox" className="col1-6"></input>
               </td>
             </tr>
-            <tr className="border-2 dark:border-black text-xs">
+            <tr className="border-2 dark:border-black text-sm">
               <td
                 className="border-r font-medium dark:border-black">
                 Mrs. White
@@ -242,11 +242,11 @@ const ClipBoard = () => {
             </tr>
              <tr className="border-b dark:border-neutral-500">
               <td
-                 colspan="7" class = "bg-indigo-500 text-white border-solid border-4 border-black text-xs text-center font-medium dark:border-neutral-50 text-sm">
+                 colspan="7" class = "bg-indigo-500 text-white border-solid border-4 border-black text-center font-medium dark:border-neutral-50 text-lg">
                 Weapons
               </td>
               </tr>
-              <tr className="border-2 dark:border-black text-xs">
+              <tr className="border-2 dark:border-black text-sm">
               <td
                 className="border-r font-medium dark:border-black">
                 Knife
@@ -270,7 +270,7 @@ const ClipBoard = () => {
                 <input type="checkbox" className="col1-6"></input>
               </td>
             </tr>
-            <tr className="border-2 dark:border-black text-xs">
+            <tr className="border-2 dark:border-black text-sm">
               <td
                 className="border-r font-medium dark:border-black">
                 Candle Stick
@@ -294,7 +294,7 @@ const ClipBoard = () => {
                 <input type="checkbox" className="col1-6"></input>
               </td>
             </tr>
-            <tr className="border-2 dark:border-black text-xs">
+            <tr className="border-2 dark:border-black text-sm">
               <td
                 className="border-r font-medium dark:border-black">
                 Revolver
@@ -318,7 +318,7 @@ const ClipBoard = () => {
                 <input type="checkbox" className="col1-6"></input>
               </td>
             </tr>
-            <tr className="border-2 dark:border-black text-xs">
+            <tr className="border-2 dark:border-black text-sm">
               <td
                 className="border-r font-medium dark:border-black">
                 Rope
@@ -342,7 +342,7 @@ const ClipBoard = () => {
                 <input type="checkbox" className="col1-6"></input>
               </td>
             </tr>
-            <tr className="border-2 dark:border-black text-xs">
+            <tr className="border-2 dark:border-black text-sm">
               <td
                 className="border-r font-medium dark:border-black">
                 Lead Pipe
@@ -366,7 +366,7 @@ const ClipBoard = () => {
                 <input type="checkbox" className="col1-6"></input>
               </td>
             </tr>
-            <tr className="border-2 dark:border-black text-xs">
+            <tr className="border-2 dark:border-black text-sm">
               <td
                 className="border-r font-medium dark:border-black">
                 Wrench
@@ -392,11 +392,11 @@ const ClipBoard = () => {
             </tr>
             <tr className="border-b dark:border-neutral-500">
               <td
-                colspan="7" class = "bg-indigo-500 text-white border-solid border-4 border-black text-xs text-center font-medium dark:border-neutral-50 text-sm">
+                colspan="7" class = "bg-indigo-500 text-white border-solid border-4 border-black  text-center font-medium dark:border-neutral-50 text-lg">
                 Rooms
               </td>
               </tr>
-              <tr className="border-2 dark:border-black text-xs">
+              <tr className="border-2 dark:border-black text-sm">
               <td
                 className="border-r font-medium dark:border-black">
                 Hall
@@ -420,7 +420,7 @@ const ClipBoard = () => {
                 <input type="checkbox" className="col1-6"></input>
               </td>
             </tr>
-            <tr className="border-2 dark:border-black text-xs">
+            <tr className="border-2 dark:border-black text-sm">
               <td
                 className="border-r font-medium dark:border-black">
                 Lounge
@@ -444,7 +444,7 @@ const ClipBoard = () => {
                 <input type="checkbox" className="col1-6"></input>
               </td>
             </tr>
-            <tr className="border-2 dark:border-black text-xs">
+            <tr className="border-2 dark:border-black text-sm">
               <td
                 className="border-r font-medium dark:border-black">
                 Dining Room
@@ -468,7 +468,7 @@ const ClipBoard = () => {
                 <input type="checkbox" className="col1-6"></input>
               </td>
             </tr>
-            <tr className="border-2 dark:border-black text-xs">
+            <tr className="border-2 dark:border-black text-sm">
               <td
                 className="border-r font-medium dark:border-black">
                 Kitchen
@@ -492,7 +492,7 @@ const ClipBoard = () => {
                 <input type="checkbox" className="col1-6"></input>
               </td>
             </tr>
-            <tr className="border-2 dark:border-black text-xs">
+            <tr className="border-2 dark:border-black text-sm">
               <td
                 className="border-r font-medium dark:border-black">
                 Ballroom
@@ -516,7 +516,7 @@ const ClipBoard = () => {
                 <input type="checkbox" className="col1-6"></input>
               </td>
             </tr>
-            <tr className="border-2 dark:border-black text-xs">
+            <tr className="border-2 dark:border-black text-sm">
               <td
                 className="border-r font-medium dark:border-black">
                 Conservatory
@@ -540,7 +540,7 @@ const ClipBoard = () => {
                 <input type="checkbox" className="col1-6"></input>
               </td>
             </tr>
-            <tr className="border-2 dark:border-black text-xs">
+            <tr className="border-2 dark:border-black text-sm">
               <td
                 className="border-r font-medium dark:border-black">
                 Billiard Room
@@ -564,7 +564,7 @@ const ClipBoard = () => {
                 <input type="checkbox" className="col1-6"></input>
               </td>
             </tr>
-            <tr className="border-2 dark:border-black text-xs">
+            <tr className="border-2 dark:border-black text-sm">
               <td
                 className="border-r font-medium dark:border-black">
                 Library
@@ -588,7 +588,7 @@ const ClipBoard = () => {
                 <input type="checkbox" className="col1-6"></input>
               </td>
             </tr>
-            <tr className="border-2 dark:border-black text-xs">
+            <tr className="border-2 dark:border-black text-sm">
               <td
                 className="border-r font-medium dark:border-black">
                 Study
