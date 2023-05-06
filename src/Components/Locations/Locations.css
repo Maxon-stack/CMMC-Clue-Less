@@ -32,9 +32,7 @@
   align-items: center;
   height: 70%;
 }
-.hallwayVert{
 
-}
 .locationBoxes{
   flex-direction: column;
   gap: 5px;

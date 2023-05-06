@@ -139,7 +139,7 @@ const WaitingLobby = () => {
       </h1>
       <h2>Room Code: {gameCode}</h2>
       <div className="lobbyContainer">
-        <div className="grid">
+        <div className="customGrid">
           {Object.keys(players).map((playerNameKey) => {
             let player = players[playerNameKey]
             if (player.playerName != "") {

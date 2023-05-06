@@ -37,6 +37,22 @@ const Locations = () => {
     })
     return returnVal
   }
+  const hallways = {
+    2: 1,
+    4: 2,
+    6: 3,
+    7: 4,
+    8: 5,
+    10: 6,
+    12: 7,
+    14: 8,
+    15: 9,
+    16: 10,
+    18: 11,
+    20: 12,
+
+
+  }
   const firstRow = [1, 2, 3, 4, 5]
   const secondRow = [6, 7, 8]
   const thirdRow = [9, 10, 11, 12, 13]
@@ -50,7 +66,8 @@ const Locations = () => {
             firstRow.map((room, id) => (
               room % 2 == 0 ? (
                 <div className='flex flex-wrap content-center w-[100px] h-[120px] text-center ' key={room + id + "div" + "firstRow"}>
-                  <div className="flex content-center items-center w-[100%] h-4/6 center bg-white border border-black box-border border-t-2 border-b-2">
+                  <div className="flex flex-col content-center items-center w-[100%] h-4/6 center bg-white border border-black box-border border-t-2 border-b-2">
+                  <p className='text-sm border-b-2 border-black'>hallway {hallways[room]}</p>
                     <div className="flex items-center justify-center self-center w-[100%] h-[100%]" key={room + "p1"}>
                       {checkIfPlayerBelongs(room)}
                     </div>
@@ -63,7 +80,7 @@ const Locations = () => {
                       <h3 className='place-self-center pb-1 text-m border-b-2 border-black mb-2' key={room + "h3"}>
                         {manageRooms[room - 1].roomTitle}
                       </h3>
-                      <div className="grid grid-cols-2 gap-2 h-[100%] w-[100%] overflow-x-auto whitespace-nowrap scrollbar">
+                      <div className="grid grid-cols-2 mt-1 gap-2 h-[100%] w-[100%] overflow-x-auto whitespace-nowrap scrollbar">
                         {checkIfPlayerBelongs(room)}
                       </div>
                     </div>
@@ -76,14 +93,13 @@ const Locations = () => {
         <div className="flex flex-row justify-around content-center items-center w-[100%]">
           {
             secondRow.map((room, id) => (
-              <div className='flex flex-wrap content-center w-[80px] h-[95px] bg-white' key={room + id + "div" + "secondRow"}>
+              <div className='flex flex-wrap content-center w-[95] h-[85px] bg-white' key={room + id + "div" + "secondRow"}>
                 <div className='w-[100%] h-[100%] center border border-l-2 border-t-0 border-black box-border border-r-2 p-3'>
+                <p className='text-sm border-b-2 border-black'>hallway {hallways[room]}</p>
                   <div>
                     {checkIfPlayerBelongs(room)}
                   </div>
-
                 </div>
-
               </div>
             ))
           }
@@ -92,8 +108,9 @@ const Locations = () => {
           {
             thirdRow.map((room, id) => (
               room % 2 == 0 ? (
-                <div className='flex flex-wrap content-center w-[100px] h-[120px] text-center ' key={room + id + "div" + "firstRow"}>
-                  <div className="flex content-center items-center w-[100%] h-4/6 center bg-white border border-black box-border border-t-2 border-b-2">
+                <div className='flex flex-wrap content-center w-[100px] h-[120px] text-center ' key={room + id + "div" + "thirdRow"}>
+                  <div className="flex flex-col content-center items-center w-[100%] h-4/6 center bg-white border border-black box-border border-t-2 border-b-2">
+                  <p className='text-sm border-b-2 border-black'>hallway {hallways[room]}</p>
                     <div className="flex items-center justify-center self-center w-[100%] h-[100%]" key={room + "p1"}>
                       {checkIfPlayerBelongs(room)}
                     </div>
@@ -106,7 +123,7 @@ const Locations = () => {
                       <h3 className='place-self-center pb-1 text-m border-b-2 border-black mb-2' key={room + "h3"}>
                         {manageRooms[room - 1].roomTitle}
                       </h3>
-                      <div className="grid grid-cols-2 gap-2 h-[100%] w-[100%] overflow-x-auto whitespace-nowrap scrollbar">
+                      <div className="grid grid-cols-2 mt-1 gap-2 h-[100%] w-[100%] overflow-x-auto whitespace-nowrap scrollbar">
                         {checkIfPlayerBelongs(room)}
                       </div>
                     </div>
@@ -119,14 +136,13 @@ const Locations = () => {
         <div className="flex flex-row justify-around content-center items-center w-[100%]">
           {
             forthRow.map((room, id) => (
-              <div className='flex flex-wrap content-center w-[80px] h-[95px] bg-white' key={room + id + "div" + "secondRow"}>
+              <div className='flex flex-wrap content-center w-[95] h-[85px] bg-white' key={room + id + "div" + "forthRow"}>
                 <div className='w-[100%] h-[100%] center border border-l-2 border-t-0 border-black box-border border-r-2 p-3'>
+                <p className='text-sm border-b-2 border-black'>hallway {hallways[room]}</p>
                   <div>
                     {checkIfPlayerBelongs(room)}
                   </div>
-
                 </div>
-
               </div>
             ))
           }
@@ -135,8 +151,9 @@ const Locations = () => {
           {
             fithRow.map((room, id) => (
               room % 2 == 0 ? (
-                <div className='flex flex-wrap content-center w-[100px] h-[120px] text-center ' key={room + id + "div" + "firstRow"}>
-                  <div className="flex content-center items-center w-[100%] h-4/6 center bg-white border border-black box-border border-t-2 border-b-2">
+                <div className='flex flex-wrap content-center w-[100px] h-[120px] text-center ' key={room + id + "div" + "fithRow"}>
+                  <div className="flex flex-col content-center items-center w-[100%] h-4/6 center bg-white border border-black box-border border-t-2 border-b-2">
+                  <p className='text-sm border-b-2 border-black'>hallway {hallways[room]}</p>
                     <div className="flex items-center justify-center self-center w-[100%] h-[100%]" key={room + "p1"}>
                       {checkIfPlayerBelongs(room)}
                     </div>
@@ -149,7 +166,7 @@ const Locations = () => {
                       <h3 className='place-self-center pb-1 text-m border-b-2 border-black mb-2' key={room + "h3"}>
                         {manageRooms[room - 1].roomTitle}
                       </h3>
-                      <div className="grid grid-cols-2 gap-2 h-[100%] w-[100%] overflow-x-auto whitespace-nowrap scrollbar">
+                      <div className="grid grid-cols-2 mt-1 gap-2 h-[100%] w-[100%] overflow-x-auto whitespace-nowrap scrollbar">
                         {checkIfPlayerBelongs(room)}
                       </div>
                     </div>

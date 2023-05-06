@@ -73,7 +73,7 @@ const GameBoard = () => {
             </div>
           </div>
           <div className="containerLower">
-            <div className="actions" class="space-y-4 space-x-4" >
+            <div className="actions space-y-4 space-x-4" >
               {currentTurn === localPlayer.turn ? (<PlayerActions />):<NotYourTurn />}
             </div>
             <div className="deck">
