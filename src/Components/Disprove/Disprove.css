@@ -1,5 +1,6 @@
 div.suggestion{
     display: flex;
+    padding: 5px;
     flex-flow: column;
     border: 2px solid black;
     width: 100%;

@@ -66,21 +66,21 @@ const Disprove = () => {
 
   return (
     <div className='suggestion'>
-        <h2 class = "bg-indigo-600 text-white border-solid border-4 border-black text-center text-xl" >Suggestion</h2>
+        <h2 class = "bg-indigo-600 text-white border-solid border-2 border-black text-center text-xl" >Suggestion</h2>
         <div className='suggestDisproveRow'>
             <div className='suggestionHalf'>
                 {suggestion.suggestor && suggestion.suggestor != localPlayer.playerName &&
-                    <label class="bg-yellow-500 text-white border-solid border-2 border-black text-center text-lg flex">{suggestion.suggestor} suggested:</label>
+                    <label class="bg-yellow-500 text-white border-solid border-black text-center text-lg flex">{suggestion.suggestor} suggested:</label>
                 }
                 {suggestion.suggestor && suggestion.suggestor == localPlayer.playerName &&
-                    <label class="bg-yellow-500 text-white border-solid border-2 border-black text-center text-lg flex" >You suggested:</label>
+                    <label class="bg-yellow-500 text-white border-solid border-black text-center text-lg flex" >You suggested:</label>
                 }
                 {suggestion.suggestor == "" && 
-                    <label class="bg-yellow-500 text-white border-solid border-2 border-black text-left text-lg flex">Suggestor: </label>
+                    <label class="bg-yellow-500 text-white border-solid border-black text-center text-lg flex">Suggestor: </label>
                 }
             </div>
             <div className='disproveHalf'>
-                <label class="bg-yellow-500 text-white border-solid border-2 border-black text-center text-lg flex">Disprover: {suggestion.disprover}</label>
+                <label class="bg-yellow-500 text-white border-solid  border-black text-center text-lg flex">Disprover: {suggestion.disprover}</label>
             </div>
         </div>
         <div className='bottom'>
