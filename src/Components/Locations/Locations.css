@@ -39,3 +39,8 @@
   flex-direction: column;
   gap: 5px;
 }
+.playerIcon {
+  font-size: 5px;
+  height: 50px;
+  width: 50px;
+}
