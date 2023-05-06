@@ -22,7 +22,7 @@ const PlayerDeck = () => {
 
   return (
     <div className='playerDeckMain playerDeckContainer'>
-      <h2 class = "bg-indigo-500 text-white border-solid border-4 border-black text-center text-base">Player Deck</h2>
+      <h2 className= "bg-indigo-500 text-white border-solid border-4 border-black text-center text-base">Player Deck</h2>
       <div>
         {localPlayer.playerName && 
           <h3 className="bg-yellow-500 text-white border-solid border-2 border-black text-center text-sm">

@@ -35,9 +35,9 @@ const ClipBoard = () => {
           <thead className="border-b font-medium dark:border-neutral-500">
            <tr>
               <th
-                colspan="7"
+                colSpan="7"
                 scope="col"
-                class = "bg-indigo-500 text-white border-solid border-4 border-black py-2 px-4  text-center dark:border-neutral-50 text-2xl  ">
+                className= "bg-indigo-500 text-white border-solid border-4 border-black py-2 px-4  text-center dark:border-neutral-50 text-2xl  ">
                 Innocence Clipboard
               </th>
             </tr>
@@ -83,10 +83,10 @@ const ClipBoard = () => {
                 scope="col" className="border-r dark:border-black">
                 Player Name
               </th>
-                {Object.keys(playerRow).map( (player) => {
-              return( <th
+                {Object.keys(playerRow).map( (player, id) => {
+              return( <th key={player+id+'th'}
                 scope="col"
-                className="border-r dark:border-black"><label  key={player}>{playerRow[player]}</label></th>)
+                className="border-r dark:border-black"><label  key={player+id+'label'}>{playerRow[player]}</label></th>)
             }
           )}             
             </tr>
@@ -94,7 +94,7 @@ const ClipBoard = () => {
           <tbody>
           <tr className="border-b dark:border-neutral-500">
               <td
-                colspan="7" class = "bg-indigo-500 text-white border-solid border-4 border-black text-center font-medium dark:border-neutral-50 text-lg">
+                colSpan="7" className= "bg-indigo-500 text-white border-solid border-4 border-black text-center font-medium dark:border-neutral-50 text-lg">
                 Suspects
               </td>
               </tr>
@@ -242,7 +242,7 @@ const ClipBoard = () => {
             </tr>
              <tr className="border-b dark:border-neutral-500">
               <td
-                 colspan="7" class = "bg-indigo-500 text-white border-solid border-4 border-black text-center font-medium dark:border-neutral-50 text-lg">
+                 colSpan="7" className= "bg-indigo-500 text-white border-solid border-4 border-black text-center font-medium dark:border-neutral-50 text-lg">
                 Weapons
               </td>
               </tr>
@@ -392,7 +392,7 @@ const ClipBoard = () => {
             </tr>
             <tr className="border-b dark:border-neutral-500">
               <td
-                colspan="7" class = "bg-indigo-500 text-white border-solid border-4 border-black  text-center font-medium dark:border-neutral-50 text-lg">
+                colSpan="7" className= "bg-indigo-500 text-white border-solid border-4 border-black  text-center font-medium dark:border-neutral-50 text-lg">
                 Rooms
               </td>
               </tr>

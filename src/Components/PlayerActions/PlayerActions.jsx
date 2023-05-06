@@ -274,7 +274,7 @@ const PlayerActions = () => {
     <div className='actionContainer'>
       {chooseScreen && 
         <div className="space-y-4 space-x-4" >
-          <h2 class = "bg-indigo-500 text-white border-solid border-2 border-black text-center text-base">Select an action</h2>
+          <h2 className= "bg-indigo-500 text-white border-solid border-2 border-black text-center text-base">Select an action</h2>
           {!moved && moveOptions.length > 0 && !suggested &&
             <button className="bg-blue-500 hover:bg-yellow-500 text-sm text-white font-bold py-2 px-4  rounded-full" onClick={handleSetMove}>Move</button>
           }
@@ -287,7 +287,7 @@ const PlayerActions = () => {
       }
       {moveScreen && 
         <div className="moveContainer">
-          <h2 class = "bg-indigo-500 text-white border-solid border-2 border-black text-center text-sm ">Please Select Where to Move</h2>
+          <h2 className= "bg-indigo-500 text-white border-solid border-2 border-black text-center text-sm ">Please Select Where to Move</h2>
           <div className="py-2 px-2">
           <select className="" name="" id="" onChange={e => {setMoveSelection(roomNameToNum[e.target.value])}}>
             <option value='placeholder'>--Please choose an option--</option>
@@ -338,9 +338,9 @@ const PlayerActions = () => {
           <h3 className="text-sm">
             Location: {lastMoveLocation}
           </h3>
-          <div class="space-y-2 space-x-4">
-            <button class="bg-blue-500 hover:bg-yellow-500 text-sm text-white font-bold py-2 px-4  rounded-full" onClick={handleSuggest}>Submit Suggestion</button>
-            {/*<button class="bg-blue-500 hover:bg-yellow-500 text-sm text-white font-bold py-2 px-4  rounded-full" onClick={handleSetChoose}>Cancel Suggestion</button> uncomment if we want the options to not HAVE to suggest when moving into a room*/}
+          <div className="space-y-2 space-x-4">
+            <button className="bg-blue-500 hover:bg-yellow-500 text-sm text-white font-bold py-2 px-4  rounded-full" onClick={handleSuggest}>Submit Suggestion</button>
+            {/*<button className="bg-blue-500 hover:bg-yellow-500 text-sm text-white font-bold py-2 px-4  rounded-full" onClick={handleSetChoose}>Cancel Suggestion</button> uncomment if we want the options to not HAVE to suggest when moving into a room*/}
           </div>
         </div>
       }
@@ -351,7 +351,7 @@ const PlayerActions = () => {
       }
       {accuseScreen &&
         <div className="accuseContainer">
-          <h2 class = "bg-indigo-500 text-white border-solid border-2 border-black text-center text-sm ">Accusation</h2>
+          <h2 className= "bg-indigo-500 text-white border-solid border-2 border-black text-center text-sm ">Accusation</h2>
           <div className="py-2 px-2">
             <select className="text-sm" name="" id="" onChange={e => setAccusedCharacter(e.target.value)}>
               <option value='placeholder'>--Please choose a character--</option>
