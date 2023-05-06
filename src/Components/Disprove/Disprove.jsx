@@ -66,30 +66,30 @@ const Disprove = () => {
 
   return (
     <div className='suggestion'>
-        <h2 class = "bg-indigo-600 text-white border-solid border-2 border-black text-center text-xl" >Suggestion</h2>
+        <h2 class = "bg-indigo-600 text-white border-solid border-2 border-black text-center text-base" >Suggestion</h2>
         <div className='suggestDisproveRow'>
             <div className='suggestionHalf'>
                 {suggestion.suggestor && suggestion.suggestor != localPlayer.playerName &&
-                    <label class="bg-yellow-500 text-white border-solid border-black text-center text-lg flex">{suggestion.suggestor} suggested:</label>
+                    <label className="bg-yellow-500 text-white border-solid border-black text-center text-sm flex">{suggestion.suggestor} suggested:</label>
                 }
                 {suggestion.suggestor && suggestion.suggestor == localPlayer.playerName &&
-                    <label class="bg-yellow-500 text-white border-solid border-black text-center text-lg flex" >You suggested:</label>
+                    <label className="bg-yellow-500 text-white border-solid border-black text-center text-sm flex" >You suggested:</label>
                 }
                 {suggestion.suggestor == "" && 
-                    <label class="bg-yellow-500 text-white border-solid border-black text-center text-lg flex">Suggestor: </label>
+                    <label className="bg-yellow-500 text-white border-solid border-black text-center text-sm flex">Suggestor: </label>
                 }
             </div>
             <div className='disproveHalf'>
-                <label class="bg-yellow-500 text-white border-solid  border-black text-center text-lg flex">Disprover: {suggestion.disprover}</label>
+                <label className="bg-yellow-500 text-white border-solid  border-black text-center text-sm flex">Disprover: {suggestion.disprover}</label>
             </div>
         </div>
         <div className='bottom'>
             {suggestion.suggestor &&
                 <div className='suggestionHalf'>
                     <div className='cardTextRow'>
-                        <label class="bg-green-600 border-gray border-solid border-2 text-white font-bold text-center pl-2 pr-2 rounded-full" >{suggestion.character}</label>
-                        <label class="bg-green-600 border-gray border-solid border-2 text-white font-bold text-center pl-2 pr-2 rounded-full">{suggestion.weapon}</label>
-                        <label class="bg-green-600 border-gray border-solid border-2 text-white font-bold text-center pl-2 pr-2 rounded-full">{suggestion.location}</label>
+                        <label className="bg-green-600 border-gray border-solid border-2 text-white font-bold text-center text-sm pl-2 pr-2 rounded-full" >{suggestion.character}</label>
+                        <label className="bg-green-600 border-gray border-solid border-2 text-white font-bold text-center text-sm pl-2 pr-2 rounded-full">{suggestion.weapon}</label>
+                        <label className="bg-green-600 border-gray border-solid border-2 text-white font-bold text-center text-sm pl-2 pr-2 rounded-full">{suggestion.location}</label>
                     </div>
                     <div class="flex flex-row flex-wrap flex gap-3" >
                         <img className='card' src = {images[suggestion.character]} alt = "Card not found"></img>
@@ -103,27 +103,27 @@ const Disprove = () => {
             }
             <div className='disproveHalf'>
             {suggestion.suggestor == localPlayer.playerName && suggestion.disprovingCard == "" && suggestion.disprover != "Not Found" &&
-                <label>Awaiting {suggestion.disprover}'s selection</label>
+                <label className='text-sm'>Awaiting {suggestion.disprover}'s selection</label>
             }
             {suggestion.suggestor == localPlayer.playerName && suggestion.disprovingCard &&
                 <div>
                     <div className='disproveCardText'>
-                        <label className='card'>{suggestion.disprover} shows you the {suggestion.disprovingCard} card</label>
+                        <label className='text-sm'>{suggestion.disprover} shows you the {suggestion.disprovingCard} card</label>
                     </div>
                     <div className='disproveImageText'>
                         <img className='card' src = {images[suggestion.disprovingCard]} alt = "Card not found"></img>
                     </div>
-                    <button class="bg-blue-500 hover:bg-yellow-500 text-white font-bold py-2 px-4  rounded-full" type="button" onClick={acceptCard}>Accept</button>
+                    <button className="bg-blue-500 hover:bg-yellow-500 text-white text-sm font-bold py-2 px-4  rounded-full" type="button" onClick={acceptCard}>Accept</button>
                 </div>
             }
             {suggestion.suggestor != localPlayer.playerName && suggestion.disprover != localPlayer.playerName && suggestion.disprovingCard &&
-                <label>{suggestion.disprover} disproved {suggestion.suggestor}</label>
+                <label className='text-sm'>{suggestion.disprover} disproved {suggestion.suggestor}</label>
             }
             {suggestion.suggestor != "" && suggestion.suggestor != localPlayer.playerName && suggestion.disprover != localPlayer.playerName && suggestion.disprovingCard == "" && suggestion.disprover != "Not Found" &&
-                <label>Awaiting {suggestion.disprover}'s selection</label>
+                <label className='text-sm'>Awaiting {suggestion.disprover}'s selection</label>
             }
             {suggestion.disprover == localPlayer.playerName &&
-                <div>
+                <div className='text-sm'>
                     <p>You must disprove {suggestion.suggestor}</p>
                     <select name="" id="" onChange={e => setDisprovingCard(e.target.value)} >
                         <option value=''>--Select a card--</option>
@@ -137,7 +137,7 @@ const Disprove = () => {
                     </select>
                     {suggestion.submitted == false &&
                         <div>
-                            <button class="bg-blue-500 hover:bg-yellow-500 text-white font-bold py-2 px-4  rounded-full" type="button" onClick={submitCard}>Submit</button>
+                            <button class="bg-blue-500 hover:bg-yellow-500 text-sm text-white font-bold py-2 px-4  rounded-full" type="button" onClick={submitCard}>Submit</button>
                         </div>
                     }
                     {suggestion.submitted &&
@@ -149,7 +149,7 @@ const Disprove = () => {
             }
             {suggestion.disprover == "Not Found" && suggestion.suggestor == localPlayer.playerName &&
                 <div>
-                    <button class="bg-blue-500 hover:bg-yellow-500 text-white font-bold py-2 px-4  rounded-full" type="button" onClick={acceptCard}>Accept</button>
+                    <button class="bg-blue-500 hover:bg-yellow-500 text-sm text-white font-bold py-2 px-4  rounded-full" type="button" onClick={acceptCard}>Accept</button>
                 </div>
             }
             </div>

@@ -1,21 +1,23 @@
 
 .GameBoardContainer{
-  height: 70vh;
+  max-width: 100%;
+  max-height: 100%;
+  height:100vh;
   display: grid;
   grid-template-rows: 3fr 1fr;
   grid-template-columns: 2fr;
 }
 .boardAndClip{
-  height: 70vh;
   display: grid;
+  height:auto;
   grid-template-columns: 2fr 1fr;
 }
 .clipBoard{
   display: grid;
 }
 .containerLower{
-  height: 30vh;
+  height:auto;
   display: grid;
-  grid-template-columns: 300px 2fr 1fr;
+  grid-template-columns: 1fr 3fr 2fr;
 }
 

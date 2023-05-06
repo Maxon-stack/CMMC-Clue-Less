@@ -22,10 +22,10 @@ const PlayerDeck = () => {
 
   return (
     <div className='playerDeckMain playerDeckContainer'>
-      <h2 class = "bg-indigo-500 text-white border-solid border-4 border-black text-center text-xl">Player Deck</h2>
+      <h2 class = "bg-indigo-500 text-white border-solid border-4 border-black text-center text-base">Player Deck</h2>
       <div>
         {localPlayer.playerName && 
-          <h3 class="bg-yellow-500 text-white border-solid border-2 border-black text-center text-lg">
+          <h3 className="bg-yellow-500 text-white border-solid border-2 border-black text-center text-sm">
             {localPlayer.playerName}: You are playing as {localPlayer.characterName}
           </h3>
         }
@@ -35,11 +35,11 @@ const PlayerDeck = () => {
           </h3>
         }
       </div>
-      <div className='row'class="space-y-10 space-x-4">
+      <div className="space-y-10 space-x-4">
         {deck != [] > 0 &&
-        <div class="flex flex-row flex-wrap flex gap-3">
+        <div className="flex flex-row flex-wrap flex gap-3">
           {Object.keys(deck).map( (card) => {
-              return <label class="bg-green-600 border-gray border-solid border-2 text-white font-bold text-center pl-2 pr-2 rounded-full"  key={card+"label"}>{deck[card]}</label>
+              return <label className="bg-green-600 border-gray border-solid border-2 text-white text-sm font-bold text-center pl-2 pr-2 rounded-full"  key={card+"label"}>{deck[card]}</label>
             })
           }
           </div>
@@ -47,7 +47,7 @@ const PlayerDeck = () => {
       </div>
       <div className='bottomRow' >
         {deck != [] > 0 &&
-          <div class="flex flex-row flex-wrap flex gap-3">
+          <div className="flex flex-row flex-wrap flex gap-3">
             {Object.keys(deck).map( (card) => {
                 return <img className='card' src = {images[deck[card]]} alt = "Card not found" key={card+"img"}></img>
               })

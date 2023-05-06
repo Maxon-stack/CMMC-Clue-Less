@@ -88,9 +88,9 @@ const NotYourTurn = () => {
     }, [currentTurn])
 
     return (
-    <div className='actionContainer'>
-        <h2>It is not Your turn yet</h2>
-        <p>It is {oldCurrentPlayer.playerName}'s turn as {oldCurrentPlayer.characterName}</p>
+    <div className="border-solid border-2 border-black text-center text-sm">
+        <h2 className="text-sm text-red-600 font-medium">It is not Your turn yet</h2>
+        <p className="text-sm font-medium" >It is {oldCurrentPlayer.playerName}'s turn as {oldCurrentPlayer.characterName}</p>
         <img className='card' src = {images[oldCurrentPlayer.characterName]} alt = "Card not found"></img>
         {moved && 
             <div>

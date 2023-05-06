@@ -31,584 +31,584 @@ const ClipBoard = () => {
   return (
     <div className='clipboardMain'>
       <table
-          class="min-w-full border text-center text-sm font-light dark:border-neutral-500">
-          <thead class="border-b font-medium dark:border-neutral-500">
+          className="min-w-full border text-center text-sm font-light dark:border-neutral-500">
+          <thead className="border-b font-medium dark:border-neutral-500">
            <tr>
               <th
                 colspan="7"
                 scope="col"
-                class = "bg-indigo-500 text-white border-solid border-4 border-black  px-6 py-2 text-center dark:border-neutral-50 text-sm  ">
+                class = "bg-indigo-500 text-white border-solid border-4 border-black text-center dark:border-neutral-50 text-sm  ">
                 Innocence Clipboard
               </th>
             </tr>
-            <tr class="bg-yellow-500 text-white border-solid border-2 border-black text-center text-sm">
+            <tr className="bg-yellow-500 text-white border-solid border-2 border-black text-center text-xs">
               <th
                 scope="col"
-                class="border-r dark:border-black">
+                className="border-r dark:border-black">
                 Character Name
               </th>
               <th
                 scope="col"
-                class="border-r dark:border-black">
+                className="border-r dark:border-black">
                 Rev. Green
               </th>
               <th
                 scope="col"
-                class="border-r dark:border-black">
+                className="border-r dark:border-black">
                 Col. Mustard
               </th>
                <th
                 scope="col"
-                class="border-r dark:border-black">
+                className="border-r dark:border-black">
                 Mrs. Peacock
               </th>
               <th
                 scope="col"
-                class="border-r dark:border-black">
+                className="border-r dark:border-black">
                 Prof. Plum
               </th>
               <th
                 scope="col"
-                class="border-r dark:border-black">
+                className="border-r dark:border-black">
                 Miss Scarlet
               </th>
               <th
                 scope="col"
-                class="border-r dark:border-black">
+                className="border-r dark:border-black">
                 Mrs. White
               </th>
             </tr>
-            <tr class="bg-yellow-500 text-white border-solid border-2 border-black text-center text-sm" >
+            <tr className="bg-yellow-500 text-white border-solid border-2 border-black text-center text-xs" >
               <th
-                scope="col" class="border-r dark:border-black">
+                scope="col" className="border-r dark:border-black">
                 Player Name
               </th>
                 {Object.keys(playerRow).map( (player) => {
               return( <th
                 scope="col"
-                class="border-r dark:border-black"><label  key={player}>{playerRow[player]}</label></th>)
+                className="border-r dark:border-black"><label  key={player}>{playerRow[player]}</label></th>)
             }
           )}             
             </tr>
           </thead>
           <tbody>
-          <tr class="border-b dark:border-neutral-500">
+          <tr className="border-b dark:border-neutral-500">
               <td
-                colspan="7" class = "bg-indigo-500 text-white border-solid border-4 border-black text-center font-medium dark:border-neutral-50 text-sm">
+                colspan="7" class = "bg-indigo-500 text-white border-solid border-4 border-black text-center text-xs font-medium dark:border-neutral-50 text-sm">
                 Suspects
               </td>
               </tr>
-          <tr class="border-2 dark:border-black text-xs">
-              <td class="border-r font-medium dark:border-black">
+          <tr className="border-2 dark:border-black text-xs">
+              <td className="border-r font-medium dark:border-black">
                 Colonel Mustard
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
             </tr>
-            <tr class="border-2 dark:border-black text-xs">
+            <tr className="border-2 dark:border-black text-xs">
               <td
-                class="border-r font-medium dark:border-black">
+                className="border-r font-medium dark:border-black">
                 Professor Plum
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
             </tr>
-            <tr class="border-2 dark:border-black text-xs">
-              <td class="border-r font-medium dark:border-black">
+            <tr className="border-2 dark:border-black text-xs">
+              <td className="border-r font-medium dark:border-black">
               Reverend Green
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
             </tr>
-            <tr class="border-2 dark:border-black text-xs">
+            <tr className="border-2 dark:border-black text-xs">
               <td
-                class="border-r font-medium dark:border-black">
+                className="border-r font-medium dark:border-black">
                 Mr. Peacock
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
             </tr>
-            <tr class="border-2 dark:border-black text-xs">
+            <tr className="border-2 dark:border-black text-xs">
               <td
-                class="border-r font-medium dark:border-black">
+                className="border-r font-medium dark:border-black">
                 Miss Scarlet
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
             </tr>
-            <tr class="border-2 dark:border-black text-xs">
+            <tr className="border-2 dark:border-black text-xs">
               <td
-                class="border-r font-medium dark:border-black">
+                className="border-r font-medium dark:border-black">
                 Mrs. White
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
             </tr>
-             <tr class="border-b dark:border-neutral-500">
+             <tr className="border-b dark:border-neutral-500">
               <td
-                 colspan="7" class = "bg-indigo-500 text-white border-solid border-4 border-black text-center font-medium dark:border-neutral-50 text-sm">
+                 colspan="7" class = "bg-indigo-500 text-white border-solid border-4 border-black text-xs text-center font-medium dark:border-neutral-50 text-sm">
                 Weapons
               </td>
               </tr>
-              <tr class="border-2 dark:border-black text-xs">
+              <tr className="border-2 dark:border-black text-xs">
               <td
-                class="border-r font-medium dark:border-black">
+                className="border-r font-medium dark:border-black">
                 Knife
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
             </tr>
-            <tr class="border-2 dark:border-black text-xs">
+            <tr className="border-2 dark:border-black text-xs">
               <td
-                class="border-r font-medium dark:border-black">
+                className="border-r font-medium dark:border-black">
                 Candle Stick
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
             </tr>
-            <tr class="border-2 dark:border-black text-xs">
+            <tr className="border-2 dark:border-black text-xs">
               <td
-                class="border-r font-medium dark:border-black">
+                className="border-r font-medium dark:border-black">
                 Revolver
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
             </tr>
-            <tr class="border-2 dark:border-black text-xs">
+            <tr className="border-2 dark:border-black text-xs">
               <td
-                class="border-r font-medium dark:border-black">
+                className="border-r font-medium dark:border-black">
                 Rope
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
             </tr>
-            <tr class="border-2 dark:border-black text-xs">
+            <tr className="border-2 dark:border-black text-xs">
               <td
-                class="border-r font-medium dark:border-black">
+                className="border-r font-medium dark:border-black">
                 Lead Pipe
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
             </tr>
-            <tr class="border-2 dark:border-black text-xs">
+            <tr className="border-2 dark:border-black text-xs">
               <td
-                class="border-r font-medium dark:border-black">
+                className="border-r font-medium dark:border-black">
                 Wrench
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
             </tr>
-            <tr class="border-b dark:border-neutral-500">
+            <tr className="border-b dark:border-neutral-500">
               <td
-                colspan="7" class = "bg-indigo-500 text-white border-solid border-4 border-black text-center font-medium dark:border-neutral-50 text-sm">
+                colspan="7" class = "bg-indigo-500 text-white border-solid border-4 border-black text-xs text-center font-medium dark:border-neutral-50 text-sm">
                 Rooms
               </td>
               </tr>
-              <tr class="border-2 dark:border-black text-xs">
+              <tr className="border-2 dark:border-black text-xs">
               <td
-                class="border-r font-medium dark:border-black">
+                className="border-r font-medium dark:border-black">
                 Hall
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
             </tr>
-            <tr class="border-2 dark:border-black text-xs">
+            <tr className="border-2 dark:border-black text-xs">
               <td
-                class="border-r font-medium dark:border-black">
+                className="border-r font-medium dark:border-black">
                 Lounge
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
             </tr>
-            <tr class="border-2 dark:border-black text-xs">
+            <tr className="border-2 dark:border-black text-xs">
               <td
-                class="border-r font-medium dark:border-black">
+                className="border-r font-medium dark:border-black">
                 Dining Room
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
             </tr>
-            <tr class="border-2 dark:border-black text-xs">
+            <tr className="border-2 dark:border-black text-xs">
               <td
-                class="border-r font-medium dark:border-black">
+                className="border-r font-medium dark:border-black">
                 Kitchen
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
             </tr>
-            <tr class="border-2 dark:border-black text-xs">
+            <tr className="border-2 dark:border-black text-xs">
               <td
-                class="border-r font-medium dark:border-black">
+                className="border-r font-medium dark:border-black">
                 Ballroom
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
             </tr>
-            <tr class="border-2 dark:border-black text-xs">
+            <tr className="border-2 dark:border-black text-xs">
               <td
-                class="border-r font-medium dark:border-black">
+                className="border-r font-medium dark:border-black">
                 Conservatory
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
             </tr>
-            <tr class="border-2 dark:border-black text-xs">
+            <tr className="border-2 dark:border-black text-xs">
               <td
-                class="border-r font-medium dark:border-black">
+                className="border-r font-medium dark:border-black">
                 Billiard Room
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
             </tr>
-            <tr class="border-2 dark:border-black text-xs">
+            <tr className="border-2 dark:border-black text-xs">
               <td
-                class="border-r font-medium dark:border-black">
+                className="border-r font-medium dark:border-black">
                 Library
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
             </tr>
-            <tr class="border-2 dark:border-black text-xs">
+            <tr className="border-2 dark:border-black text-xs">
               <td
-                class="border-r font-medium dark:border-black">
+                className="border-r font-medium dark:border-black">
                 Study
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
-              <td class="border-r font-medium dark:border-black">
+              <td className="border-r font-medium dark:border-black">
                 <input type="checkbox" className="col1-6"></input>
               </td>
             </tr>

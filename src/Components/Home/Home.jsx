@@ -273,7 +273,7 @@ const Home = () => {
   return (
     <div className='container'>
       <div className="card">
-        <h1 class="mb-6 text-4xl" >
+        <h1 className="mb-6 text-4xl" >
           Clueless
         </h1>
         {localPlayer.uid == "" &&
@@ -282,7 +282,7 @@ const Home = () => {
         {joinOrCreateGame && localPlayer.uid != "" &&
           <div className="card-form">
             <button className="action-button"  onClick={handleSetJoin}>Join Game</button>
-            <p class="text-white text-center">or</p>
+            <p className="text-white text-center">or</p>
             <button className="action-button" onClick={handleSetCreate}>Create Game</button>
           </div>
         }
@@ -315,7 +315,7 @@ const Home = () => {
               <button className="action-button" onClick={handleRejoinGame} >
                 Rejoin Game
               </button>
-              <p class="text-white text-center">or</p>
+              <p className="text-white text-center">or</p>
               <button className="action-button" onClick={handleNotRejoinGame} >
                 Join New Game
               </button>
@@ -339,29 +339,29 @@ const Home = () => {
             </div>
             {invalidGameCode &&
               <div>
-                <label class="text-red-700 text-xs font-bold italic">Invalid Game Code. Try again.</label>
+                <label className="text-red-700 text-xs font-bold italic">Invalid Game Code. Try again.</label>
               </div>
             }
             {fullGameCode &&
               <div>
-                <label class="text-red-700 text-xs font-bold italic">The game you are attempting to join is full.</label>
+                <label className="text-red-700 text-xs font-bold italic">The game you are attempting to join is full.</label>
               </div>
             }
             {startedGameCode &&
               <div>
-                <label class="text-red-700 text-xs font-bold italic">The game you are attempting to join has already started.</label>
+                <label className="text-red-700 text-xs font-bold italic">The game you are attempting to join has already started.</label>
               </div>
             }
             {alreadyJoinedGameCode && 
               <div>
-                <label class="text-red-700 text-xs font-bold italic">The game you are attempting to join you have already joined. Refresh the page and rejoin.</label>
+                <label className="text-red-700 text-xs font-bold italic">The game you are attempting to join you have already joined. Refresh the page and rejoin.</label>
               </div>
             }
           </div>
         }
         {characterSelection &&
           <div className="card-form">
-            <select name="" id="" onChange={e => handleCharacterChange(characterToKey[e.target.value])} >
+            <select className="text-sm" name="" id="" onChange={e => handleCharacterChange(characterToKey[e.target.value])} >
                         <option value=''>--Select a character--</option>
                         {
                             availableCharacters.map((card ,id) => (
