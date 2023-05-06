@@ -37,8 +37,36 @@ const NotYourTurn = () => {
     const [currentPlayerKey, setCurrentPlayerKey] = useState("")
     //flags to control what is seen
     const [moved, setMoved] = useState(false)
+    const [suggested, setSuggested] = useState(false)
+    const [suggestedCharacter, setSuggestedCharacter] = useState("")
+    const [suggestedWeapon, setSuggestedWeapon] = useState("")
+    const [suggestedLocation, setSuggestedLocation] = useState("")
+    const [accused, setAccused] = useState(false)
 
     useEffect( () => {
+        if(suggestion.disprover){ //there is a disrpover it is a suggestion
+            setSuggested(true)
+            setSuggestedCharacter(suggestion.character)
+            setSuggestedWeapon(suggestion.weapon)
+            setSuggestedLocation(suggestion.location)
+        }
+        //there is not a disprover but there is a character so it is an accuse
+        //I KNOW it should be its own object but i am lazy
+        if(!suggestion.disprover && suggestion.character){ 
+            setAccused(true)
+        }
+    },[suggestion])
+
+    useEffect( () => {
+        let playersRemaining = 0
+        Object.keys(players).map( (player) => {
+            if(players[player]['isFailAccuse'] == false){playersRemaining++}
+        })
+        if(playersRemaining == 1){ //if only one player is left reset screen
+            setMoved(false)
+            setSuggested(false)
+            setAccused(false)
+        }
         if(currentPlayerKey){
             if(players[currentPlayerKey]['location'] != oldCurrentPlayer['location']){
                 setMoved(true)
@@ -55,6 +83,8 @@ const NotYourTurn = () => {
             }
         })
         setMoved(false)
+        setSuggested(false)
+        setAccused(false)
     }, [currentTurn])
 
     return (
@@ -65,6 +95,16 @@ const NotYourTurn = () => {
         {moved && 
             <div>
                 <p>{oldCurrentPlayer.playerName} moved from the {manageRooms[oldCurrentPlayer.location-1]['roomTitle']} to the {manageRooms[players[currentPlayerKey]['location']-1]['roomTitle']}</p>
+            </div>
+        }
+        {suggested &&
+            <div>
+                <p>{oldCurrentPlayer.playerName} suggested that {suggestedCharacter} did it with the {suggestedWeapon} in the {suggestedLocation}</p>
+            </div>
+        }
+        {accused &&
+            <div>
+                <p>{oldCurrentPlayer.playerName} accused {suggestion.character} of doing it with the {suggestion.weapon} in the {suggestion.location}</p>
             </div>
         }
     </div>

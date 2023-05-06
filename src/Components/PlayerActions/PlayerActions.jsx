@@ -42,6 +42,8 @@ const PlayerActions = () => {
   //use state to track what I can do / have done
   const [moved, setMoved] = useState(false)
   const [suggested, setSuggested] = useState(false)
+  const [accused, setAccused] = useState(false)
+  const [won, setWon] = useState(false)
   const [inHallway, setInHallway] = useState(false)
   const [canSuggest, setCanSuggest] = useState(false)
 
@@ -122,28 +124,55 @@ const PlayerActions = () => {
   
   //triggered when a player clicks submit on their accusation
   //if they accused correctly the game is ended, GameOver.jsx handles that
-  //if they accused incorrectly their isFailAccuse is set to true so they get skipped
   const handleAccuse = () => {
     if(winningCards["character"] == accusedCharacter && winningCards["weapon"] == accusedWeapon && winningCards["location"] == accusedLocation){
+      setWon(true)
+    }
+    const accuseUpdate = {} // IKNOW this should be its own object but I am lazy
+    accuseUpdate[`${gameCode}/suggestion/character`] = accusedCharacter 
+    accuseUpdate[`${gameCode}/suggestion/location`] = accusedLocation 
+    accuseUpdate[`${gameCode}/suggestion/weapon`] = accusedWeapon  
+    update(dbRef, accuseUpdate)
+    setAccuseScreen(false)
+    setAccused(true)
+  }
+
+  //triggered after a player accuses and is wrong, then clicks end turn
+  //this is to give other players time to see their accusation
+  //if they accused correctly the game is ended, GameOver.jsx handles that
+  //otherwise the game is assumed to be over and each player is looked at
+  //if the player has not failed an accuse and the player not the accusing player 
+  //then the game is not over aka there is still a player in the game
+  //if there was no one left in the game the game over updates are sent and everyone sees GameOver.jsx
+  //otherwise the local player is taken out of the game and the turn is ended
+  const endAccuse = () => {
+    if(won){
       const winUpdate = {}
       winUpdate[`${gameCode}/gameEnded`] = true //this will close the game board for everyone
       winUpdate[`${gameCode}/winningCards/player`] = localPlayer.playerName 
       update(dbRef, winUpdate)
     }else{
       let gameOver = true
-      Object.keys(players).map( (player) => {
+      Object.keys(players).map( (player) => { //looks at all players to find one still in the game
         if(players[player]['isFailAccuse'] == false  && players[player]['playerName'] != localPlayer.playerName){
           gameOver = false
         }
       })
-      if(gameOver){
+      if(gameOver){ //no players remain
         const loseUpdate = {}
         loseUpdate[`${gameCode}/gameEnded`] = true //this will close the game board for everyone
+        loseUpdate[`${gameCode}/players/${characterToKey[localPlayer.characterName]}/isFailAccuse`] = true
         loseUpdate[`${gameCode}/winningCards/player`] = "No One" 
+        loseUpdate[`${gameCode}/suggestion/character`] = "" 
+        loseUpdate[`${gameCode}/suggestion/location`] = "" 
+        loseUpdate[`${gameCode}/suggestion/weapon`] = "" 
         update(dbRef, loseUpdate)
-      }else{
+      }else{ //a player was still in the game
         const loseUpdate = {}
         loseUpdate[`${gameCode}/players/${characterToKey[localPlayer.characterName]}/isFailAccuse`] = true
+        loseUpdate[`${gameCode}/suggestion/character`] = "" 
+        loseUpdate[`${gameCode}/suggestion/location`] = "" 
+        loseUpdate[`${gameCode}/suggestion/weapon`] = ""  
         update(dbRef, loseUpdate);
         handleEndTurn()
       }
@@ -356,6 +385,15 @@ const PlayerActions = () => {
           <button class="bg-blue-500 hover:bg-yellow-500 text-white font-bold py-2 px-4  rounded-full" onClick={handleAccuse}>Make Accusation</button>
           <button class="bg-blue-500 hover:bg-yellow-500 text-white font-bold py-2 px-4  rounded-full" onClick={handleSetChoose}>Back</button>
           </div>
+        </div>
+      }
+      {accused &&
+        <div>
+          <p>You accused {accusedCharacter} of doing it with the {accusedWeapon} in the {accusedLocation}</p>
+          <p>Upon checking the sealed envelope, you learn that {accusedCharacter} did it with the {accusedWeapon} in the {accusedLocation}</p>
+          {won && <p>You accused correctly! You win! Please click end turn.</p>}
+          {!won && <p>You accused incorrectly! You lose! Please click end turn, but remain in the game to disprove other player's suggestions</p>}
+          <button onClick={endAccuse}>End Turn</button>
         </div>
       }
     </div>
