@@ -1,29 +1,24 @@
 import './Clipboard.css'
 import CluelessContext from '../../CluelessContext'
 import React, { useEffect, useState } from 'react'
+import { characterCards } from '../../utils/constants'
+
 
 const ClipBoard = () => {
 
+  const characterKeys = [
+    "Scarlet",
+    "Mustard",
+    "White",
+    "Green",
+    "Peacock",
+    "Plum",
+  ]
+  
   const {
     //useStates to track firebase real-time database (FBRTDB)
     players, localPlayer
   } = React.useContext(CluelessContext)
-
-  const [playerRow, setPlayerRow] = useState({
-    "Green": "",
-    "Mustard": "",
-    "Peacock": "",
-    "Plum": "",
-    "Scarlet": "",
-    "White": "",
-  })
-  useEffect( () => {
-    let newPlayerRow = playerRow
-    Object.keys(players).map( (player) =>{
-      newPlayerRow[player] = players[player]["playerName"]
-    })
-    setPlayerRow(newPlayerRow)
-  }, [players])
 
   //the order from left to right is the order as it appears in Firebase because
   //because the player names are pulled out in that order (maybe we should 
@@ -50,45 +45,50 @@ const ClipBoard = () => {
               <th
                 scope="col"
                 className="border-r dark:border-black">
-                Rev. Green
-              </th>
-              <th
-                scope="col"
-                className="border-r dark:border-black">
-                Col. Mustard
-              </th>
-               <th
-                scope="col"
-                className="border-r dark:border-black">
-                Mrs. Peacock
-              </th>
-              <th
-                scope="col"
-                className="border-r dark:border-black">
-                Prof. Plum
-              </th>
-              <th
-                scope="col"
-                className="border-r dark:border-black">
                 Miss Scarlet
               </th>
               <th
                 scope="col"
                 className="border-r dark:border-black">
+                Colonel Mustard
+              </th>
+               <th
+                scope="col"
+                className="border-r dark:border-black">
                 Mrs. White
+              </th>
+              <th
+                scope="col"
+                className="border-r dark:border-black">
+                Reverend Green
+
+              </th>
+              <th
+                scope="col"
+                className="border-r dark:border-black">
+                Mrs. Peacock
+
+              </th>
+              <th
+                scope="col"
+                className="border-r dark:border-black">
+                Professor Plum
               </th>
             </tr>
             <tr className="bg-yellow-500 text-white border-solid border-2 py-2 px-4  border-black text-center text-base" >
-              <th
-                scope="col" className="border-r dark:border-black">
-                Player Name
-              </th>
-                {Object.keys(playerRow).map( (player, id) => {
-              return( <th key={player+id+'th'}
-                scope="col"
-                className="border-r dark:border-black"><label  key={player+id+'label'}>{playerRow[player]}</label></th>)
-            }
-          )}             
+              <th scope="col" className="border-r dark:border-black">Player Name</th>
+              {characterKeys.map( (character, id) => {
+                return(
+                <th key={character+id+'th'} scope="col" className="border-r dark:border-black">
+                  {players[character] != null && 
+                    <label  key={character+id+'label'}>{players[character]['playerName']}</label>
+                  }
+                  {!players[character] && 
+                    <label  key={character+id+'label2'}></label>
+                  }
+                </th>)
+                }
+              )}             
             </tr>
           </thead>
           <tbody>
