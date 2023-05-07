@@ -50,7 +50,7 @@ export const manageRooms = [
   },
   {
     id: 2,
-    roomTitle: "hall_1",
+    roomTitle: "hallway 1",
     options: [1, 3]
   },
   {
@@ -60,7 +60,7 @@ export const manageRooms = [
   },
   {
     id: 4,
-    roomTitle: "hall_2",
+    roomTitle: "hallway 2",
     options: [3, 5]
   },
   {
@@ -70,17 +70,17 @@ export const manageRooms = [
   },
   {
     id: 6,
-    roomTitle: "hall_3",
+    roomTitle: "hallway 3",
     options: [1, 9]
   },
   {
     id: 7,
-    roomTitle: "hall_4",
+    roomTitle: "hallway 4",
     options: [3, 11]
   },
   {
     id: 8,
-    roomTitle: "hall_5",
+    roomTitle: "hallway 5",
     options: [5, 13]
   },
   {
@@ -90,7 +90,7 @@ export const manageRooms = [
   },
   {
     id: 10,
-    roomTitle: "hall_6",
+    roomTitle: "hallway 6",
     options: [9, 11]
   },
   {
@@ -100,7 +100,7 @@ export const manageRooms = [
   },
   {
     id: 12,
-    roomTitle: "hall_7",
+    roomTitle: "hallway 7",
     options: [11, 13]
   },
   {
@@ -110,17 +110,17 @@ export const manageRooms = [
   },
   {
     id: 14,
-    roomTitle: "hall_8",
+    roomTitle: "hallway 8",
     options: [9, 17]
   },
   {
     id: 15,
-    roomTitle: "hall_9",
+    roomTitle: "hallway 9",
     options: [11, 19]
   },
   {
     id: 16,
-    roomTitle: "hall_10",
+    roomTitle: "hallway 10",
     options: [13, 21]
   },
   {
@@ -130,7 +130,7 @@ export const manageRooms = [
   },
   {
     id: 18,
-    roomTitle: "hall_11",
+    roomTitle: "hallway 11",
     options: [17, 19]
   },
   {
@@ -140,7 +140,7 @@ export const manageRooms = [
   },
   {
     id: 20,
-    roomTitle: "hall_12",
+    roomTitle: "hallway 12",
     options: [19, 21]
   },
   {
@@ -158,25 +158,25 @@ export const manageRooms = [
 
 export const roomNameToNum = {
   "Study": 1,
-  "hall_1": 2,
+  "hallway 1": 2,
   "Hall": 3,
-  "hall_2": 4,
+  "hallway 2": 4,
   "Lounge": 5,
-  "hall_3": 6,
-  "hall_4": 7,
-  "hall_5": 8,
+  "hallway 3": 6,
+  "hallway 4": 7,
+  "hallway 5": 8,
   "Library": 9,
-  "hall_6": 10,
+  "hallway 6": 10,
   "Billiard Room": 11,
-  "hall_7": 12,
+  "hallway 7": 12,
   "Dining Room": 13,
-  "hall_8": 14,
-  "hall_9": 15,
-  "hall_10": 16,
+  "hallway 8": 14,
+  "hallway 9": 15,
+  "hallway 10": 16,
   "Conservatory": 17,
-  "hall_11": 18,
+  "hallway 11": 18,
   "Ballroom": 19,
-  "hall_12": 20,
+  "hallway 12": 20,
   "Kitchen": 21
 }
 
