@@ -166,7 +166,7 @@ const WaitingLobby = () => {
             }
           })}
         </div>
-        {playerCount >= 2 &&
+        {playerCount >= 2 && localPlayer.turn == 1 &&
             <button className='startGame' onClick={handleStartGame}>
                 Start Game
             </button>
